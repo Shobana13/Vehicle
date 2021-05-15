@@ -42,13 +42,13 @@ public class BookingController {
 	
 
 	@GetMapping("/booking/id/{id}")
-	public Booking viewBooking(@PathVariable int bok) {
+	public List<Booking> viewBooking(@PathVariable Booking bok) {
 		return bokService.viewBooking(bok);
 	}
 
 	@GetMapping("/booking/{id}")
 	public List<Booking> viewAllBooking(@PathVariable("id")Customer customer) {
-		return bokService.viewAllBooking(customer);
+		return bokService.viewAllBookingByCustomer(customer);
 	}
 
 	@GetMapping("/booking")

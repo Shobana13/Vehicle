@@ -12,11 +12,9 @@ import com.cg.vms.entities.Customer;
 import com.cg.vms.entities.Vehicle;
 import com.cg.vms.repository.IBookingRepository;
 
-
 @Service
 public class BookingServiceImpl implements IBookingService {
 
-	
 	@Autowired
 	IBookingRepository bokRep;
 
@@ -25,57 +23,45 @@ public class BookingServiceImpl implements IBookingService {
 		return bokRep.save(booking);
 	}
 
-		
 	@Override
-	public Booking cancelBooking(Booking b) {
-		Booking book=bokRep.findById(b.getBookingId()).get();
-		bokRep.deleteById(b.getBookingId());
-		return b;
-		
+	public Booking cancelBooking(Booking bok) {
+		Booking book = bokRep.findById(bok.getBookingId()).get();
+		bokRep.deleteById(bok.getBookingId());
+		return bok;
+
 	}
-	
 
 	@Override
 	public Booking updateBookingDate(int bookingId, Booking booking) {
-		Optional<Booking> bok=bokRep.findById(bookingId);
-		if(bok.isPresent()) {
+		Optional<Booking> bok = bokRep.findById(bookingId);
+		if (bok.isPresent()) {
 			bok.get().setBookingDate(booking.getBookingDate());
 		}
-		
+
 		return bokRep.save(bok.get());
 	}
 
 	@Override
-	public Booking viewBooking(int bok) {
-		Booking pa = bokRep.findById(bok).get();
-		return pa;
+	public List<Booking> viewBooking(Booking bok) {
+		return bokRep.findAll();
 	}
 
-
 	@Override
-	public List<Booking> viewAllBooking( Customer customer) {
-		
+	public List<Booking> viewAllBookingByCustomer(Customer customer) {
+
 		return bokRep.findAll();
 	}
 
 	@Override
 	public List<Booking> viewAllBookingByDate(LocalDate bookingDate) {
-		
+
 		return bokRep.viewAllBookingByDate(bookingDate);
 	}
 
 	@Override
 	public List<Booking> viewAllBookingByVehicle(Vehicle vehicle) {
-		
+
 		return bokRep.viewAllBookingByVehicle(vehicle);
 	}
 
-
-
-
-	
 }
-
-		
-
-

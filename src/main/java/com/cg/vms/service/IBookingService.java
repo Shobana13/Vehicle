@@ -15,9 +15,9 @@ public interface IBookingService {
 
 	public Booking updateBookingDate(int bookingId, Booking booking);
 
-	public Booking viewBooking(int bok);
+	public List<Booking> viewBooking(Booking bok);
 
-	public List<Booking> viewAllBooking(Customer customer);
+	public List<Booking> viewAllBookingByCustomer(Customer customer);
 
 	public List<Booking> viewAllBookingByDate(LocalDate bookingDate);
 

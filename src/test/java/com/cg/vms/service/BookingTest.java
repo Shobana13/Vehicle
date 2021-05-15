@@ -98,8 +98,8 @@ class BookingTest {
 		bok.setTotalCost(1000.6);
 		bok.setDistance(200.00);
 		System.out.println(bok);
-		Booking bok1 = bokService.viewBooking(101);
-		assertEquals(200, bok1.getDistance());
+		List<Booking> bok1 = bokService.viewBooking(bok);
+		assertEquals(200, ((Booking) bok1).getDistance());
 	}
 
 	@Test
@@ -115,7 +115,7 @@ class BookingTest {
 		b1.setCustomer(cust);
 		// Booking bok=bokService.addBooking(b1);
 		// System.out.println(bok);
-		List<Booking> booking = bokService.viewAllBooking(cust);
+		List<Booking> booking = bokService.viewAllBookingByCustomer(cust);
 
 		assertEquals(1, booking.size());
 
