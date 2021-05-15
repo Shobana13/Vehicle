@@ -1,7 +1,9 @@
 package com.cg.vms.entities;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Vehicle {
@@ -16,6 +18,10 @@ public class Vehicle {
 	private String capacity;
 	private double chargesPerKM;
 	private double fixedCharges;
+	
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="driverid")
+	private Driver driver;
 	
 	//constructors
 	public Vehicle() {}
@@ -33,8 +39,16 @@ public class Vehicle {
 		this.fixedCharges = fixedCharges;
 	}
 	
-	
 	//getters n setters
+	public Driver getDriver() {
+		return driver;
+	}
+
+
+	public void setDriver(Driver driver) {
+		this.driver = driver;
+	}
+	
 	public int getVehicleId() {
 		return vehicleId;
 	}
