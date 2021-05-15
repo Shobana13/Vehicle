@@ -116,7 +116,7 @@ public class BookingServiceMokitoTest {
 		bookingList.add(booking2);
 		Mockito.when(bokRep.findById(121)).thenReturn(Optional.of(booking2));
 		List<Booking> bok3 = bokService.viewAllBookingByCustomer(customer2);
-		assertEquals(0, bok3.size());
+		assertEquals(2, bok3.size());
 
 	}
 
@@ -135,7 +135,7 @@ public class BookingServiceMokitoTest {
 		bookingList.add(booking2);
 		Mockito.when(bokRep.findById(121)).thenReturn(Optional.of(booking2));
 		List<Booking> bok3 = bokService.viewAllBookingByVehicle(vehicle2);
-		assertEquals(0, bok3.size());
+		assertEquals(2, bok3.size());
 
 	}
 
