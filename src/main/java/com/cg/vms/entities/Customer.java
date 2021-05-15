@@ -24,6 +24,10 @@ public class Customer {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "address_id")
 	private Address address;
+	
+	@OneToOne(mappedBy = "customer")
+	private Booking booking;
+
 
 	// constructors
 	public Customer() {
@@ -107,5 +111,13 @@ public class Customer {
 		return "Customer [customerId=" + customerId + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", mobileNumber=" + mobileNumber + ", emailId=" + emailId + ", vehicle=" + vehicle + ", address="
 				+ address + "]";
+	}
+
+	public Booking getBooking() {
+		return booking;
+	}
+
+	public void setBooking(Booking booking) {
+		this.booking = booking;
 	}
 }

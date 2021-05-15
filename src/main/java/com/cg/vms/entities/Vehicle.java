@@ -23,6 +23,16 @@ public class Vehicle {
 	@JoinColumn(name="driverid")
 	private Driver driver;
 	
+	@OneToOne(mappedBy = "vehicle")
+	private Booking booking;
+
+	
+	public Booking getBooking() {
+		return booking;
+	}
+	public void setBooking(Booking booking) {
+		this.booking = booking;
+	}
 	//constructors
 	public Vehicle() {}
 	public Vehicle(int vehicleId, String vehicleNumber, String type, String category, String description,
