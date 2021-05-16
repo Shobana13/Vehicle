@@ -27,12 +27,12 @@ public class Booking {
 	@JoinColumn(name = "customerId")
 	private Customer customer;
 
+	//Constructor
 	public Booking() {
 	}
 
 	public Booking(int bookingId, LocalDate bookingDate, LocalDate bookedTillDate, String bookingDescription,
 			double totalCost, double distance) {
-		// super();
 		this.bookingId = bookingId;
 		this.bookingDate = bookingDate;
 		this.bookedTillDate = bookedTillDate;
@@ -42,6 +42,7 @@ public class Booking {
 
 	}
 
+	// Getters and Setters
 	public Vehicle getVehicle() {
 		return vehicle;
 	}
@@ -98,13 +99,6 @@ public class Booking {
 		this.distance = distance;
 	}
 
-	@Override
-	public String toString() {
-		return "Booking [bookingId=" + bookingId + ", bookingDate=" + bookingDate + ", bookedTillDate=" + bookedTillDate
-				+ ", bookingDescription=" + bookingDescription + ", totalCost=" + totalCost + ", distance=" + distance
-				+ "]";
-	}
-
 	public void setCustomer(Customer cust) {
 		this.customer = cust;
 
@@ -114,5 +108,14 @@ public class Booking {
 		this.vehicle = vehicle2;
 
 	}
+	
+	//toString
+	@Override
+	public String toString() {
+		return "Booking [bookingId=" + bookingId + ", bookingDate=" + bookingDate + ", bookedTillDate=" + bookedTillDate
+				+ ", bookingDescription=" + bookingDescription + ", totalCost=" + totalCost + ", distance=" + distance
+				+ "]";
+	}
+
 
 }

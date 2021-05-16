@@ -18,12 +18,14 @@ public class BookingController {
 
 	@Autowired
 	IBookingService bokService;
-
+	
+	//Add Booking
 	@PostMapping("/booking")
 	public Booking AddBooking(@RequestBody Booking booking) {
 		return bokService.addBooking(booking);
 	}
 
+	//Delete Booking
 	@DeleteMapping("/booking/{id}")
 	public Booking CancelBooking(@PathVariable("id") Booking bok) {
 		if (bokService.cancelBooking(bok) == null) {
@@ -32,6 +34,7 @@ public class BookingController {
 		return bokService.cancelBooking(bok);
 	}
 
+	//Update Booking
 	@PatchMapping("/booking/{id}")
 	public Booking UpdateBookingDate(@PathVariable("id") int bookingId, @RequestBody Booking booking) {
 		if (bokService.updateBookingDate(bookingId, booking) == null) {
@@ -39,22 +42,26 @@ public class BookingController {
 		}
 		return bokService.updateBookingDate(bookingId, booking);
 	}
-
+	
+	//View Booking By Id
 	@GetMapping("/booking/id/{id}")
 	public Booking ViewBooking(@PathVariable("id") Booking booking) {
 		return bokService.viewBooking(booking);
 	}
 
+	//View Booking by CustomerId
 	@GetMapping("/booking/{id}")
 	public List<Booking> viewAllBookingByCustomer(@PathVariable("id") int customerId) {
 		return bokService.viewAllBookingByCustomer(customerId);
 	}
 
+	//View Booking By booking Date
 	@GetMapping("/booking/bookingDate/{bookingDate}")
 	public List<Booking> viewAllBookingByBookingDate(@PathVariable("bookingDate") LocalDate bookingDate) {
 		return bokService.viewAllBookingByBookingDate(bookingDate);
 	}
-
+	
+	//View Booking by VehicleId
 	@GetMapping("/booking/vehicle/{id}")
 	public List<Booking> viewAllBookingByVehicleId(@PathVariable("id") int vehicleId) {
 		return bokService.viewAllBookingByVehicleId(vehicleId);
