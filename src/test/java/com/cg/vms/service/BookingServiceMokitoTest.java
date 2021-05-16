@@ -19,7 +19,6 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import static org.junit.jupiter.api.Assertions.*;
 
 import com.cg.vms.entities.Customer;
 import com.cg.vms.entities.Vehicle;
@@ -43,22 +42,18 @@ public class BookingServiceMokitoTest {
 		Booking booking = new Booking(101, LocalDate.of(2020, 10, 10), LocalDate.of(2020, 10, 11), "Good", 100.00,
 				1000.00);
 		Mockito.when(bokRep.save(booking)).thenReturn(booking);
-		Booking persistedbok = bokService.save(booking);
+		Booking persistedbok = bokService.addBooking(booking);
 		assertEquals(101, persistedbok.getBookingId());
 	}
 
 	@Test
-	void testViewAllBooking() {
+	void testViewBooking() {
 		Booking booking1 = new Booking(101, LocalDate.of(2020, 10, 10), LocalDate.of(2020, 10, 11), "Good", 100.00,
 				1000.00);
-		Booking booking2 = new Booking(102, LocalDate.of(2021, 10, 11), LocalDate.of(2020, 10, 12), "Good", 200.00,
-				2000.00);
-		List<Booking> bookingList = new ArrayList<>();
-		bookingList.add(booking1);
-		bookingList.add(booking2);
-		Mockito.when(bokRep.findAll()).thenReturn(bookingList);
-		List<Booking> booking = bokService.viewBooking(booking1);
-		assertEquals(2, booking.size());
+
+		Mockito.when(bokRep.findById(101)).thenReturn(Optional.of(booking1));
+		Booking booking = bokService.viewBooking(booking1);
+		assertEquals(101, booking.getBookingId());
 
 	}
 
@@ -71,9 +66,9 @@ public class BookingServiceMokitoTest {
 		List<Booking> bookingList = new ArrayList<>();
 		bookingList.add(booking1);
 		bookingList.add(booking2);
-		Mockito.when(bokRep.findAll()).thenReturn(bookingList);
-		List<Booking> booking = bokService.viewAllBookingByDate(LocalDate.of(2021, 10, 11));
-		assertEquals(0, booking.size());
+		Mockito.when(bokRep.viewAllBookingbyBookingDate(LocalDate.of(2021, 10, 11))).thenReturn(bookingList);
+		List<Booking> booking = bokService.viewAllBookingByBookingDate(LocalDate.of(2021, 10, 11));
+		assertEquals(2, booking.size());
 
 	}
 
@@ -81,16 +76,16 @@ public class BookingServiceMokitoTest {
 	void testUpdateBooking() {
 		Booking booking = new Booking(101, LocalDate.of(2020, 10, 12), LocalDate.of(2020, 10, 11), "Good", 100.00,
 				1000.00);
-		Mockito.when(bokRep.findById(1)).thenReturn(Optional.of(booking));
+		Mockito.when(bokRep.findById(101)).thenReturn(Optional.of(booking));
 		Mockito.when(bokRep.save(booking)).thenReturn(booking);
-		Booking persistedBok = bokService.updateBookingDate(1, booking);
+		Booking persistedBok = bokService.updateBookingDate(101, booking);
 		assertEquals(101, persistedBok.getBookingId());
 		assertEquals(LocalDate.of(2020, 10, 12), persistedBok.getBookingDate());
 
 	}
 
 	@Test
-	void testcancelBooking() {
+	void testCancelBooking() {
 
 		Booking booking = new Booking(101, LocalDate.of(2020, 10, 12), LocalDate.of(2020, 10, 11), "Good", 100.00,
 				1000.00);
@@ -114,18 +109,18 @@ public class BookingServiceMokitoTest {
 		List<Booking> bookingList = new ArrayList<>();
 		bookingList.add(booking1);
 		bookingList.add(booking2);
-		Mockito.when(bokRep.findById(121)).thenReturn(Optional.of(booking2));
-		List<Booking> bok3 = bokService.viewAllBookingByCustomer(customer2);
+		Mockito.when(bokRep.viewAllBookingByCustomer(2)).thenReturn(bookingList);
+		List<Booking> bok3 = bokService.viewAllBookingByCustomer(2);
 		assertEquals(2, bok3.size());
 
 	}
 
 	@Test
 	void testviewAllBookingByVehicle() {
-		Booking booking1 = new Booking(102, LocalDate.of(2020, 11, 10), LocalDate.of(2020, 10, 12), "Good", 200.00,
+		Booking booking1 = new Booking(103, LocalDate.of(2020, 11, 10), LocalDate.of(2020, 10, 12), "Good", 200.00,
 				2000.00);
 		Vehicle vehicle1 = new Vehicle(121, "TN02J0666", "bus", "A/C", "prime", "goa", "13", 600.0, 8000.0);
-		Booking booking2 = new Booking(103, LocalDate.of(2021, 10, 10), LocalDate.of(2020, 11, 10), "Nice", 300.00,
+		Booking booking2 = new Booking(104, LocalDate.of(2021, 10, 10), LocalDate.of(2020, 11, 10), "Nice", 300.00,
 				3000.00);
 		Vehicle vehicle2 = new Vehicle(102, "TN02J0666", "car", "A/C", "prime", "goa", "13", 600.0, 8000.0);
 		booking1.setVehicle(vehicle1);
@@ -133,10 +128,11 @@ public class BookingServiceMokitoTest {
 		List<Booking> bookingList = new ArrayList<>();
 		bookingList.add(booking1);
 		bookingList.add(booking2);
-		Mockito.when(bokRep.findById(121)).thenReturn(Optional.of(booking2));
-		List<Booking> bok3 = bokService.viewAllBookingByVehicle(vehicle2);
+		Mockito.when(bokRep.viewAllBookingByVehicle(102)).thenReturn(bookingList);
+		List<Booking> bok3 = bokService.viewAllBookingByVehicleId(102);
 		assertEquals(2, bok3.size());
 
 	}
+
 
 }

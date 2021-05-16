@@ -8,60 +8,75 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.vms.entities.Booking;
-import com.cg.vms.entities.Customer;
-import com.cg.vms.entities.Vehicle;
 import com.cg.vms.repository.IBookingRepository;
 
 @Service
 public class BookingServiceImpl implements IBookingService {
-
+	
 	@Autowired
 	IBookingRepository bokRep;
 
 	@Override
-	public Booking save(Booking booking) {
+	public Booking addBooking(Booking booking) {
 		return bokRep.save(booking);
 	}
 
+		
 	@Override
-	public Booking cancelBooking(Booking bok) {
-		Booking book = bokRep.findById(bok.getBookingId()).get();
-		bokRep.deleteById(bok.getBookingId());
-		return bok;
-
+	public Booking cancelBooking(Booking bo) {
+		
+		Optional<Booking> bok = bokRep.findById(bo.getBookingId());
+		if (!bok.isPresent()) {
+			return null;
+		}
+		bokRep.deleteById(bo.getBookingId());
+		return bok.get();
 	}
+	
+	
 
 	@Override
 	public Booking updateBookingDate(int bookingId, Booking booking) {
-		Optional<Booking> bok = bokRep.findById(bookingId);
-		if (bok.isPresent()) {
+		Optional<Booking> bok=bokRep.findById(bookingId);
+		if(bok.isPresent()) {
 			bok.get().setBookingDate(booking.getBookingDate());
+			return bokRep.save(bok.get());
 		}
-
-		return bokRep.save(bok.get());
+		
+		return null;
 	}
 
 	@Override
-	public List<Booking> viewBooking(Booking bok) {
-		return bokRep.findAll();
+	public Booking viewBooking(Booking booking) {
+	
+		Optional<Booking> bok = bokRep.findById(booking.getBookingId());
+		if(!bok.isPresent()) {
+			return null;
+		}
+		return bok.get();
+
+	}
+	
+
+	@Override
+	public List<Booking> viewAllBookingByCustomer(int customerId) {
+		
+		return bokRep.viewAllBookingByCustomer(customerId);
 	}
 
 	@Override
-	public List<Booking> viewAllBookingByCustomer(Customer customer) {
-
-		return bokRep.findAll();
+	public List<Booking> viewAllBookingByBookingDate(LocalDate bookingDate) {
+		
+		return bokRep.viewAllBookingbyBookingDate(bookingDate);
 	}
 
 	@Override
-	public List<Booking> viewAllBookingByDate(LocalDate bookingDate) {
-
-		return bokRep.viewAllBookingByDate(bookingDate);
+	public List<Booking> viewAllBookingByVehicleId(int vehicleId) {
+		
+		return bokRep.viewAllBookingByVehicle(vehicleId);
 	}
 
-	@Override
-	public List<Booking> viewAllBookingByVehicle(Vehicle vehicle) {
 
-		return bokRep.viewAllBookingByVehicle(vehicle);
-	}
+
 
 }

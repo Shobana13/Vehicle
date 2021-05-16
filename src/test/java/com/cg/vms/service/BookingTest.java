@@ -13,7 +13,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.cg.vms.entities.Booking;
 import com.cg.vms.entities.Customer;
 import com.cg.vms.entities.Vehicle;
-import com.cg.vms.service.BookingServiceImpl;
 import com.cg.vms.service.IBookingService;
 
 @SpringBootTest
@@ -25,18 +24,14 @@ class BookingTest {
 	@Test
 	@Disabled
 	void testShouldAddBooking() {
-		IBookingService bokService = new BookingServiceImpl();
-		Booking bok = new Booking();
-		bok.setBookingId(234);
-		LocalDate bd1 = LocalDate.of(2021, 10, 11);
-		bok.setBookingDate(bd1);
-		LocalDate bd2 = LocalDate.of(2021, 10, 22);
-		bok.setBookedTillDate(bd2);
-		bok.setBookingDescription("Great");
-		bok.setTotalCost(2000.6);
-		bok.setDistance(200.00);
-
-		Booking persistedBok = bokService.save(bok);
+		LocalDate bd1 = LocalDate.of(2020, 12, 20);
+		LocalDate bd2 = LocalDate.of(2020, 12, 30);
+		Customer cust = new Customer(12, "Nimbo", "Ramani", "nimbo@gmail.com", "9514555555");
+		Booking b1 = new Booking(206, bd1, bd2, "Better", 900.00, 10000.60);
+		Vehicle vehicle = new Vehicle(310, "TN 02 0903", "car", "Non A/C", "deluxe", "Tambaram", "40", 110.0, 90.0);
+		b1.setVehicle(vehicle);
+		b1.setCustomer(cust);
+		Booking persistedBok = bokService.addBooking(b1);
 		System.out.println(persistedBok);
 		assertEquals(234, persistedBok.getBookingId());
 		assertEquals(bd1, persistedBok.getBookingDate());
@@ -50,87 +45,50 @@ class BookingTest {
 	@Test
 	@Disabled
 	void testShouldCancelBooking() {
-		IBookingService bokService = new BookingServiceImpl();
 		Booking bok = new Booking();
-		bok.setBookingId(1);
-		LocalDate bd1 = LocalDate.of(2020, 10, 07);
-		bok.setBookingDate(bd1);
-		LocalDate bd2 = null;
-		bok.setBookedTillDate(bd2);
-		bok.setBookingDescription(null);
-		bok.setTotalCost(0);
-		bok.setDistance(0);
-
+		bok.setBookingId(234);
 		Booking bok1 = bokService.cancelBooking(bok);
-		assertEquals(1, bok1.getBookingId());
+		assertEquals(234, bok1.getBookingId());
 
 	}
 
 	@Test
-	// @Disabled
+	@Disabled
 	void testShouldUpdateBooking() {
-		IBookingService bokService = new BookingServiceImpl();
 		Booking bok = new Booking();
-		bok.getBookingId();
+		bok.setBookingId(101);
 		LocalDate bd1 = LocalDate.of(2020, 10, 10);
 		bok.setBookingDate(bd1);
-		LocalDate bd2 = LocalDate.of(2020, 10, 20);
-		bok.setBookedTillDate(bd2);
-		bok.setBookingDescription("Good");
-		bok.setTotalCost(1000.6);
-		bok.setDistance(200.00);
-		Booking updatedBok = bokService.updateBookingDate(0, bok);
+		Booking updatedBok = bokService.updateBookingDate(101, bok);
 		System.out.println(updatedBok);
-		assertEquals(200.00, updatedBok.getDistance());
+		assertEquals(1000.00, updatedBok.getDistance());
 	}
 
 	@Test
-	@Disabled
-	void testShouldViewBooking() {
-		IBookingService bokService = new BookingServiceImpl();
+	 @Disabled
+	void testShouldViewBookingById() {
 		Booking bok = new Booking();
-		bok.setBookingId(1);
-		LocalDate bd1 = LocalDate.of(2020, 10, 10);
-		bok.setBookingDate(bd1);
-		LocalDate bd2 = LocalDate.of(2020, 10, 20);
-		bok.setBookedTillDate(bd2);
-		bok.setBookingDescription("Good");
-		bok.setTotalCost(1000.6);
-		bok.setDistance(200.00);
+		bok.setBookingId(101);
 		System.out.println(bok);
-		List<Booking> bok1 = bokService.viewBooking(bok);
-		assertEquals(200, ((Booking) bok1).getDistance());
+		Booking bok1 = bokService.viewBooking(bok);
+		assertEquals(1000.00, bok1.getDistance());
 	}
 
 	@Test
 	@Disabled
-	void testShouldGetAllBooking() {
-		IBookingService bokService = new BookingServiceImpl();
-		LocalDate bd1 = LocalDate.of(2020, 12, 20);
-		LocalDate bd2 = LocalDate.of(2020, 12, 30);
-
-		Customer cust = new Customer(12, "Nimbo", "Ramani", "nimbo@gmail.com", "9514555555");
-		Booking b1 = new Booking(206, bd1, bd2, "Better", 900.00, 10000.60);
-		cust.setBooking(b1);
-		b1.setCustomer(cust);
-		// Booking bok=bokService.addBooking(b1);
-		// System.out.println(bok);
-		List<Booking> booking = bokService.viewAllBookingByCustomer(cust);
-
+	void testShouldGetAllBookingByCusomerId() {
+		List<Booking> booking = bokService.viewAllBookingByCustomer(201);
 		assertEquals(1, booking.size());
 
 	}
 
 	@Test
 	@Disabled
-	void testShouldGetAllBooking1() {
-		IBookingService bokService = new BookingServiceImpl();
-
+	void testShouldGetAllBookingByBookingDate() {
 		Booking bok = new Booking();
 		LocalDate bd1 = LocalDate.of(2020, 10, 10);
 		bok.setBookingDate(bd1);
-
-		List<Booking> b1 = bokService.viewAllBookingByDate(bd1);
+		List<Booking> b1 = bokService.viewAllBookingByBookingDate(bd1);
 		for (Booking b : b1) {
 			System.out.println(b);
 		}
@@ -139,20 +97,12 @@ class BookingTest {
 	}
 
 	@Test
-	// @Disabled
-	void testShouldGetAllBooking2() {
-		IBookingService bokService = new BookingServiceImpl();
-		LocalDate bd1 = LocalDate.of(2020, 11, 10);
-		LocalDate bd2 = LocalDate.of(2020, 11, 20);
-		Booking booking = new Booking(204, bd1, bd2, "Good", 900.00, 10000.60);
-		Vehicle vehicle = new Vehicle(310, "TN 02 0903", "car", "Non A/C", "deluxe", "Tambaram", "40", 110.0, 90.0);
-		vehicle.setBooking(booking);
-		booking.setVehicle(vehicle);
-		List<Booking> b1 = bokService.viewAllBookingByVehicle(vehicle);
-		for (Booking b : b1) {
-			System.out.println(b);
-		}
+	@Disabled
+	void testShouldGetAllBookingByVehicleId() {
+		List<Booking> b1 = bokService.viewAllBookingByVehicleId(301);
+		System.out.println(b1);
 		assertEquals(1, b1.size());
 	}
+
 
 }
