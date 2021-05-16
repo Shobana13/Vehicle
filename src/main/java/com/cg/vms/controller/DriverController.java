@@ -34,7 +34,7 @@ public class DriverController {
 		return driService.findAllDriver();
 	}
 
-	// Update Firstname
+	// Update FirstName
 	@PatchMapping("/driver/id/{id}")
 	public Driver updateFirstName(@PathVariable("id") int id, @RequestBody Driver driver) {
 		return driService.updateFirstName(driver);
@@ -44,27 +44,27 @@ public class DriverController {
 	@GetMapping("/driver/id/{id}")
 	public Driver viewDriver(@PathVariable("id") int driverId) {
 		if (driService.viewDriver(driverId) == null) {
-			throw new DriverNotFoundException("Driver not found with this id" + driverId);
+			throw new DriverNotFoundException("Driver not found with this id:" + driverId);
 		}
 		return driService.viewDriver(driverId);
 	}
 
-	// Update Driver
-	@PutMapping("/driver/id/{id}")
-	public Driver updateFirstName(@PathVariable("id") int driverId) {
-		if (driService.updateFirstName(driverId) == null) {
-			throw new DriverNotFoundException("Driver not Found with this first name:" + driverId);
-		}
-		return driService.updateFirstName(driverId);
-	}
-
-	// Delete by id
+	// Delete by Id
 	@DeleteMapping("/driver/id/{id}")
 	public Driver deleteDriverById(@PathVariable("id") int driverId) {
 		if (driService.deleteDriverById(driverId) == null) {
 			throw new DriverNotFoundException("Driver not found with this id:" + driverId);
 		}
 		return driService.deleteDriverById(driverId);
+	}
+	
+	// Update vehicle
+	@PutMapping("/driver/id/{id}")
+	public Driver update(@RequestBody Driver driver) {
+		if (driService.update(driver) == null) {
+			throw new DriverNotFoundException("Driver Not Found:" + driver.getDriverId());
+		}
+		return driService.update(driver);
 	}
 
 }

@@ -1,9 +1,12 @@
 package com.cg.vms.entities;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Vehicle {
@@ -19,7 +22,7 @@ public class Vehicle {
 	private double chargesPerKM;
 	private double fixedCharges;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name="driverid")
 	private Driver driver;
 	
@@ -49,7 +52,9 @@ public class Vehicle {
 		this.fixedCharges = fixedCharges;
 	}
 	
-	//getters n setters
+
+	//Getters and Setters
+	@JsonManagedReference
 	public Driver getDriver() {
 		return driver;
 	}

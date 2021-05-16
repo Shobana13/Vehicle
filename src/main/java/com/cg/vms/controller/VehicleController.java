@@ -21,8 +21,6 @@ public class VehicleController {
 
 	@Autowired
 	IVehicleService vehService;
-	
-	
 
 	// Add Vehicle
 	@PostMapping("/vehicle")
@@ -30,13 +28,13 @@ public class VehicleController {
 		return vehService.addVehicle(vehicle);
 	}
 
-	//Find All Vehicle
+	// Find All Vehicle
 	@GetMapping("/vehicle")
 	public List<Vehicle> findAllVehicle() {
 		return vehService.findAllVehicle();
 	}
 
-	//Update VehicleNumber
+	// Update VehicleNumber
 	@PatchMapping("/vehicle/id/{id}")
 	public Vehicle updateVehicleNumber(@PathVariable("id") int id, @RequestBody Vehicle vehicle) {
 		return vehService.updateVehicleNumber(vehicle);
@@ -53,14 +51,14 @@ public class VehicleController {
 
 	// Update vehicle
 	@PutMapping("/vehicle/id/{id}")
-	public Vehicle updateVehicleNumber(@PathVariable("id") int vehicleId) {
-		if (vehService.updateVehicleNumber(vehicleId) == null) {
-			throw new VehicleNotFoundException("Vehicle not Found:" + vehicleId);
+	public Vehicle update(@RequestBody Vehicle vehicle) {
+		if (vehService.update(vehicle) == null) {
+			throw new VehicleNotFoundException("Vehicle not Found:" + vehicle.getVehicleId());
 		}
-		return vehService.updateVehicleNumber(vehicleId);
+		return vehService.update(vehicle);
 	}
 
-	// delete by id
+	// delete by Id
 	@DeleteMapping("/vehicle/id/{id}")
 	public Vehicle deleteVehicleById(@PathVariable("id") int vehicleId) {
 		if (vehService.deleteVehicleById(vehicleId) == null) {
