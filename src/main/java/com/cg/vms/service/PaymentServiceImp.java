@@ -51,4 +51,14 @@ public class PaymentServiceImp implements IPaymentService {
 		return payRepo.findAll();
 	}
 
+	@Override
+	public Payment updatePaymentStatus(int paymentId, Payment payment) {
+		Optional<Payment> pa = payRepo.findById(paymentId);
+		if (pa.isPresent()) {
+			pa.get().setPaymentStatus(payment.getPaymentStatus());
+			return payRepo.save(pa.get());
+		}
+		return null;
+	}
+
 }

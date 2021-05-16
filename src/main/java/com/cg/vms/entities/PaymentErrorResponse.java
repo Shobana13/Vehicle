@@ -5,6 +5,7 @@ public class PaymentErrorResponse {
 	private String message;
 	private long timeStamp;
 
+	// constructors
 	public PaymentErrorResponse() {
 	}
 
@@ -14,6 +15,8 @@ public class PaymentErrorResponse {
 		this.message = message;
 		this.timeStamp = timeStamp;
 	}
+
+	// getters and setters
 
 	public int getStatus() {
 		return status;
@@ -39,6 +42,7 @@ public class PaymentErrorResponse {
 		this.timeStamp = timeStamp;
 	}
 
+	// to string()
 	@Override
 	public String toString() {
 		return "PaymentErrorResponse [status=" + status + ", message=" + message + ", timeStamp=" + timeStamp + "]";

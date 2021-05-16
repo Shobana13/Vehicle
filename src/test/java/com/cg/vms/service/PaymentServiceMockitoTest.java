@@ -21,7 +21,6 @@ import com.cg.vms.entities.Payment;
 import com.cg.vms.entities.Vehicle;
 import com.cg.vms.repository.IPaymentRepository;
 
-
 @ExtendWith(SpringExtension.class)
 class PaymentServiceMockitoTest {
 	@InjectMocks
@@ -84,6 +83,33 @@ class PaymentServiceMockitoTest {
 		Mockito.when(payRepo.findAll()).thenReturn(payment);
 		List<Payment> payments = payService.viewAllPayments();
 		assertEquals(2, payments.size());
+	}
+
+	@Test
+	void testFindAllPaymentsByVehicle() {
+		Payment payment1 = new Payment(10007, "Online", LocalDate.of(2021, 05, 07), "Success");
+		Vehicle vehicle1 = new Vehicle(1007, "TN08A34", "car", "ac", "small", "Chennai", "4seater", 50.0, 60.0);
+		Payment payment2 = new Payment(10008, "Online", LocalDate.of(2021, 05, 06), "Success");
+		Vehicle vehicle2 = new Vehicle(1008, "TN08A34", "car", "ac", "small", "Chennai", "4seater", 50.0, 60.0);
+		payment1.setVehicle(vehicle1);
+		payment2.setVehicle(vehicle2);
+		List<Payment> vehicle = new ArrayList<>();
+		vehicle.add(payment1);
+		vehicle.add(payment2);
+		Mockito.when(payRepo.findAll()).thenReturn(vehicle);
+		List<Payment> payment = payService.viewAllPayments();
+		System.out.println(payment);
+		assertEquals(2, payment.size());
+	}
+
+	@Test
+	void testUpdatePaymentStatus() {
+		Payment payment = new Payment(10008, "Online", LocalDate.of(2021, 05, 07), "Pending");
+		Mockito.when(payRepo.findById(10008)).thenReturn(Optional.of(payment));
+		Mockito.when(payRepo.save(payment)).thenReturn(payment);
+		Payment persistedPa = payService.updatePaymentStatus(10008, payment);
+		System.out.println(persistedPa);
+		assertEquals("Pending", persistedPa.getPaymentStatus());
 	}
 
 }
