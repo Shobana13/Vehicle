@@ -65,7 +65,7 @@ class BookingTest {
 	}
 
 	@Test
-	 @Disabled
+	@Disabled
 	void testShouldViewBookingById() {
 		Booking bok = new Booking();
 		bok.setBookingId(101);
@@ -103,6 +103,5 @@ class BookingTest {
 		System.out.println(b1);
 		assertEquals(1, b1.size());
 	}
-
 
 }
