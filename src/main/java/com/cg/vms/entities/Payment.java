@@ -16,6 +16,7 @@ public class Payment {
 	private LocalDate paymentDate;
 	private String paymentStatus;
 
+	// mapping
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "bookingId")
 	private Booking booking;
@@ -24,6 +25,7 @@ public class Payment {
 	@JoinColumn(name = "vehicleId")
 	private Vehicle vehicle;
 
+	// constructors
 	public Payment() {
 	}
 
@@ -33,6 +35,8 @@ public class Payment {
 		this.paymentDate = paymentDate;
 		this.paymentStatus = paymentStatus;
 	}
+
+	// getters and setters
 
 	public int getPaymentId() {
 		return paymentId;
@@ -82,11 +86,11 @@ public class Payment {
 		this.vehicle = vehicle;
 	}
 
+	// to string()
 	@Override
 	public String toString() {
 		return "Payment [paymentId=" + paymentId + ", paymentMode=" + paymentMode + ", paymentDate=" + paymentDate
-				+ ", paymentStatus=" + paymentStatus +  ", booking=" + booking
-				+ ",vehicle=" + vehicle + "]";
+				+ ", paymentStatus=" + paymentStatus + ", booking=" + booking + ",vehicle=" + vehicle + "]";
 	}
 
 }

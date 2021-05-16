@@ -14,20 +14,11 @@ import com.cg.vms.entities.Booking;
 import com.cg.vms.entities.Payment;
 import com.cg.vms.entities.Vehicle;
 
-
 @SpringBootTest
 class PaymentServiceTest {
 
 	@Autowired
 	IPaymentService PayService;
-
-	@Test
-	@Disabled
-	void testFindAllPayments() {
-		List<Payment> payment = PayService.viewAllPayments();
-		System.out.println(payment);
-		assertEquals(6, payment.size());
-	}
 
 	@Test
 	@Disabled
@@ -64,6 +55,35 @@ class PaymentServiceTest {
 		assertEquals("Online", persistedPa.getPaymentMode());
 		assertEquals(LocalDate.of(2021, 05, 06), persistedPa.getPaymentDate());
 		assertEquals("Success", persistedPa.getPaymentStatus());
+	}
+
+	@Test
+	@Disabled
+	void testFindAllPayments() {
+		List<Payment> payment = PayService.viewAllPayments();
+		System.out.println(payment);
+		assertEquals(6, payment.size());
+	}
+
+	@Test
+	@Disabled
+	void testFindAllPaymentsByVehicle() {
+		Vehicle vehicle = new Vehicle();
+		List<Payment> payment = PayService.viewAllPayments(vehicle);
+		System.out.println(payment);
+		assertEquals(8, payment.size());
+	}
+
+	@Test
+	@Disabled
+	void testUpdatePaymentStatus() {
+		Payment payment = new Payment();
+		payment.setPaymentId(10009);
+		payment.setPaymentStatus("Success");
+		Payment persistedPa = PayService.updatePaymentStatus(10009, payment);
+		System.out.println(persistedPa);
+		assertEquals("Success", persistedPa.getPaymentStatus());
+
 	}
 
 }

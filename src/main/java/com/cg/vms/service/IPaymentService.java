@@ -7,13 +7,10 @@ import com.cg.vms.entities.Vehicle;
 
 public interface IPaymentService {
 	public Payment addPayment(Payment payment);
-
 	public Payment cancelPayment(int p);
-
 	public Payment viewPayment(int b);
-
+	public Payment updatePaymentStatus(int paymentId, Payment payment);
 	public List<Payment> viewAllPayments(Vehicle vehicle);
-
 	public List<Payment> viewAllPayments();
 
 }
