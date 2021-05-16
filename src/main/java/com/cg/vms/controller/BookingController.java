@@ -9,62 +9,56 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.cg.vms.entities.Booking;
-import com.cg.vms.entities.Customer;
-import com.cg.vms.entities.Vehicle;
+import com.cg.vms.exceptions.BookingNotFoundException;
 import com.cg.vms.service.IBookingService;
 
-@RestController
 public class BookingController {
-	
+
 	@Autowired
 	IBookingService bokService;
-	
 
 	@PostMapping("/booking")
-	public Booking save(@RequestBody Booking booking) {
-		return bokService.save(booking);
+	public Booking AddBooking(@RequestBody Booking booking) {
+		return bokService.addBooking(booking);
 	}
 
 	@DeleteMapping("/booking/{id}")
-	public Booking cancelBooking(@PathVariable("id") Booking bok) {
+	public Booking CancelBooking(@PathVariable("id") Booking bok) {
+		if (bokService.cancelBooking(bok) == null) {
+			throw new BookingNotFoundException("Booking Not Found with this Id" + bok.getBookingId());
+		}
 		return bokService.cancelBooking(bok);
 	}
 
 	@PatchMapping("/booking/{id}")
-	public Booking updateBookingDate(@PathVariable("id") int id,@RequestBody Booking booking) {
-		return bokService.updateBookingDate(id, booking);
+	public Booking UpdateBookingDate(@PathVariable("id") int bookingId, @RequestBody Booking booking) {
+		if (bokService.updateBookingDate(bookingId, booking) == null) {
+			throw new BookingNotFoundException("Customer not found with this id:" + bookingId);
+		}
+		return bokService.updateBookingDate(bookingId, booking);
 	}
-	
 
 	@GetMapping("/booking/id/{id}")
-	public List<Booking> viewBooking(@PathVariable Booking bok) {
-		return bokService.viewBooking(bok);
+	public Booking ViewBooking(@PathVariable("id") Booking booking) {
+		return bokService.viewBooking(booking);
 	}
 
 	@GetMapping("/booking/{id}")
-	public List<Booking> viewAllBooking(@PathVariable("id")Customer customer) {
-		return bokService.viewAllBookingByCustomer(customer);
+	public List<Booking> viewAllBookingByCustomer(@PathVariable("id") int customerId) {
+		return bokService.viewAllBookingByCustomer(customerId);
 	}
 
-	@GetMapping("/booking")
-	public List<Booking> viewAllBookingByDate(@RequestBody LocalDate bookingDate) {
-		return bokService.viewAllBookingByDate(bookingDate);
+	@GetMapping("/booking/bookingDate/{bookingDate}")
+	public List<Booking> viewAllBookingByBookingDate(@PathVariable("bookingDate") LocalDate bookingDate) {
+		return bokService.viewAllBookingByBookingDate(bookingDate);
 	}
 
-		
-	@GetMapping("/booking")
-	public List<Booking> viewAllBookingByVehicle(@RequestBody Vehicle vehicle) {
-		return bokService.viewAllBookingByVehicle(vehicle);
+	@GetMapping("/booking/vehicle/{id}")
+	public List<Booking> viewAllBookingByVehicleId(@PathVariable("id") int vehicleId) {
+		return bokService.viewAllBookingByVehicleId(vehicleId);
 	}
-	
-
-	
-
 
 
 }
