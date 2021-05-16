@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.cg.vms.entities.Driver;
 import com.cg.vms.entities.Vehicle;
 import com.cg.vms.repository.IVehicleRepository;
 
@@ -78,4 +79,13 @@ public class VehicleServiceMockitoTest {
 		Vehicle persistedveh = vehService.viewVehicle(1);
 		assertEquals("car", persistedveh.getType());
 	}
+	@Test
+	void testUpdateVehicle() {
+		Vehicle vehicle = new Vehicle(1, "KA 23 0266", "car", "non A/C", "Deluxe", "Chennai", "13", 600.0, 8000.0);
+		Mockito.when(vehRep.findById(1)).thenReturn(Optional.of(vehicle));
+		Mockito.when(vehRep.save(vehicle)).thenReturn(vehicle);
+		Vehicle persistedveh = vehService.update(vehicle);
+		assertEquals(1, persistedveh.getVehicleId());
+	}
+
 }

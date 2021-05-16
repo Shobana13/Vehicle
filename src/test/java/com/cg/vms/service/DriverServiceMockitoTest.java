@@ -32,7 +32,7 @@ public class DriverServiceMockitoTest {
 
 	@Test
 	void testCreateDriver() {
-		Driver driver = new Driver(1,"Punitha", "Bala","9822543235","punitha23@gmail.com","T.nagar",500.0,"8076");
+		Driver driver = new Driver(1, "Punitha", "Bala", "9822543235", "punitha23@gmail.com", "T.nagar", 500.0, "8076");
 		Mockito.when(driRep.save(driver)).thenReturn(driver);
 		Driver persisteddri = driService.addDriver(driver);
 		assertEquals(1, persisteddri.getDriverId());
@@ -40,8 +40,9 @@ public class DriverServiceMockitoTest {
 
 	@Test
 	void testViewAllDriver() {
-		Driver driver1 = new Driver(1,"Punitha", "Bala","9822543235","punitha23@gmail.com","T.nagar",500.0,"8076");
-		Driver driver2 = new Driver(2,"Deepak", "Roy","9876543235","roydeepak23@gmail.com","Avadi",500.0,"8076");
+		Driver driver1 = new Driver(1, "Punitha", "Bala", "9822543235", "punitha23@gmail.com", "T.nagar", 500.0,
+				"8076");
+		Driver driver2 = new Driver(2, "Deepak", "Roy", "9876543235", "roydeepak23@gmail.com", "Avadi", 500.0, "8076");
 		List<Driver> driverList = new ArrayList<>();
 		driverList.add(driver1);
 		driverList.add(driver2);
@@ -52,7 +53,8 @@ public class DriverServiceMockitoTest {
 
 	@Test
 	void testDeleteDriver() {
-		Driver driver1 =new Driver(1,"Punitha", "Bala","9822543235","punitha23@gmail.com","T.nagar",500.0,"8076");
+		Driver driver1 = new Driver(1, "Punitha", "Bala", "9822543235", "punitha23@gmail.com", "T.nagar", 500.0,
+				"8076");
 		Mockito.when(driRep.findById(1)).thenReturn(Optional.of(driver1));
 		driRep.deleteById(1);
 		Driver persisteddri = driService.deleteDriverById(1);
@@ -63,7 +65,7 @@ public class DriverServiceMockitoTest {
 
 	@Test
 	void testUpdateDriverFirstname() {
-		Driver driver = new Driver(1,"Nithya", "shree","9822543235","nithya23@gmail.com","Avadi",500.0,"5676");
+		Driver driver = new Driver(1, "Nithya", "shree", "9822543235", "nithya23@gmail.com", "Avadi", 500.0, "5676");
 		Mockito.when(driRep.findById(1)).thenReturn(Optional.of(driver));
 		Mockito.when(driRep.save(driver)).thenReturn(driver);
 		Driver persistedDri = driService.updateFirstName(driver);
@@ -73,10 +75,19 @@ public class DriverServiceMockitoTest {
 
 	@Test
 	void testViewDriverbyId() {
-		Driver driver =new Driver(1,"Nithya", "shree","9822543235","nithya23@gmail.com","Avadi",500.0,"5676");
+		Driver driver = new Driver(1, "Nithya", "shree", "9822543235", "nithya23@gmail.com", "Avadi", 500.0, "5676");
 		Mockito.when(driRep.findById(1)).thenReturn(Optional.of(driver));
 		Driver persistedDri = driService.viewDriver(1);
 		assertEquals("Nithya", persistedDri.getFirstName());
+	}
+
+	@Test
+	void testUpdateDriver() {
+		Driver driver1 = new Driver(1, "Nithya", "shree", "9822543235", "nithya23@gmail.com", "Avadi", 500.0, "5676");
+		Mockito.when(driRep.findById(1)).thenReturn(Optional.of(driver1));
+		Mockito.when(driRep.save(driver1)).thenReturn(driver1);
+		Driver persisteddri = driService.update(driver1);
+		assertEquals(1, persisteddri.getDriverId());
 	}
 
 }
