@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Optional;
 
 import com.cg.vms.entities.Address;
-import com.cg.vms.entities.Customer;
 import com.cg.vms.repository.IAddressRepository;
 
 @ExtendWith(SpringExtension.class)

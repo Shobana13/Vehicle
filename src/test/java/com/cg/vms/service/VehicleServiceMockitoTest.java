@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.cg.vms.entities.Driver;
 import com.cg.vms.entities.Vehicle;
 import com.cg.vms.repository.IVehicleRepository;
 

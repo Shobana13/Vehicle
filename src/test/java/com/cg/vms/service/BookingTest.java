@@ -13,7 +13,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.cg.vms.entities.Booking;
 import com.cg.vms.entities.Customer;
 import com.cg.vms.entities.Vehicle;
-import com.cg.vms.service.IBookingService;
 
 @SpringBootTest
 class BookingTest {
