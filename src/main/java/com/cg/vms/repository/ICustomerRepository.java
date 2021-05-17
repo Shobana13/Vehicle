@@ -9,9 +9,6 @@ import org.springframework.stereotype.Repository;
 import com.cg.vms.entities.Customer;
 @Repository
 public interface ICustomerRepository extends JpaRepository<Customer,Integer>{
-
-	//@Query(value="select * from employee where emp_name=:n or dept=:d", nativeQuery=true)
-	//public List<Employee> getEmployeeByNameOrDept(@Param("d") String dept, @Param("n") String name);
 	
     @Query(value="select * from  customer inner join vehicle on customer.vehicle_id=vehicle.vehicle_id where vehicle.type=:t",nativeQuery=true)
 	public List<Customer> findbyType(@Param("t") String type);

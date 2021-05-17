@@ -104,7 +104,6 @@ public class Customer {
 		
 	}
 	
-	
 	// to string()
 	@Override
 	public String toString() {

@@ -21,13 +21,13 @@ public class BookingController {
 	
 	//Add Booking
 	@PostMapping("/booking")
-	public Booking AddBooking(@RequestBody Booking booking) {
+	public Booking addBooking(@RequestBody Booking booking) {
 		return bokService.addBooking(booking);
 	}
 
 	//Delete Booking
 	@DeleteMapping("/booking/{id}")
-	public Booking CancelBooking(@PathVariable("id") Booking bok) {
+	public Booking cancelBooking(@PathVariable("id") Booking bok) {
 		if (bokService.cancelBooking(bok) == null) {
 			throw new BookingNotFoundException("Booking Not Found with this Id" + bok.getBookingId());
 		}
@@ -36,7 +36,7 @@ public class BookingController {
 
 	//Update Booking
 	@PatchMapping("/booking/{id}")
-	public Booking UpdateBookingDate(@PathVariable("id") int bookingId, @RequestBody Booking booking) {
+	public Booking updateBookingDate(@PathVariable("id") int bookingId, @RequestBody Booking booking) {
 		if (bokService.updateBookingDate(bookingId, booking) == null) {
 			throw new BookingNotFoundException("Customer not found with this id:" + bookingId);
 		}
@@ -45,7 +45,7 @@ public class BookingController {
 	
 	//View Booking By Id
 	@GetMapping("/booking/id/{id}")
-	public Booking ViewBooking(@PathVariable("id") Booking booking) {
+	public Booking viewBooking(@PathVariable("id") Booking booking) {
 		return bokService.viewBooking(booking);
 	}
 

@@ -9,8 +9,6 @@ import java.util.Optional;
 
 import com.cg.vms.entities.Booking;
 import com.cg.vms.repository.IBookingRepository;
-import com.cg.vms.service.BookingServiceImpl;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;

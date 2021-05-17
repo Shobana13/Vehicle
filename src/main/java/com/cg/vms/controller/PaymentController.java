@@ -41,7 +41,7 @@ public class PaymentController {
 	@DeleteMapping("/payment/{id}")
 	public Payment cancelPayment(@PathVariable("id") int paymentId) {
 		if (payService.cancelPayment(paymentId) == null) {
-			throw new PaymentNotFoundException("Payment not found with given id: " + paymentId);
+			throw new PaymentNotFoundException("Payment not found with id: " + paymentId);
 		}
 		return payService.cancelPayment(paymentId);
 	}
@@ -62,7 +62,7 @@ public class PaymentController {
 	@PatchMapping("/payment/{id}")
 	public Payment updatePaymentStatus(@PathVariable("id") int paymentId, Payment payment) {
 		if (payService.updatePaymentStatus(paymentId, payment) == null) {
-			throw new PaymentNotFoundException("Payment not found with given id: " + paymentId);
+			throw new PaymentNotFoundException("Payment not found with this id: " + paymentId);
 		}
 		return payService.updatePaymentStatus(paymentId, payment);
 	}
