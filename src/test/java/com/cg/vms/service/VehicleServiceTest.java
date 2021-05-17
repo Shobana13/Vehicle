@@ -44,14 +44,14 @@ class VehicleServiceTest {
 	@Test
 	@Disabled
 	void testDeleteVehicle() {
-		Vehicle persistedVeh= vehService.deleteVehicleById(2001);
-		assertEquals(2001,persistedVeh.getVehicleId());
-		assertEquals("TN 09 1212",persistedVeh.getVehicleNumber());
-		assertEquals("Bus",persistedVeh.getType());
-		assertEquals("a/c",persistedVeh.getCategory());
-		assertEquals("Ultra Deluxe",persistedVeh.getDescription());
-		assertEquals("CMBT",persistedVeh.getLocation());
-		assertEquals("40",persistedVeh.getCapacity());
+		Vehicle persistedVeh= vehService.deleteVehicleById(2003);
+		assertEquals(2003,persistedVeh.getVehicleId());
+		assertEquals("KA 02 8888",persistedVeh.getVehicleNumber());
+		assertEquals("Car",persistedVeh.getType());
+		assertEquals("non a/c",persistedVeh.getCategory());
+		assertEquals("Deluxe",persistedVeh.getDescription());
+		assertEquals("Ambattur",persistedVeh.getLocation());
+		assertEquals("4",persistedVeh.getCapacity());
 		assertEquals(2.0,persistedVeh.getChargesPerKM());
 		assertEquals(3.0,persistedVeh.getFixedCharges());
 	}

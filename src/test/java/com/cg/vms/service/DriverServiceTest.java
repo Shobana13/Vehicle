@@ -20,7 +20,7 @@ class DriverServiceTest {
 	@Disabled
 	void testFindAllDriver() {
 		List <Driver> driver= driService.findAllDriver();
-		assertEquals(5,driver.size());
+		assertEquals(4,driver.size());
 	}
 	@Test
 	@Disabled
@@ -42,28 +42,28 @@ class DriverServiceTest {
 	@Test
 	@Disabled
 	void testDeleteDriver() {
-		Driver persistedDri= driService.deleteDriverById(114);
-		assertEquals(114,persistedDri.getDriverId());
-		assertEquals("Tony",persistedDri.getFirstName());
-		assertEquals("Johnn",persistedDri.getLastName());
-		assertEquals("johntony@gmail.com",persistedDri.getEmail());
+		Driver persistedDri= driService.deleteDriverById(113);
+		assertEquals(113,persistedDri.getDriverId());
+		assertEquals("Aswin",persistedDri.getFirstName());
+		assertEquals("Anto",persistedDri.getLastName());
+		assertEquals("aswin41@gmail.com",persistedDri.getEmail());
 		assertEquals("9876543212",persistedDri.getContactNumber());
-		assertEquals("Avadi",persistedDri.getAddress());
+		assertEquals("Ambattur",persistedDri.getAddress());
 		assertEquals(500.0,persistedDri.getChargesPerDay());
-		assertEquals("1126",persistedDri.getLicenseNo());
+		assertEquals("1216",persistedDri.getLicenseNo());
 		
 	}
 	@Test
 	@Disabled
 	void testFindDriverById() {
 		Driver driver= driService.viewDriver(112);
-		assertEquals("Sam",driver.getFirstName());
-		assertEquals("Antony",driver.getLastName());
-		assertEquals("samantony21@gmail.com",driver.getEmail());
-		assertEquals("9787843235",driver.getContactNumber());
-		assertEquals("Madurai",driver.getAddress());
+		assertEquals("Rose",driver.getFirstName());
+		assertEquals("catherine",driver.getLastName());
+		assertEquals("rose@gmail.com",driver.getEmail());
+		assertEquals("998899888",driver.getContactNumber());
+		assertEquals("T.nagar",driver.getAddress());
 		assertEquals(500.0,driver.getChargesPerDay());
-		assertEquals("1276",driver.getLicenseNo());
+		assertEquals("8076",driver.getLicenseNo());
 	}
 	
 	@Test
@@ -92,7 +92,5 @@ class DriverServiceTest {
 		assertEquals("Sanjana",dri3.getFirstName());
 		
 	}
-	
-	
 
 }
