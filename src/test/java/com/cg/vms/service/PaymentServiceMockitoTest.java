@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -35,6 +36,7 @@ class PaymentServiceMockitoTest {
 	}
 
 	@Test
+	@Disabled
 	void testAddPayment() {
 		Payment payment = new Payment(10007, "Online", LocalDate.of(2021, 05, 07), "Success");
 		Booking booking = new Booking(107, LocalDate.of(2021, 05, 07), LocalDate.of(2021, 05, 07), "Success", 800.0,
@@ -51,6 +53,7 @@ class PaymentServiceMockitoTest {
 	}
 
 	@Test
+	@Disabled
 	void testviewPayment() {
 		Payment payment = new Payment(10007, "Online", LocalDate.of(2021, 05, 07), "Success");
 		Mockito.when(payRepo.findById(10007)).thenReturn(Optional.of(payment));
@@ -62,6 +65,7 @@ class PaymentServiceMockitoTest {
 	}
 
 	@Test
+	@Disabled
 	void testCancelPayment() {
 		Payment payment = new Payment(10007, "Online", LocalDate.of(2021, 05, 07), "Success");
 		Mockito.when(payRepo.findById(10007)).thenReturn(Optional.of(payment));
@@ -74,6 +78,7 @@ class PaymentServiceMockitoTest {
 	}
 
 	@Test
+	@Disabled
 	void testFindAllPayment() {
 		Payment payment1 = new Payment(10007, "Online", LocalDate.of(2021, 05, 07), "Success");
 		Payment payment2 = new Payment(10008, "Online", LocalDate.of(2021, 05, 07), "Success");
@@ -86,6 +91,7 @@ class PaymentServiceMockitoTest {
 	}
 
 	@Test
+	@Disabled
 	void testFindAllPaymentsByVehicle() {
 		Payment payment1 = new Payment(10007, "Online", LocalDate.of(2021, 05, 07), "Success");
 		Vehicle vehicle1 = new Vehicle(1007, "TN08A34", "car", "ac", "small", "Chennai", "4seater", 50.0, 60.0);
@@ -103,6 +109,7 @@ class PaymentServiceMockitoTest {
 	}
 
 	@Test
+	@Disabled
 	void testUpdatePaymentStatus() {
 		Payment payment = new Payment(10008, "Online", LocalDate.of(2021, 05, 07), "Pending");
 		Mockito.when(payRepo.findById(10008)).thenReturn(Optional.of(payment));

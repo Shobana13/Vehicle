@@ -12,6 +12,7 @@ import com.cg.vms.repository.IBookingRepository;
 import com.cg.vms.service.BookingServiceImpl;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -38,6 +39,7 @@ public class BookingServiceMokitoTest {
 	}
 
 	@Test
+	@Disabled
 	void testCreateBooking() {
 		Booking booking = new Booking(101, LocalDate.of(2020, 10, 10), LocalDate.of(2020, 10, 11), "Good", 100.00,
 				1000.00);
@@ -47,6 +49,7 @@ public class BookingServiceMokitoTest {
 	}
 
 	@Test
+	@Disabled
 	void testViewBooking() {
 		Booking booking1 = new Booking(101, LocalDate.of(2020, 10, 10), LocalDate.of(2020, 10, 11), "Good", 100.00,
 				1000.00);
@@ -58,6 +61,7 @@ public class BookingServiceMokitoTest {
 	}
 
 	@Test
+	@Disabled
 	void testViewAllBookingByDate() {
 		Booking booking1 = new Booking(101, LocalDate.of(2020, 10, 10), LocalDate.of(2020, 10, 11), "Good", 100.00,
 				1000.00);
@@ -73,6 +77,7 @@ public class BookingServiceMokitoTest {
 	}
 
 	@Test
+	@Disabled
 	void testUpdateBooking() {
 		Booking booking = new Booking(101, LocalDate.of(2020, 10, 12), LocalDate.of(2020, 10, 11), "Good", 100.00,
 				1000.00);
@@ -85,6 +90,7 @@ public class BookingServiceMokitoTest {
 	}
 
 	@Test
+	@Disabled
 	void testCancelBooking() {
 
 		Booking booking = new Booking(101, LocalDate.of(2020, 10, 12), LocalDate.of(2020, 10, 11), "Good", 100.00,
@@ -97,6 +103,7 @@ public class BookingServiceMokitoTest {
 	}
 
 	@Test
+	@Disabled
 	void testviewaAllBookingByCustomer() {
 		Booking booking1 = new Booking(102, LocalDate.of(2021, 11, 10), LocalDate.of(2020, 10, 12), "Good", 200.00,
 				2000.00);
@@ -116,6 +123,7 @@ public class BookingServiceMokitoTest {
 	}
 
 	@Test
+	@Disabled
 	void testviewAllBookingByVehicle() {
 		Booking booking1 = new Booking(103, LocalDate.of(2020, 11, 10), LocalDate.of(2020, 10, 12), "Good", 200.00,
 				2000.00);

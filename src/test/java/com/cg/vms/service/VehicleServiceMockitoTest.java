@@ -1,6 +1,7 @@
 package com.cg.vms.service;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -32,6 +33,7 @@ public class VehicleServiceMockitoTest {
 	}
 
 	@Test
+	@Disabled
 	void testCreateVehicle() {
 		Vehicle vehicle = new Vehicle(1, "TN02J0666", "bus", "A/C", "Deluxe", "goa", "13", 600.0, 8000.0);
 		Mockito.when(vehRep.save(vehicle)).thenReturn(vehicle);
@@ -40,6 +42,7 @@ public class VehicleServiceMockitoTest {
 	}
 
 	@Test
+	@Disabled
 	void testViewAllVehicle() {
 		Vehicle vehicle1 = new Vehicle(1, "TN0 2J 0666", "bus", "A/C", "Deluxe", "goa", "13", 600.0, 8000.0);
 		Vehicle vehicle2 = new Vehicle(102, " TN 23 0266", "car", "non A/C", "Deluxe", "Chennai", "13", 600.0, 8000.0);
@@ -52,6 +55,7 @@ public class VehicleServiceMockitoTest {
 	}
 
 	@Test
+	@Disabled
 	void testDeleteVehicle() {
 		Vehicle vehicle1 = new Vehicle(1, "TN02J0666", "bus", "A/C", "Deluxe", "goa", "13", 600.0, 8000.0);
 		Mockito.when(vehRep.findById(1)).thenReturn(Optional.of(vehicle1));
@@ -63,6 +67,7 @@ public class VehicleServiceMockitoTest {
 	}
 
 	@Test
+	@Disabled
 	void testUpdateVehicleNumber() {
 		Vehicle vehicle = new Vehicle(1, "TN 23 0266", "car", "non A/C", "Deluxe", "Chennai", "13", 600.0, 8000.0);
 		Mockito.when(vehRep.findById(1)).thenReturn(Optional.of(vehicle));
@@ -73,6 +78,7 @@ public class VehicleServiceMockitoTest {
 	}
 
 	@Test
+	@Disabled
 	void testViewVehiclebyId() {
 		Vehicle vehicle = new Vehicle(1, "KA 23 0266", "car", "non A/C", "Deluxe", "Chennai", "13", 600.0, 8000.0);
 		Mockito.when(vehRep.findById(1)).thenReturn(Optional.of(vehicle));
@@ -80,6 +86,7 @@ public class VehicleServiceMockitoTest {
 		assertEquals("car", persistedveh.getType());
 	}
 	@Test
+	@Disabled
 	void testUpdateVehicle() {
 		Vehicle vehicle = new Vehicle(1, "KA 23 0266", "car", "non A/C", "Deluxe", "Chennai", "13", 600.0, 8000.0);
 		Mockito.when(vehRep.findById(1)).thenReturn(Optional.of(vehicle));

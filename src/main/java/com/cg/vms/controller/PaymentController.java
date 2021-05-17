@@ -47,7 +47,7 @@ public class PaymentController {
 	}
 
 	// view all Payment by Vehicle
-	@GetMapping("/vehicle")
+	@GetMapping("/vehicle1")
 	public List<Payment> viewAllPayments(Vehicle vehicle) {
 		return payService.viewAllPayments(vehicle);
 	}

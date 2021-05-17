@@ -52,7 +52,8 @@ public class AddressServiceMokitoTest {
 		assertEquals(4,address.getAddressId());
 	}
 	
-	@Test 
+	@Test
+	@Disabled
 	void testupdateAddress() {
 		Address address=new Address(4, "kk road", "Tirunelveli");
 		Mockito.when(addrRep.findById(4)).thenReturn(Optional.of(address));
@@ -62,6 +63,7 @@ public class AddressServiceMokitoTest {
 	}
 	
 	@Test
+	@Disabled
 	void testViewAddress() {
 		Address address1=new Address(4, "kk road", "Tirunelveli");
 		Address address2=new Address(5, "bypass road", "Tripur");
@@ -75,6 +77,7 @@ public class AddressServiceMokitoTest {
 	}
 	
 	@Test
+	@Disabled
 	void testViewbyId() {
 	Address address=new Address(4,"kk road", "Tirunelveli");
 	Mockito.when(addrRep.findById(4)).thenReturn(Optional.of(address));
