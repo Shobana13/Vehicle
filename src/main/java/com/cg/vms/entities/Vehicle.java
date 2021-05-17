@@ -144,6 +144,7 @@ public class Vehicle {
 	public void setFixedCharges(double fixedCharges) {
 		this.fixedCharges = fixedCharges;
 	}
+	
 	//toString
 	@Override
 	public String toString() {

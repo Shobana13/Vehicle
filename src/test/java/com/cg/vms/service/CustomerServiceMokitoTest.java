@@ -1,6 +1,7 @@
 package com.cg.vms.service;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -32,6 +33,7 @@ public class CustomerServiceMokitoTest {
 	}
 
 	@Test
+	@Disabled
 	void testCreateCustomer() {
 		Customer customer = new Customer(1, "tom", "son", "951771122", "tom@gmail.com");
 		Mockito.when(custRep.save(customer)).thenReturn(customer);
@@ -40,6 +42,7 @@ public class CustomerServiceMokitoTest {
 	}
 
 	@Test
+	@Disabled
 	void testViewAllCustomer() {
 		Customer customer1 = new Customer(1, "tom", "son", "951771122", "tom@gmail.com");
 		Customer customer2 = new Customer(2, "jerry", "lee", "951998122", "jerry@gmail.com");
@@ -52,6 +55,7 @@ public class CustomerServiceMokitoTest {
 	}
 
 	@Test
+	@Disabled
 	void testUpdateCustomer() {
 		Customer customer1 = new Customer(1, "tommy", "cruise", "951771122", "tom@gmail.com");
 		Mockito.when(custRep.findById(1)).thenReturn(Optional.of(customer1));
@@ -61,6 +65,7 @@ public class CustomerServiceMokitoTest {
 	}
 
 	@Test
+	@Disabled
 	void testDeleteCustomer() {
 		Customer customer = new Customer(1, "tommy", "cruise", "951771122", "tom@gmail.com");
 		Mockito.when(custRep.findById(1)).thenReturn(Optional.of(customer));
@@ -72,6 +77,7 @@ public class CustomerServiceMokitoTest {
 	}
 
 	@Test
+	@Disabled
 	void testUpdateCustomerbyFirstname() {
 		Customer customer = new Customer(1, "jen", "cru", "951771122", "tom@gmail.com");
 		Mockito.when(custRep.findById(1)).thenReturn(Optional.of(customer));
@@ -82,6 +88,7 @@ public class CustomerServiceMokitoTest {
 	}
 
 	@Test
+	@Disabled
 	void testViewCustomerbyId() {
 		Customer customer = new Customer(1, "jen", "cru", "951771122", "tom@gmail.com");
 		Mockito.when(custRep.findById(1)).thenReturn(Optional.of(customer));
@@ -90,6 +97,7 @@ public class CustomerServiceMokitoTest {
 	}
 
 	@Test
+	@Disabled
 	void testViewCustomerbyVehicleType() {
 		Customer customer1 = new Customer(1, "tommy", "cruise", "951771122", "tom@gmail.com");
 		Vehicle vehicle1 = new Vehicle(101, "TN02J0666", "bus", "A/C", "prime", "goa", "13", 600.0, 8000.0);
@@ -106,6 +114,7 @@ public class CustomerServiceMokitoTest {
 	}
 
 	@Test
+	@Disabled
 	void testViewCustomerbyVehicleLocation() {
 
 		Customer customer1 = new Customer(1, "tommy", "cruise", "951771122", "tom@gmail.com");

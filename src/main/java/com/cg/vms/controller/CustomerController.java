@@ -1,7 +1,6 @@
 package com.cg.vms.controller;
-
 import java.util.List;
-
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +23,7 @@ public class CustomerController {
 	
 	//addCustomer
 	@PostMapping("/customer")
-	public Customer addCustomer(@RequestBody Customer customer) {
+	public Customer addCustomer(@Valid @RequestBody Customer customer) {
 		return custService.addCustomer(customer);
 	}
 	
@@ -70,7 +69,7 @@ public class CustomerController {
 	
 	//Update Customer firstName
 	@PatchMapping("/customer/{id}")
-	public Customer updateFirstName(@PathVariable("id") int customerId, @RequestBody Customer customer) {
+	public Customer updateFirstName(@PathVariable("id") int customerId,@Valid @RequestBody Customer customer) {
 		if(custService.updateFirstName(customerId, customer)==null) {
 			throw new CustomerNotFoundException("Customer not found with this id:" + customerId);
 		}	

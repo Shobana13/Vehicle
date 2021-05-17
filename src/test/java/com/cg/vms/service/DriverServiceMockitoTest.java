@@ -1,6 +1,7 @@
 package com.cg.vms.service;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -31,6 +32,7 @@ public class DriverServiceMockitoTest {
 	}
 
 	@Test
+	@Disabled
 	void testCreateDriver() {
 		Driver driver = new Driver(1, "Punitha", "Bala", "9822543235", "punitha23@gmail.com", "T.nagar", 500.0, "8076");
 		Mockito.when(driRep.save(driver)).thenReturn(driver);
@@ -39,6 +41,7 @@ public class DriverServiceMockitoTest {
 	}
 
 	@Test
+	@Disabled
 	void testViewAllDriver() {
 		Driver driver1 = new Driver(1, "Punitha", "Bala", "9822543235", "punitha23@gmail.com", "T.nagar", 500.0,
 				"8076");
@@ -52,6 +55,7 @@ public class DriverServiceMockitoTest {
 	}
 
 	@Test
+	@Disabled
 	void testDeleteDriver() {
 		Driver driver1 = new Driver(1, "Punitha", "Bala", "9822543235", "punitha23@gmail.com", "T.nagar", 500.0,
 				"8076");
@@ -64,6 +68,7 @@ public class DriverServiceMockitoTest {
 	}
 
 	@Test
+	@Disabled
 	void testUpdateDriverFirstname() {
 		Driver driver = new Driver(1, "Nithya", "shree", "9822543235", "nithya23@gmail.com", "Avadi", 500.0, "5676");
 		Mockito.when(driRep.findById(1)).thenReturn(Optional.of(driver));
@@ -74,6 +79,7 @@ public class DriverServiceMockitoTest {
 	}
 
 	@Test
+	@Disabled
 	void testViewDriverbyId() {
 		Driver driver = new Driver(1, "Nithya", "shree", "9822543235", "nithya23@gmail.com", "Avadi", 500.0, "5676");
 		Mockito.when(driRep.findById(1)).thenReturn(Optional.of(driver));
@@ -82,6 +88,7 @@ public class DriverServiceMockitoTest {
 	}
 
 	@Test
+	@Disabled
 	void testUpdateDriver() {
 		Driver driver1 = new Driver(1, "Nithya", "shree", "9822543235", "nithya23@gmail.com", "Avadi", 500.0, "5676");
 		Mockito.when(driRep.findById(1)).thenReturn(Optional.of(driver1));

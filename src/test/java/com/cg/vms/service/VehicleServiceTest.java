@@ -17,14 +17,14 @@ class VehicleServiceTest {
 	IVehicleService vehService;
 
 	@Test
-	//@Disabled
+	@Disabled
 	void testFindAllVehicle() {
 		List <Vehicle> vehicle= vehService.findAllVehicle();
 		System.out.println(vehicle);
 		assertEquals(4,vehicle.size());
 	}
 	@Test
-	//@Disabled
+	@Disabled
 	void testCreateVehicle() {
 		Vehicle vehicle=new Vehicle(2005,"Tn 02 0101","Car", "non a/c","Fast","Ambattur","4",12.0,8.0);
 		Driver driver=new Driver(111,"Ram", "Bala","9876543235","ram23@gmail.com","T.nagar",500.0,"8076");
@@ -56,7 +56,7 @@ class VehicleServiceTest {
 		assertEquals(3.0,persistedVeh.getFixedCharges());
 	}
 	@Test
-	//@Disabled
+	@Disabled
 	void testFindVehicleById() {
 		Vehicle vehicle= vehService.findByVehId(2005);
 		assertEquals("KA 02 0101",vehicle.getVehicleNumber());
@@ -69,7 +69,7 @@ class VehicleServiceTest {
 		assertEquals(8.0,vehicle.getFixedCharges());
 	}
 	@Test
-	//@Disabled
+	@Disabled
 	void testUpdateVehicle() {
 		Vehicle vehicle1=new Vehicle();
 		vehicle1.setVehicleId(2005);
@@ -86,7 +86,7 @@ class VehicleServiceTest {
 	}
 	
 	@Test
-	//@Disabled
+	@Disabled
 	void testUpdateVehicleNumber() {
 		Vehicle veh=new Vehicle();
 		veh.setVehicleId(2001);
