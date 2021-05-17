@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -26,16 +27,7 @@ public class Vehicle {
 	@JoinColumn(name="driverid")
 	private Driver driver;
 	
-	@OneToOne(mappedBy = "vehicle")
-	private Booking booking;
-
 	
-	public Booking getBooking() {
-		return booking;
-	}
-	public void setBooking(Booking booking) {
-		this.booking = booking;
-	}
 	//constructors
 	public Vehicle() {}
 	public Vehicle(int vehicleId, String vehicleNumber, String type, String category, String description,
@@ -54,6 +46,7 @@ public class Vehicle {
 	
 
 	//Getters and Setters
+	
 	@JsonManagedReference
 	public Driver getDriver() {
 		return driver;

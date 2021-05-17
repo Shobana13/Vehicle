@@ -25,10 +25,7 @@ public class Customer {
 	@JoinColumn(name = "address_id")
 	private Address address;
 	
-	@OneToOne(mappedBy = "customer")
-	private Booking booking;
-
-
+	
 	// constructors
 	public Customer() {
 	}
@@ -113,11 +110,4 @@ public class Customer {
 				+ address + "]";
 	}
 
-	public Booking getBooking() {
-		return booking;
-	}
-
-	public void setBooking(Booking booking) {
-		this.booking = booking;
-	}
 }
