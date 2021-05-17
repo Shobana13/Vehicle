@@ -5,31 +5,18 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 
 @Entity
 public class Customer {
 
 	@Id
 	private int customerId;
-	
-	@NotEmpty
-	@Size(min=2, message="First name should have atleast 2 char")
 	private String firstName;
-	
-	@NotEmpty
-	@Size(min=2, message="last name should have atleast 2 char")
 	private String lastName;
-	
-	@NotEmpty
-	@Size(max=10, message="phone number should have maximum of 10 char")
 	private String mobileNumber;
-	
-	@NotEmpty
 	private String emailId;
 
-	//mapping
+	// mapping
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "vehicle_id")
 	private Vehicle vehicle;
@@ -40,8 +27,9 @@ public class Customer {
 	
 
 
-	//constructors
-	public Customer() {}
+	// constructors
+	public Customer() {
+	}
 
 	public Customer(int customerId) {
 		this.customerId = customerId;
@@ -115,6 +103,7 @@ public class Customer {
 		this.address = address;
 		
 	}
+	
 	
 	// to string()
 	@Override
