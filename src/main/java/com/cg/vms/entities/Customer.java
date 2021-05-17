@@ -27,8 +27,7 @@ public class Customer {
 	
 	
 	// constructors
-	public Customer() {
-	}
+	public Customer() {}
 
 	public Customer(int customerId) {
 		this.customerId = customerId;

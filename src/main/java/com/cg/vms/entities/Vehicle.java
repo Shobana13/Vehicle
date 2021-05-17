@@ -27,7 +27,6 @@ public class Vehicle {
 	@JoinColumn(name="driverid")
 	private Driver driver;
 	
-	
 	//constructors
 	public Vehicle() {}
 	public Vehicle(int vehicleId, String vehicleNumber, String type, String category, String description,
