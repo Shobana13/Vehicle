@@ -17,13 +17,13 @@ class DriverServiceTest {
 	IDriverService driService;
 
 	@Test
-	//@Disabled
+	@Disabled
 	void testFindAllDriver() {
 		List <Driver> driver= driService.findAllDriver();
 		assertEquals(5,driver.size());
 	}
 	@Test
-	//@Disabled
+	@Disabled
 	void testCreateDriver() {
 		Vehicle vehicle=new Vehicle(2005,"Tn 02 0101","Car", "non a/c","Fast","Ambattur","4",12.0,8.0);
 		Driver driver=new Driver(115,"Ram", "Bala","9876543235","ram23@gmail.com","T.nagar",500.0,"8076");
@@ -54,7 +54,7 @@ class DriverServiceTest {
 		
 	}
 	@Test
-	//@Disabled
+	@Disabled
 	void testFindDriverById() {
 		Driver driver= driService.viewDriver(112);
 		assertEquals("Sam",driver.getFirstName());
@@ -67,7 +67,7 @@ class DriverServiceTest {
 	}
 	
 	@Test
-	//@Disabled
+	@Disabled
 	void testUpdateDriver() {
 		Driver driver1=new Driver();
 		driver1.setDriverId(112);
@@ -83,7 +83,7 @@ class DriverServiceTest {
 	}	
 	
 	@Test
-	//@Disabled
+	@Disabled
 	void testUpdateFirstName() {
 		Driver dri=new Driver();
 		dri.setDriverId(111);

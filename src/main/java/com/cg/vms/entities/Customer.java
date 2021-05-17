@@ -103,21 +103,21 @@ public class Customer {
 
 	public void setAddress(Address address) {
 		this.address = address;
+		
 	}
-
-	// to string()
-	@Override
-	public String toString() {
-		return "Customer [customerId=" + customerId + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", mobileNumber=" + mobileNumber + ", emailId=" + emailId + ", vehicle=" + vehicle + ", address="
-				+ address + "]";
-	}
-
 	public Booking getBooking() {
 		return booking;
 	}
 
 	public void setBooking(Booking booking) {
 		this.booking = booking;
+	}
+	
+	// to string()
+	@Override
+	public String toString() {
+		return "Customer [customerId=" + customerId + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", mobileNumber=" + mobileNumber + ", emailId=" + emailId + ", vehicle=" + vehicle + ", address="
+				+ address + "]";
 	}
 }

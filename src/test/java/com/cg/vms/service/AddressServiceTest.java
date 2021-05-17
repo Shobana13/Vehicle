@@ -24,7 +24,7 @@ public class AddressServiceTest {
 	}
 
 	@Test
-	//@Disabled
+	@Disabled
 	void testDeleteAddressId() {
 		Address addr = addrService.deleteAddressById(4);
 		assertEquals(4, addr.getAddressId());
