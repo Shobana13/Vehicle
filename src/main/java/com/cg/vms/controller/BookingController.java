@@ -1,19 +1,25 @@
 package com.cg.vms.controller;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.cg.vms.entities.Booking;
 import com.cg.vms.exceptions.BookingNotFoundException;
 import com.cg.vms.service.IBookingService;
 
+@RestController
 public class BookingController {
 
 	@Autowired
@@ -57,7 +63,7 @@ public class BookingController {
 
 	//View Booking By booking Date
 	@GetMapping("/booking/bookingDate/{bookingDate}")
-	public List<Booking> viewAllBookingByBookingDate(@PathVariable("bookingDate") LocalDate bookingDate) {
+	public List<Booking> viewAllBookingByBookingDate(@PathVariable("bookingDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDate bookingDate) {		
 		return bokService.viewAllBookingByBookingDate(bookingDate);
 	}
 	

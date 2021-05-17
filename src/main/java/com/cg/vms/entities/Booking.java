@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Booking {
 
@@ -31,10 +33,11 @@ public class Booking {
 	public Booking() {
 	}
 
+	
 	public Booking(int bookingId, LocalDate bookingDate, LocalDate bookedTillDate, String bookingDescription,
 			double totalCost, double distance) {
 		this.bookingId = bookingId;
-		this.bookingDate = bookingDate;
+		this.bookingDate =bookingDate;
 		this.bookedTillDate = bookedTillDate;
 		this.bookingDescription = bookingDescription;
 		this.totalCost = totalCost;
@@ -43,6 +46,7 @@ public class Booking {
 	}
 
 	// Getters and Setters
+	@JsonManagedReference
 	public Vehicle getVehicle() {
 		return vehicle;
 	}

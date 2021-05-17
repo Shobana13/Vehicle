@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -44,6 +45,7 @@ public class Vehicle {
 	
 
 	//Getters and Setters
+	
 	@JsonManagedReference
 	public Driver getDriver() {
 		return driver;
