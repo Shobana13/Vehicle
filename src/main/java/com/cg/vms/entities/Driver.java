@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -12,8 +14,15 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 public class Driver {
 	@Id
 	private int driverId;
+	
+	@NotEmpty
+	@Size(min=2, message="first name should have atleast 2 char")
 	private String firstName;
+	
+	@NotEmpty
+	@Size(min=2, message="last name should have atleast 2 char")
 	private String lastName;
+	
 	private String contactNumber;
 	private String email;
 	private String address;

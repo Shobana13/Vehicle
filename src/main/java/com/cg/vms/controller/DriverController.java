@@ -2,6 +2,8 @@ package com.cg.vms.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +26,7 @@ public class DriverController {
 
 	// Add Driver
 	@PostMapping("/driver")
-	public Driver addDriver(@RequestBody Driver driver) {
+	public Driver addDriver(@Valid @RequestBody Driver driver) {
 		return driService.addDriver(driver);
 	}
 
@@ -36,7 +38,7 @@ public class DriverController {
 
 	// Update FirstName
 	@PatchMapping("/driver/id/{id}")
-	public Driver updateFirstName(@PathVariable("id") int id, @RequestBody Driver driver) {
+	public Driver updateFirstName(@PathVariable("id") int id,@Valid @RequestBody Driver driver) {
 		return driService.updateFirstName(driver);
 	}
 

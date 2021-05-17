@@ -5,14 +5,22 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 @Entity
 public class Customer {
 
 	@Id
 	private int customerId;
+	
+	@NotEmpty
+	@Size(min=2, message="first name should have atleast 2 char")
 	private String firstName;
+	
+	@NotEmpty
+	@Size(min=2, message="last name should have atleast 2 char")
 	private String lastName;
+	
 	private String mobileNumber;
 	private String emailId;
 
