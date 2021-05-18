@@ -124,12 +124,15 @@ public class Driver {
 		this.licenseNo = licenseNo;
 	}
 
-	// Generate ToString methods
 	@Override
 	public String toString() {
 		return "Driver [driverId=" + driverId + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", contactNumber=" + contactNumber + ", email=" + email + ", address=" + address + ", chargesPerDay="
 				+ chargesPerDay + ", licenseNo=" + licenseNo + ", vehicle=" + vehicle + "]";
 	}
+
+	
+
+	
 
 }
