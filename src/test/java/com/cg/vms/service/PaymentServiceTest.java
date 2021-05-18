@@ -28,7 +28,7 @@ class PaymentServiceTest {
 				2.0);
 		Vehicle vehicle = new Vehicle(1006, "TN4E32", "car", "non ac", "small", "Chennai", "4seater", 60.0, 50.0);
 		payment.setBooking(booking);
-		payment.setVehicle(vehicle);
+		booking.setVehicle(vehicle);
 		Payment persistedPa = PayService.addPayment(payment);
 		assertEquals(10006, persistedPa.getPaymentId());
 		assertEquals("Online", persistedPa.getPaymentMode());
@@ -84,6 +84,41 @@ class PaymentServiceTest {
 		System.out.println(persistedPa);
 		assertEquals("Success", persistedPa.getPaymentStatus());
 
+	}
+
+	@Test
+	@Disabled
+	void testCalculateMonthlyRevenue() {
+		Booking booking1 = new Booking();
+		Booking booking2 = new Booking();
+		booking1.setBookingDate(LocalDate.of(2021, 04, 01));
+		booking2.setBookingDate(LocalDate.of(2021, 04, 05));
+		double persistedPa = PayService.calculateMonthlyRevenue(LocalDate.of(2021, 04, 01), LocalDate.of(2021, 04, 05));
+		System.out.println(persistedPa);
+		assertEquals(3960.0, persistedPa);
+	}
+
+	@Test
+	@Disabled
+	void testCalculateTotalPayment() {
+		Booking booking1 = new Booking();
+		Booking booking2 = new Booking();
+		booking1.setBookingId(101);
+		booking2.setBookingId(109);
+		double persistedPa = PayService.calculateTotalPayment(101, 109);
+		System.out.println(persistedPa);
+		assertEquals(7810.0, persistedPa);
+	}
+
+	@Test
+	@Disabled
+	void testCalculateTotalBookingCost() {
+		Vehicle vehicle = new Vehicle();
+		vehicle.setFixedCharges(70.0);
+		vehicle.setChargesPerKM(50.0);
+		Booking persistedPa = PayService.calculateTotalBookingCost(10003, 7.0, vehicle);
+		System.out.println(persistedPa);
+		assertEquals(420.0, persistedPa.getTotalCost());
 	}
 
 }

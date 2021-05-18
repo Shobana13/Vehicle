@@ -20,6 +20,10 @@ public class Booking {
 	private String bookingDescription;
 	private double totalCost;
 	private double distance;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "paymentId")
+	private Payment payment;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "vehicleId")
@@ -32,6 +36,13 @@ public class Booking {
 	//Constructor
 	public Booking() {
 	}
+	
+    public Booking(double distance) {
+		
+		this.distance = distance;
+	}
+	
+	
 
 	
 	public Booking(int bookingId, LocalDate bookingDate, LocalDate bookedTillDate, String bookingDescription,
