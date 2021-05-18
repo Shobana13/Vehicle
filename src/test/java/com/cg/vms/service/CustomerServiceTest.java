@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
+import com.cg.vms.dto.VehicleDto;
 import com.cg.vms.entities.Address;
 import com.cg.vms.entities.Customer;
-import com.cg.vms.entities.Vehicle;
+
 
 @SpringBootTest
 public class CustomerServiceTest {
@@ -75,10 +75,10 @@ public class CustomerServiceTest {
 	@Disabled
 	void testAddCustomer() {
 		Customer customer=new Customer(1,"tom","son","951771122","tom@gmail.com");
-		Vehicle vehicle=new Vehicle(101,"TN02J0666","bus","A/C","prime","goa","13",600.0,8000.0);
+		VehicleDto vehicle=new VehicleDto(101,"TN02J0666","bus","A/C","prime","goa","13",600.0,8000.0);
 		Address address = new Address(1,"M.M road", "Salem");
 		customer.setAddress(address);
-		customer.setVehicle(vehicle);
+		customer.setVehicledto(vehicle);
 		Customer persistedCust=custService.addCustomer(customer);
 		assertEquals("tom@gmail.com", persistedCust.getEmailId());
 		

@@ -10,13 +10,11 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
+import com.cg.vms.dto.VehicleDto;
 import com.cg.vms.entities.Customer;
-import com.cg.vms.entities.Vehicle;
 import com.cg.vms.repository.ICustomerRepository;
 
 @ExtendWith(SpringExtension.class)
@@ -100,11 +98,11 @@ public class CustomerServiceMokitoTest {
 	@Disabled
 	void testViewCustomerbyVehicleType() {
 		Customer customer1 = new Customer(1, "tommy", "cruise", "951771122", "tom@gmail.com");
-		Vehicle vehicle1 = new Vehicle(101, "TN02J0666", "bus", "A/C", "prime", "goa", "13", 600.0, 8000.0);
+		VehicleDto vehicle1 = new VehicleDto(101, "TN02J0666", "bus", "A/C", "prime", "goa", "13", 600.0, 8000.0);
 		Customer customer2 = new Customer(2, "jerry", "lee", "951998122", "jerry@gmail.com");
-		Vehicle vehicle2 = new Vehicle(102, "TN02J0666", "car", "A/C", "prime", "goa", "13", 600.0, 8000.0);
-		customer1.setVehicle(vehicle1);
-		customer2.setVehicle(vehicle2);
+		VehicleDto vehicle2 = new VehicleDto(102, "TN02J0666", "car", "A/C", "prime", "goa", "13", 600.0, 8000.0);
+		customer1.setVehicledto(vehicle1);
+		customer2.setVehicledto(vehicle2);
 		List<Customer> customerList = new ArrayList<>();
 		customerList.add(customer1);
 		customerList.add(customer2);
@@ -118,11 +116,11 @@ public class CustomerServiceMokitoTest {
 	void testViewCustomerbyVehicleLocation() {
 
 		Customer customer1 = new Customer(1, "tommy", "cruise", "951771122", "tom@gmail.com");
-		Vehicle vehicle1 = new Vehicle(101, "TN02J0666", "bus", "A/C", "prime", "goa", "13", 600.0, 8000.0);
+		VehicleDto vehicle1 = new VehicleDto(101, "TN02J0666", "bus", "A/C", "prime", "goa", "13", 600.0, 8000.0);
 		Customer customer2 = new Customer(2, "jerry", "lee", "951998122", "jerry@gmail.com");
-		Vehicle vehicle2 = new Vehicle(102, "TN02J0776", "car", "nonA/C", "prime", "chennai", "13", 600.0, 8000.0);
-		customer1.setVehicle(vehicle1);
-		customer2.setVehicle(vehicle2);
+		VehicleDto vehicle2 = new VehicleDto(102, "TN02J0776", "car", "nonA/C", "prime", "chennai", "13", 600.0, 8000.0);
+		customer1.setVehicledto(vehicle1);
+		customer2.setVehicledto(vehicle2);
 		List<Customer> customerList = new ArrayList<>();
 		customerList.add(customer1);
 		customerList.add(customer2);

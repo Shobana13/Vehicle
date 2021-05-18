@@ -7,33 +7,34 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+
+import com.cg.vms.dto.VehicleDto;
+
 @Entity
 public class Customer {
 
 	@Id
 	private int customerId;
-	
+
 	@NotEmpty
-	@Size(min=2, message="first name should have atleast 2 char")
+	@Size(min = 2, message = "first name should have atleast 2 char")
 	private String firstName;
-	
+
 	@NotEmpty
-	@Size(min=2, message="last name should have atleast 2 char")
+	@Size(min = 2, message = "last name should have atleast 2 char")
 	private String lastName;
-	
+
 	private String mobileNumber;
 	private String emailId;
 
 	// mapping
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "vehicle_id")
-	private Vehicle vehicle;
+	private VehicleDto vehicledto;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "address_id")
 	private Address address;
-	
-
 
 	// constructors
 	public Customer() {
@@ -59,12 +60,12 @@ public class Customer {
 		return customerId;
 	}
 
-	public Vehicle getVehicle() {
-		return vehicle;
+	public VehicleDto getVehicledto() {
+		return vehicledto;
 	}
 
-	public void setVehicle(Vehicle vehicle) {
-		this.vehicle = vehicle;
+	public void setVehicledto(VehicleDto vehicledto) {
+		this.vehicledto = vehicledto;
 	}
 
 	public void setCustomerId(int customerId) {
@@ -109,14 +110,15 @@ public class Customer {
 
 	public void setAddress(Address address) {
 		this.address = address;
-		
+
 	}
-	
+
 	// to string()
 	@Override
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", mobileNumber=" + mobileNumber + ", emailId=" + emailId + ", vehicle=" + vehicle + ", address="
-				+ address + "]";
+				+ ", mobileNumber=" + mobileNumber + ", emailId=" + emailId + ", vehicledto=" + vehicledto
+				+ ", address=" + address + "]";
 	}
+
 }
