@@ -26,13 +26,13 @@ class VehicleServiceTest {
 	@Test
 	@Disabled
 	void testCreateVehicle() {
-		Vehicle vehicle=new Vehicle(2005,"Tn 02 0101","Car", "non a/c","Fast","Ambattur","4",12.0,8.0);
-		Driver driver=new Driver(111,"Ram", "Bala","9876543235","ram23@gmail.com","T.nagar",500.0,"8076");
+		Vehicle vehicle=new Vehicle(4004,"TN 02 0101","Car", "non a/c","Fast","Ambattur","4",12.0,8.0);
+		Driver driver=new Driver(304,"Ram", "Bala","9876543235","ram23@gmail.com","T.nagar",500.0,"8076");
 		vehicle.setDriver(driver);
 		driver.setVehicle(vehicle);
 		Vehicle persistedVeh= vehService.addVehicle(vehicle);
-		assertEquals(2005,persistedVeh.getVehicleId());
-		assertEquals("Tn 02 0101",persistedVeh.getVehicleNumber());
+		assertEquals(4004,persistedVeh.getVehicleId());
+		assertEquals("TN 02 0101",persistedVeh.getVehicleNumber());
 		assertEquals("Car",persistedVeh.getType());
 		assertEquals("non a/c",persistedVeh.getCategory());
 		assertEquals("Fast",persistedVeh.getDescription());
@@ -44,26 +44,26 @@ class VehicleServiceTest {
 	@Test
 	@Disabled
 	void testDeleteVehicle() {
-		Vehicle persistedVeh= vehService.deleteVehicleById(2003);
-		assertEquals(2003,persistedVeh.getVehicleId());
-		assertEquals("KA 02 8888",persistedVeh.getVehicleNumber());
+		Vehicle persistedVeh= vehService.deleteVehicleById(4004);
+		assertEquals(4004,persistedVeh.getVehicleId());
+		assertEquals("TN 02 0101",persistedVeh.getVehicleNumber());
 		assertEquals("Car",persistedVeh.getType());
 		assertEquals("non a/c",persistedVeh.getCategory());
-		assertEquals("Deluxe",persistedVeh.getDescription());
+		assertEquals("Fast",persistedVeh.getDescription());
 		assertEquals("Ambattur",persistedVeh.getLocation());
 		assertEquals("4",persistedVeh.getCapacity());
-		assertEquals(2.0,persistedVeh.getChargesPerKM());
-		assertEquals(3.0,persistedVeh.getFixedCharges());
+		assertEquals(12.0,persistedVeh.getChargesPerKM());
+		assertEquals(8.0,persistedVeh.getFixedCharges());
 	}
 	@Test
 	@Disabled
 	void testFindVehicleById() {
-		Vehicle vehicle= vehService.findByVehId(2005);
-		assertEquals("KA 02 0101",vehicle.getVehicleNumber());
+		Vehicle vehicle= vehService.findByVehId(4004);
+		assertEquals("TN 02 0101",vehicle.getVehicleNumber());
 		assertEquals("Car",vehicle.getType());
-		assertEquals("non a/c",vehicle.getCategory());
+		assertEquals("a/c",vehicle.getCategory());
 		assertEquals("Fast",vehicle.getDescription());
-		assertEquals("T.nagar",vehicle.getLocation());
+		assertEquals("Ambattur",vehicle.getLocation());
 		assertEquals("4",vehicle.getCapacity());
 		assertEquals(12.0,vehicle.getChargesPerKM());
 		assertEquals(8.0,vehicle.getFixedCharges());
@@ -72,27 +72,27 @@ class VehicleServiceTest {
 	@Disabled
 	void testUpdateVehicle() {
 		Vehicle vehicle1=new Vehicle();
-		vehicle1.setVehicleId(2005);
-		vehicle1.setVehicleNumber("KA 02 0101");
+		vehicle1.setVehicleId(4004);
+		vehicle1.setVehicleNumber("TN 02 0101");
 		vehicle1.setType("Car");
-		vehicle1.setCategory("non a/c");
+		vehicle1.setCategory("a/c");
 		vehicle1.setDescription("Fast");
-		vehicle1.setLocation("T.nagar");
+		vehicle1.setLocation("Ambattur");
 		vehicle1.setCapacity("4");
 		vehicle1.setChargesPerKM(12.0);
 		vehicle1.setFixedCharges(8.0);
 		Vehicle veh2=vehService.update(vehicle1);
-		assertEquals("non a/c",veh2.getCategory());
+		assertEquals("a/c",veh2.getCategory());
 	}
 	
 	@Test
 	@Disabled
 	void testUpdateVehicleNumber() {
 		Vehicle veh=new Vehicle();
-		veh.setVehicleId(2001);
-		veh.setVehicleNumber("KA 09 0101");
+		veh.setVehicleId(4003);
+		veh.setVehicleNumber("KA 09 9999");
 		Vehicle veh3=vehService.updateVehicleNumber(veh);
-		assertEquals("KA 09 0101",veh3.getVehicleNumber());
+		assertEquals("KA 09 9999",veh3.getVehicleNumber());
 		
 	}
 

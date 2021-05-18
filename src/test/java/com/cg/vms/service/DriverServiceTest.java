@@ -25,12 +25,12 @@ class DriverServiceTest {
 	@Test
 	@Disabled
 	void testCreateDriver() {
-		Vehicle vehicle=new Vehicle(2005,"Tn 02 0101","Car", "non a/c","Fast","Ambattur","4",12.0,8.0);
-		Driver driver=new Driver(115,"Ram", "Bala","9876543235","ram23@gmail.com","T.nagar",500.0,"8076");
+		Vehicle vehicle=new Vehicle(4004,"Tn 02 0101","Car", "non a/c","Fast","Ambattur","4",12.0,8.0);
+		Driver driver=new Driver(304,"Ram", "Bala","9876543235","ram23@gmail.com","T.nagar",500.0,"8076");
 		vehicle.setDriver(driver);
 		driver.setVehicle(vehicle);
 		Driver persistedDri= driService.addDriver(driver);
-		assertEquals(115,persistedDri.getDriverId());
+		assertEquals(304,persistedDri.getDriverId());
 		assertEquals("Ram",persistedDri.getFirstName());
 		assertEquals("Bala",persistedDri.getLastName());
 		assertEquals("ram23@gmail.com",persistedDri.getEmail());
@@ -42,54 +42,54 @@ class DriverServiceTest {
 	@Test
 	@Disabled
 	void testDeleteDriver() {
-		Driver persistedDri= driService.deleteDriverById(113);
-		assertEquals(113,persistedDri.getDriverId());
-		assertEquals("Aswin",persistedDri.getFirstName());
-		assertEquals("Anto",persistedDri.getLastName());
-		assertEquals("aswin41@gmail.com",persistedDri.getEmail());
-		assertEquals("9876543212",persistedDri.getContactNumber());
-		assertEquals("Ambattur",persistedDri.getAddress());
+		Driver persistedDri= driService.deleteDriverById(304);
+		assertEquals(304,persistedDri.getDriverId());
+		assertEquals("Ram",persistedDri.getFirstName());
+		assertEquals("Bala",persistedDri.getLastName());
+		assertEquals("ram23@gmail.com",persistedDri.getEmail());
+		assertEquals("9876543235",persistedDri.getContactNumber());
+		assertEquals("T.nagar",persistedDri.getAddress());
 		assertEquals(500.0,persistedDri.getChargesPerDay());
-		assertEquals("1216",persistedDri.getLicenseNo());
+		assertEquals("8076",persistedDri.getLicenseNo());
 		
 	}
 	@Test
 	@Disabled
 	void testFindDriverById() {
-		Driver driver= driService.viewDriver(112);
-		assertEquals("Rose",driver.getFirstName());
-		assertEquals("catherine",driver.getLastName());
-		assertEquals("rose@gmail.com",driver.getEmail());
-		assertEquals("998899888",driver.getContactNumber());
-		assertEquals("T.nagar",driver.getAddress());
-		assertEquals(500.0,driver.getChargesPerDay());
-		assertEquals("8076",driver.getLicenseNo());
+		Driver driver= driService.viewDriver(302);
+		assertEquals("Vigneshan",driver.getFirstName());
+		assertEquals("Kumar",driver.getLastName());
+		assertEquals("vignesh11@gmail.com",driver.getEmail());
+		assertEquals("9876543212",driver.getContactNumber());
+		assertEquals("Krishnagiri",driver.getAddress());
+		assertEquals(700.0,driver.getChargesPerDay());
+		assertEquals("8989",driver.getLicenseNo());
 	}
 	
 	@Test
 	@Disabled
 	void testUpdateDriver() {
 		Driver driver1=new Driver();
-		driver1.setDriverId(112);
-		driver1.setFirstName("Rose");
-		driver1.setLastName("catherine");
-		driver1.setEmail("rose@gmail.com");
-		driver1.setContactNumber("998899888");
-		driver1.setAddress("T.nagar");
-		driver1.setChargesPerDay(500.0);
-		driver1.setLicenseNo("8076");
+		driver1.setDriverId(302);
+		driver1.setFirstName("Vigneshan");
+		driver1.setLastName("Kumar");
+		driver1.setEmail("vignesh11@gmail.com");
+		driver1.setContactNumber("9876543212");
+		driver1.setAddress("Krishnagiri");
+		driver1.setChargesPerDay(700.0);
+		driver1.setLicenseNo("8989");
 		Driver dri2=driService.update(driver1);
-		assertEquals("Rose",dri2.getFirstName());
+		assertEquals("Vigneshan",dri2.getFirstName());
 	}	
 	
 	@Test
 	@Disabled
 	void testUpdateFirstName() {
 		Driver dri=new Driver();
-		dri.setDriverId(111);
-		dri.setFirstName("Sanjana");
+		dri.setDriverId(303);
+		dri.setFirstName("Sanjay");
 		Driver dri3=driService.updateFirstName(dri);
-		assertEquals("Sanjana",dri3.getFirstName());
+		assertEquals("Sanjay",dri3.getFirstName());
 		
 	}
 
