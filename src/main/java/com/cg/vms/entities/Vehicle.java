@@ -1,4 +1,5 @@
 package com.cg.vms.entities;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,24 +10,30 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Vehicle {
-	
+
 	@Id
-	private  int vehicleId;
+	private int vehicleId;
 	private String vehicleNumber;
-	private String type;//car//bus
-	private String category ; //ac or nonac
+	private String type;// car//bus
+	private String category; // ac or nonac
 	private String description;
 	private String location;
 	private String capacity;
 	private double chargesPerKM;
 	private double fixedCharges;
-	
-	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(name="driverid")
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "bookingId")
+	private Booking booking;
+
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "driverid")
 	private Driver driver;
-	
-	//constructors
-	public Vehicle() {}
+
+	// constructors
+	public Vehicle() {
+	}
+
 	public Vehicle(int vehicleId, String vehicleNumber, String type, String category, String description,
 			String location, String capacity, double chargesPerKM, double fixedCharges) {
 		super();
@@ -40,116 +47,96 @@ public class Vehicle {
 		this.chargesPerKM = chargesPerKM;
 		this.fixedCharges = fixedCharges;
 	}
-	
 
-	//Getters and Setters
-	
+	// Getters and Setters
+
 	@JsonManagedReference
 	public Driver getDriver() {
 		return driver;
 	}
 
-
 	public void setDriver(Driver driver) {
 		this.driver = driver;
 	}
-	
+
 	public int getVehicleId() {
 		return vehicleId;
 	}
-
 
 	public void setVehicleId(int vehicleId) {
 		this.vehicleId = vehicleId;
 	}
 
-
 	public String getVehicleNumber() {
 		return vehicleNumber;
 	}
-
 
 	public void setVehicleNumber(String vehicleNumber) {
 		this.vehicleNumber = vehicleNumber;
 	}
 
-
 	public String getType() {
 		return type;
 	}
-
 
 	public void setType(String type) {
 		this.type = type;
 	}
 
-
 	public String getCategory() {
 		return category;
 	}
-
 
 	public void setCategory(String category) {
 		this.category = category;
 	}
 
-
 	public String getDescription() {
 		return description;
 	}
-
 
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-
 	public String getLocation() {
 		return location;
 	}
-
 
 	public void setLocation(String location) {
 		this.location = location;
 	}
 
-
 	public String getCapacity() {
 		return capacity;
 	}
-
 
 	public void setCapacity(String capacity) {
 		this.capacity = capacity;
 	}
 
-
 	public double getChargesPerKM() {
 		return chargesPerKM;
 	}
-
 
 	public void setChargesPerKM(double chargesPerKM) {
 		this.chargesPerKM = chargesPerKM;
 	}
 
-
 	public double getFixedCharges() {
 		return fixedCharges;
 	}
 
-
 	public void setFixedCharges(double fixedCharges) {
 		this.fixedCharges = fixedCharges;
 	}
-	
-	//toString
+
+	// toString
 	@Override
 	public String toString() {
 		return "Vehicle [vehicleId=" + vehicleId + ", vehicleNumber=" + vehicleNumber + ", type=" + type + ", category="
 				+ category + ", description=" + description + ", location=" + location + ", capacity=" + capacity
 				+ ", chargesPerKM=" + chargesPerKM + ", fixedCharges=" + fixedCharges + "]";
 	}
-
 
 }

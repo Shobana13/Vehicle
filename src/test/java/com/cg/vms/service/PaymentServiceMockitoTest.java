@@ -43,7 +43,7 @@ class PaymentServiceMockitoTest {
 				7.0);
 		Vehicle vehicle = new Vehicle(1007, "TN7D32", "bus", "non ac", "medium", "Chennai", "14seater", 60.0, 50.0);
 		payment.setBooking(booking);
-		payment.setVehicle(vehicle);
+		booking.setVehicle(vehicle);
 		Mockito.when(payRepo.save(payment)).thenReturn(payment);
 		Payment persistedPay = payService.addPayment(payment);
 		assertEquals(10007, persistedPay.getPaymentId());
@@ -94,18 +94,22 @@ class PaymentServiceMockitoTest {
 	@Disabled
 	void testFindAllPaymentsByVehicle() {
 		Payment payment1 = new Payment(10007, "Online", LocalDate.of(2021, 05, 07), "Success");
+		Booking booking1 = new Booking(107, LocalDate.of(2021, 05, 07), LocalDate.of(2021, 05, 07), "Success", 800.0,
+				7.0);
 		Vehicle vehicle1 = new Vehicle(1007, "TN08A34", "car", "ac", "small", "Chennai", "4seater", 50.0, 60.0);
 		Payment payment2 = new Payment(10008, "Online", LocalDate.of(2021, 05, 06), "Success");
+		Booking booking2 = new Booking(108, LocalDate.of(2021, 05, 06), LocalDate.of(2021, 05, 07), "Success", 800.0,
+				7.0);
 		Vehicle vehicle2 = new Vehicle(1008, "TN08A34", "car", "ac", "small", "Chennai", "4seater", 50.0, 60.0);
-		payment1.setVehicle(vehicle1);
-		payment2.setVehicle(vehicle2);
-		List<Payment> vehicle = new ArrayList<>();
-		vehicle.add(payment1);
-		vehicle.add(payment2);
-		Mockito.when(payRepo.findAll()).thenReturn(vehicle);
-		List<Payment> payment = payService.viewAllPayments();
-		System.out.println(payment);
-		assertEquals(2, payment.size());
+		booking1.setVehicle(vehicle1);
+		booking2.setVehicle(vehicle2);
+		List<Payment> payment = new ArrayList<>();
+		payment.add(payment1);
+		payment.add(payment2);
+		Mockito.when(payRepo.findAll()).thenReturn(payment);
+		List<Payment> payments = payService.viewAllPayments();
+		System.out.println(payments);
+		assertEquals(2, payments.size());
 	}
 
 	@Test
