@@ -7,12 +7,21 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-
 import com.cg.vms.dto.VehicleDto;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 @Entity
+@ToString
+@Getter
+@Setter
+@NoArgsConstructor
 public class Customer {
 
+	//fields
 	@Id
 	private int customerId;
 
@@ -36,16 +45,11 @@ public class Customer {
 	@JoinColumn(name = "address_id")
 	private Address address;
 
-	// constructors
-	public Customer() {
-	}
-
-	public Customer(int customerId) {
-		this.customerId = customerId;
-	}
+	
+	//Constructors
+	public Customer(int customerId) {}
 
 	public Customer(int customerId, String firstName, String lastName, String mobileNumber, String emailId) {
-		super();
 		this.customerId = customerId;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -53,72 +57,4 @@ public class Customer {
 		this.emailId = emailId;
 
 	}
-
-	// getters and setters
-
-	public int getCustomerId() {
-		return customerId;
-	}
-
-	public VehicleDto getVehicledto() {
-		return vehicledto;
-	}
-
-	public void setVehicledto(VehicleDto vehicledto) {
-		this.vehicledto = vehicledto;
-	}
-
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getMobileNumber() {
-		return mobileNumber;
-	}
-
-	public void setMobileNumber(String mobileNumber) {
-		this.mobileNumber = mobileNumber;
-	}
-
-	public String getEmailId() {
-		return emailId;
-	}
-
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
-	}
-
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-
-	}
-
-	// to string()
-	@Override
-	public String toString() {
-		return "Customer [customerId=" + customerId + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", mobileNumber=" + mobileNumber + ", emailId=" + emailId + ", vehicledto=" + vehicledto
-				+ ", address=" + address + "]";
-	}
-
 }

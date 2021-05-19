@@ -25,9 +25,9 @@ class BookingTest {
 	void testShouldAddBooking() {
 		LocalDate bd1 = LocalDate.of(2020, 12, 20);
 		LocalDate bd2 = LocalDate.of(2020, 12, 30);
-		Customer cust = new Customer(12, "Nimbo", "Ramani", "nimbo@gmail.com", "9514555555");
-		Booking b1 = new Booking(206, bd1, bd2, "Better", 900.00, 10000.60);
-		Vehicle vehicle = new Vehicle(310, "TN 02 0903", "car", "Non A/C", "deluxe", "Tambaram", "40", 110.0, 90.0);
+		Customer cust = new Customer(120, "Nimbo", "Ramani", "nimbo@gmail.com", "9514555555");
+		Booking b1 = new Booking(402, bd1, bd2, "Better", 900.00, 10000.60);
+		Vehicle vehicle = new Vehicle(205, "TN 02 0903", "car", "Non A/C", "deluxe", "Tambaram", "40", 110.0, 90.0);
 		b1.setVehicle(vehicle);
 		b1.setCustomer(cust);
 		Booking persistedBok = bokService.addBooking(b1);

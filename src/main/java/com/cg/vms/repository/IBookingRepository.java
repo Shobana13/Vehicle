@@ -19,6 +19,5 @@ public interface IBookingRepository extends JpaRepository<Booking, Integer> {
 
 	@Query(value="select * from  booking inner join customer on booking.customer_id=customer.customer_id where customer.customer_id=:c",nativeQuery=true)
 	public List<Booking> viewAllBookingByCustomer(@Param("c") int customerId);
-	
 
 }

@@ -23,66 +23,68 @@ import com.cg.vms.repository.IAddressRepository;
 public class AddressServiceMokitoTest {
 	@InjectMocks
 	AddressServiceImpl addrService;
-	
+
 	@MockBean
 	IAddressRepository addrRep;
-	
+
 	@BeforeEach
 	void init() {
 		MockitoAnnotations.openMocks(this);
 	}
-	
-	@Test
-	@Disabled
-	void testAddAddress(){
-		Address address=new Address(4, "kk road", "Tirunelveli");
-		Mockito.when(addrRep.save(address)).thenReturn(address);
-		Address address1=addrService.save(address);
-		assertEquals(4,address1.getAddressId());
-	}
-	
 
+	// add address
 	@Test
-	@Disabled
+	//@Disabled
+	void testAddAddress() {
+		Address address = new Address(4, "kk road", "Tirunelveli");
+		Mockito.when(addrRep.save(address)).thenReturn(address);
+		Address address1 = addrService.save(address);
+		assertEquals(4, address1.getAddressId());
+	}
+
+	// delete address by id
+	@Test
+	//@Disabled
 	void testDeleteAddressById() {
-		Address address=new Address(4, "kk road", "Tirunelveli");
+		Address address = new Address(4, "kk road", "Tirunelveli");
 		Mockito.when(addrRep.findById(4)).thenReturn(Optional.of(address));
 		addrService.deleteAddressById(4);
-		assertEquals(4,address.getAddressId());
+		assertEquals(4, address.getAddressId());
 	}
-	
+
+	// update address details
 	@Test
-	@Disabled
+	//@Disabled
 	void testupdateAddress() {
-		Address address=new Address(4, "kk road", "Tirunelveli");
+		Address address = new Address(4, "kk road", "Tirunelveli");
 		Mockito.when(addrRep.findById(4)).thenReturn(Optional.of(address));
 		Mockito.when(addrRep.save(address)).thenReturn(address);
-		Address address1=addrService.update(address);
-		assertEquals("kk road",address1.getStreetName());
+		Address address1 = addrService.update(address);
+		assertEquals("kk road", address1.getStreetName());
 	}
-	
+
+	// view all address
 	@Test
-	@Disabled
+	//@Disabled
 	void testViewAddress() {
-		Address address1=new Address(4, "kk road", "Tirunelveli");
-		Address address2=new Address(5, "bypass road", "Tripur");
+		Address address1 = new Address(4, "kk road", "Tirunelveli");
+		Address address2 = new Address(5, "bypass road", "Tripur");
 		List<Address> addressList = new ArrayList<>();
 		addressList.add(address1);
 		addressList.add(address2);
 		Mockito.when(addrRep.findAll()).thenReturn(addressList);
 		List<Address> address = addrService.findAllAddresses();
 		assertEquals(2, address.size());
-	
+
 	}
-	
+
+	// view address by id
 	@Test
-	@Disabled
+	//@Disabled
 	void testViewbyId() {
-	Address address=new Address(4,"kk road", "Tirunelveli");
-	Mockito.when(addrRep.findById(4)).thenReturn(Optional.of(address));
-	assertEquals(4,address.getAddressId());
-}
-	
-}
+		Address address = new Address(4, "kk road", "Tirunelveli");
+		Mockito.when(addrRep.findById(4)).thenReturn(Optional.of(address));
+		assertEquals(4, address.getAddressId());
+	}
 
-
+}

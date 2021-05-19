@@ -69,6 +69,4 @@ public class BookingController {
 	public List<Booking> viewAllBookingByVehicleId(@PathVariable("id") int vehicleId) {
 		return bokService.viewAllBookingByVehicleId(vehicleId);
 	}
-
-
 }

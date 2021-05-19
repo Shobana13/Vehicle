@@ -1,4 +1,5 @@
 package com.cg.vms.service;
+
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 import org.junit.jupiter.api.Disabled;
@@ -11,49 +12,53 @@ import com.cg.vms.entities.Address;
 @SpringBootTest
 public class AddressServiceTest {
 
-	
 	@Autowired
 	IAddressService addrService;
 
+	// add address
 	@Test
-	@Disabled
-	void testAddCustomer() {
-		Address address = new Address(4, "kk road", "Tirunelveli");
+	//@Disabled
+	void testAddAddress() {
+		Address address = new Address(103, "kk road", "Tirunelveli");
 		Address persistedCust = addrService.save(address);
-		assertEquals("kk road",persistedCust.getStreetName());
+		assertEquals("kk road", persistedCust.getStreetName());
 	}
 
+	// delete address
 	@Test
 	@Disabled
 	void testDeleteAddressId() {
-		Address addr = addrService.deleteAddressById(4);
-		assertEquals(4, addr.getAddressId());
+		Address addr = addrService.deleteAddressById(103);
+		assertEquals(103, addr.getAddressId());
 	}
-	
+
+	// find all address
 	@Test
 	@Disabled
 	void testFindAllAddress() {
-		List<Address> addr=addrService.findAllAddresses();
-		assertEquals(4, addr.size());
+		List<Address> addr = addrService.findAllAddresses();
+		assertEquals(5, addr.size());
 	}
-	
+
+	// view address by id
 	@Test
 	@Disabled
 	void testViewAddressbyId() {
-		Address addr=addrService.findAddressById(1);
+		Address addr = addrService.findAddressById(101);
 		System.out.println(addr);
-		assertEquals("M.M road", addr.getStreetName());
+		assertEquals("rasi street", addr.getStreetName());
 	}
-	
+
+	// update address
 	@Test
 	@Disabled
 	void testUpdateAddress() {
-		Address address=new Address();
-		address.setAddressId(1);
-		address.setStreetName("rasi street");
-		address.setCity("karur");
-		Address addr=addrService.update(address);
-		assertEquals("karur",addr.getCity());
-	}	
-	
+		Address address = new Address();
+		address.setAddressId(102);
+		address.setStreetName("raja street");
+		address.setCity("Pondi");
+		Address addr = addrService.update(address);
+		assertEquals("Pondi", addr.getCity());
+	}
+
 }

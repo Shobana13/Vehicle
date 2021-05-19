@@ -15,6 +15,7 @@ public class AddressServiceImpl implements IAddressService {
 	@Autowired
 	IAddressRepository addrRepo;
 
+	//find address by id
 	@Override
 	public Address findAddressById(int id) {
 		Optional<Address> address = addrRepo.findById(id);
@@ -24,16 +25,19 @@ public class AddressServiceImpl implements IAddressService {
 		return address.get();
 	}
 
+	//find all address
 	@Override
 	public List<Address> findAllAddresses() {
 		return addrRepo.findAll();
 	}
 
+	//add address
 	@Override
 	public Address save(Address address) {
 		return addrRepo.save(address);
 	}
 
+	//update address
 	@Override
 	public Address update(Address address) {
 		Optional<Address> addr = addrRepo.findById(address.getAddressId());
@@ -46,6 +50,7 @@ public class AddressServiceImpl implements IAddressService {
 		return addrRepo.save(addr.get());
 	}
 
+	//delete address by id
 	@Override
 	public Address deleteAddressById(int id) {
 		Optional<Address> address = addrRepo.findById(id);

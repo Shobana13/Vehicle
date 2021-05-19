@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.cg.vms.entities.Customer;
 import com.cg.vms.exceptions.CustomerNotFoundException;
 import com.cg.vms.service.ICustomerService;
+
 
 @RestController
 public class CustomerController {
@@ -51,20 +51,14 @@ public class CustomerController {
 		return custService.viewCustomerbyId(customerId);
 		
 	}
-	//view customer 
-	@GetMapping("/customer/id/{id}")
-	public Customer viewCustomer(@PathVariable("id") Customer customer) {
-		return custService.viewCustomer(customer);
-	}
-	
 	
 	//Update Customer 
 	@PutMapping("/customer") 
-	public Customer update( @RequestBody Customer customer) {
-		if(custService.update(customer)==null) {
+	public Customer updateCustomer( @RequestBody Customer customer) {
+		if(custService.updateCustomer(customer)==null) {
 			throw new CustomerNotFoundException("Customer Not Found:" +customer.getCustomerId());
 		}
-		return custService.update(customer);
+		return custService.updateCustomer(customer);
 	}
 	
 	//Update Customer firstName
@@ -76,12 +70,14 @@ public class CustomerController {
 	return custService.updateFirstName(customerId,customer);
 	}
 	
+	//view customer by vehicle type
 	@GetMapping("/customer/type/{type}")
 	public List<Customer> findbyType(@PathVariable("type") String type){
 		return custService.findbyType(type);
 		
 	}
 	
+	//view customer by vehicle location
 	@GetMapping("/customer/location/{location}")
 	public List<Customer> findbyVehicleLocation(@PathVariable("location") String location){
 		return custService.findbyVehicleLocation(location);

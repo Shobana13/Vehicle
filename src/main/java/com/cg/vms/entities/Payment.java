@@ -7,8 +7,16 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
+@ToString
+@Getter
+@Setter
+@NoArgsConstructor
 public class Payment {
 	@Id
 	private int paymentId;
@@ -22,11 +30,7 @@ public class Payment {
 	private Booking booking;
 
 	// constructors
-	public Payment() {
-	}
-
 	public Payment(Booking booking) {
-
 		this.booking = booking;
 	}
 
@@ -36,54 +40,4 @@ public class Payment {
 		this.paymentDate = paymentDate;
 		this.paymentStatus = paymentStatus;
 	}
-
-	// getters and setters
-
-	public int getPaymentId() {
-		return paymentId;
-	}
-
-	public void setPaymentId(int paymentId) {
-		this.paymentId = paymentId;
-	}
-
-	public String getPaymentMode() {
-		return paymentMode;
-	}
-
-	public void setPaymentMode(String paymentMode) {
-		this.paymentMode = paymentMode;
-	}
-
-	public LocalDate getPaymentDate() {
-		return paymentDate;
-	}
-
-	public void setPaymentDate(LocalDate paymentDate) {
-		this.paymentDate = paymentDate;
-	}
-
-	public String getPaymentStatus() {
-		return paymentStatus;
-	}
-
-	public void setPaymentStatus(String paymentStatus) {
-		this.paymentStatus = paymentStatus;
-	}
-
-	public Booking getBooking() {
-		return booking;
-	}
-
-	public void setBooking(Booking booking) {
-		this.booking = booking;
-	}
-
-	// to string()
-	@Override
-	public String toString() {
-		return "Payment [paymentId=" + paymentId + ", paymentMode=" + paymentMode + ", paymentDate=" + paymentDate
-				+ ", paymentStatus=" + paymentStatus + ", booking=" + booking + "]";
-	}
-
 }

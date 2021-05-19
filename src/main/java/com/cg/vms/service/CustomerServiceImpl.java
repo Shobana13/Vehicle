@@ -15,11 +15,13 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Autowired
 	ICustomerRepository custRep;
 
+	// adding new customer
 	@Override
 	public Customer addCustomer(Customer customer) {
 		return custRep.save(customer);
 	}
 
+	//updating first name
 	@Override
 	public Customer updateFirstName(int CustomerId, Customer customer) {
 
@@ -31,8 +33,9 @@ public class CustomerServiceImpl implements ICustomerService {
 		return null;
 	}
 
+	//update customer details
 	@Override
-	public Customer update(Customer customer) {
+	public Customer updateCustomer(Customer customer) {
 		Optional<Customer> cust = custRep.findById(customer.getCustomerId());
 		if (!cust.isPresent()) {
 			return null;
@@ -45,12 +48,14 @@ public class CustomerServiceImpl implements ICustomerService {
 		return custRep.save(cust.get());
 	}
 
+	//find all customer
 	@Override
 	public List<Customer> findAllCustomer() {
 		return custRep.findAll();
 
 	}
 
+	//view customer by id
 	@Override
 	public Customer viewCustomerbyId(int customerId) {
 		Optional<Customer> cust = custRep.findById(customerId);
@@ -60,6 +65,7 @@ public class CustomerServiceImpl implements ICustomerService {
 		return cust.get();
 	}
 
+	//delete customer by id
 	@Override
 	public Customer deleteCustomerbyId(int customerId) {
 		Optional<Customer> cust = custRep.findById(customerId);
@@ -70,22 +76,18 @@ public class CustomerServiceImpl implements ICustomerService {
 		return cust.get();
 	}
 
+	//find customer by vehicle location
 	@Override
-	public Customer viewCustomer(Customer customer) {
-		Customer cust = custRep.findById(customer.getCustomerId()).get();
-		return cust;
+	public List<Customer> findbyVehicleLocation(String location) {
+		return custRep.findbyVehicleLocation(location);
+
 	}
 
+	// find customer by vehicle type
 	@Override
 	public List<Customer> findbyType(String type) {
 		return custRep.findbyType(type);
+
 	}
 
-	@Override
-	public List<Customer> findbyVehicleLocation(String location) {
-		return custRep. findbyVehicleLocation(location);
-		
-	}
-
-	
 }

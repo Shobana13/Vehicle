@@ -29,9 +29,10 @@ public class CustomerServiceMokitoTest {
 	void init() {
 		MockitoAnnotations.openMocks(this);
 	}
-
+	
+	//add Customer
 	@Test
-	@Disabled
+	//@Disabled
 	void testCreateCustomer() {
 		Customer customer = new Customer(1, "tom", "son", "951771122", "tom@gmail.com");
 		Mockito.when(custRep.save(customer)).thenReturn(customer);
@@ -39,8 +40,9 @@ public class CustomerServiceMokitoTest {
 		assertEquals(1, persistedCust.getCustomerId());
 	}
 
+	//view all the customer
 	@Test
-	@Disabled
+	//@Disabled
 	void testViewAllCustomer() {
 		Customer customer1 = new Customer(1, "tom", "son", "951771122", "tom@gmail.com");
 		Customer customer2 = new Customer(2, "jerry", "lee", "951998122", "jerry@gmail.com");
@@ -52,18 +54,20 @@ public class CustomerServiceMokitoTest {
 		assertEquals(2, customer.size());
 	}
 
+	//update customer
 	@Test
-	@Disabled
+	//@Disabled
 	void testUpdateCustomer() {
 		Customer customer1 = new Customer(1, "tommy", "cruise", "951771122", "tom@gmail.com");
 		Mockito.when(custRep.findById(1)).thenReturn(Optional.of(customer1));
 		Mockito.when(custRep.save(customer1)).thenReturn(customer1);
-		Customer persistedCust = custService.update(customer1);
+		Customer persistedCust = custService.updateCustomer(customer1);
 		assertEquals(1, persistedCust.getCustomerId());
 	}
 
+	//delete customer
 	@Test
-	@Disabled
+	//@Disabled
 	void testDeleteCustomer() {
 		Customer customer = new Customer(1, "tommy", "cruise", "951771122", "tom@gmail.com");
 		Mockito.when(custRep.findById(1)).thenReturn(Optional.of(customer));
@@ -74,8 +78,9 @@ public class CustomerServiceMokitoTest {
 
 	}
 
+	//update firstName
 	@Test
-	@Disabled
+	//@Disabled
 	void testUpdateCustomerbyFirstname() {
 		Customer customer = new Customer(1, "jen", "cru", "951771122", "tom@gmail.com");
 		Mockito.when(custRep.findById(1)).thenReturn(Optional.of(customer));
@@ -85,8 +90,9 @@ public class CustomerServiceMokitoTest {
 		assertEquals("jen", persistedCust.getFirstName());
 	}
 
+	//view customer by id
 	@Test
-	@Disabled
+	//@Disabled
 	void testViewCustomerbyId() {
 		Customer customer = new Customer(1, "jen", "cru", "951771122", "tom@gmail.com");
 		Mockito.when(custRep.findById(1)).thenReturn(Optional.of(customer));
@@ -94,11 +100,12 @@ public class CustomerServiceMokitoTest {
 		assertEquals("jen", persistedCust.getFirstName());
 	}
 
+	//view customer by vehicle type
 	@Test
-	@Disabled
+	//@Disabled
 	void testViewCustomerbyVehicleType() {
 		Customer customer1 = new Customer(1, "tommy", "cruise", "951771122", "tom@gmail.com");
-		VehicleDto vehicle1 = new VehicleDto(101, "TN02J0666", "bus", "A/C", "prime", "goa", "13", 600.0, 8000.0);
+		VehicleDto vehicle1 = new VehicleDto(101, "TN02J0666", "car", "A/C", "prime", "goa", "13", 600.0, 8000.0);
 		Customer customer2 = new Customer(2, "jerry", "lee", "951998122", "jerry@gmail.com");
 		VehicleDto vehicle2 = new VehicleDto(102, "TN02J0666", "car", "A/C", "prime", "goa", "13", 600.0, 8000.0);
 		customer1.setVehicledto(vehicle1);
@@ -108,15 +115,16 @@ public class CustomerServiceMokitoTest {
 		customerList.add(customer2);
 		Mockito.when(custRep.findbyType("car")).thenReturn(customerList);
 		List<Customer> cust3 = custService.findbyType("car");
-		assertEquals(1, cust3.size());
+		assertEquals(2, cust3.size());
 	}
 
+	//view customer by location
 	@Test
-	@Disabled
+	//@Disabled
 	void testViewCustomerbyVehicleLocation() {
 
 		Customer customer1 = new Customer(1, "tommy", "cruise", "951771122", "tom@gmail.com");
-		VehicleDto vehicle1 = new VehicleDto(101, "TN02J0666", "bus", "A/C", "prime", "goa", "13", 600.0, 8000.0);
+		VehicleDto vehicle1 = new VehicleDto(101, "TN02J0666", "bus", "A/C", "prime", "chennai", "13", 600.0, 8000.0);
 		Customer customer2 = new Customer(2, "jerry", "lee", "951998122", "jerry@gmail.com");
 		VehicleDto vehicle2 = new VehicleDto(102, "TN02J0776", "car", "nonA/C", "prime", "chennai", "13", 600.0, 8000.0);
 		customer1.setVehicledto(vehicle1);
@@ -126,7 +134,7 @@ public class CustomerServiceMokitoTest {
 		customerList.add(customer2);
 		Mockito.when(custRep.findbyVehicleLocation("chennai")).thenReturn(customerList);
 		List<Customer> cust3 = custService.findbyVehicleLocation("chennai");
-		assertEquals(1, cust3.size());
+		assertEquals(2, cust3.size());
 	}
 
 }

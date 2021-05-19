@@ -56,7 +56,7 @@ class DriverServiceTest {
 	@Test
 	@Disabled
 	void testFindDriverById() {
-		Driver driver= driService.viewDriver(302);
+		Driver driver= driService.viewDriver(304);
 		assertEquals("Vigneshan",driver.getFirstName());
 		assertEquals("Kumar",driver.getLastName());
 		assertEquals("vignesh11@gmail.com",driver.getEmail());
@@ -70,7 +70,7 @@ class DriverServiceTest {
 	@Disabled
 	void testUpdateDriver() {
 		Driver driver1=new Driver();
-		driver1.setDriverId(302);
+		driver1.setDriverId(304);
 		driver1.setFirstName("Vigneshan");
 		driver1.setLastName("Kumar");
 		driver1.setEmail("vignesh11@gmail.com");

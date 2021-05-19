@@ -1,4 +1,5 @@
 package com.cg.vms.controller;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,47 +15,49 @@ import com.cg.vms.entities.Address;
 import com.cg.vms.exceptions.AddressNotFoundException;
 import com.cg.vms.service.IAddressService;
 
-
-
 @RestController
 public class AddressController {
 
 	@Autowired
 	IAddressService addrService;
-	
+
+	// view all address
 	@GetMapping("/address/{id}")
 	public Address findAddressById(@PathVariable("id") int id) {
-		if(addrService.findAddressById(id)==null) {
+		if (addrService.findAddressById(id) == null) {
 			throw new AddressNotFoundException("Address not found with this id" + id);
 		}
 		return addrService.findAddressById(id);
 	}
-	
+
+	// delete address
 	@DeleteMapping("/address/{id}")
 	public Address deleteAddressById(@PathVariable("id") int id) {
-		if(addrService.deleteAddressById(id)==null) {
+		if (addrService.deleteAddressById(id) == null) {
 			throw new AddressNotFoundException("Address not found with this id" + id);
 		}
 		return addrService.deleteAddressById(id);
 	}
-	
+
+	// view address
 	@GetMapping("/address")
 	public List<Address> findAllAddresses() {
 		return addrService.findAllAddresses();
 	}
-	
+
+	// add address
 	@PostMapping("/address")
 	public Address save(@RequestBody Address address) {
 		return addrService.save(address);
 	}
-	
+
+	// update address
 	@PutMapping("/address")
 	public Address update(@RequestBody Address address) {
-		if(addrService.update(address)==null) {
+		if (addrService.update(address) == null) {
 			throw new AddressNotFoundException("AddressId Not Found:" + address.getAddressId());
 		}
 		return addrService.update(address);
 	}
-	
-	
+
 }

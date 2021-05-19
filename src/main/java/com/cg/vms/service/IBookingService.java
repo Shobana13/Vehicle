@@ -20,5 +20,4 @@ public interface IBookingService {
 	public List<Booking> viewAllBookingByBookingDate(LocalDate bookingDate);
 
 	public List<Booking> viewAllBookingByVehicleId(int vehicleId);
-
 }
