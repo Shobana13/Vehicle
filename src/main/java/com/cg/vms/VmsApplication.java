@@ -12,7 +12,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableSwagger2
 public class VmsApplication {
-	org.apache.logging.log4j.Logger logger = LogManager.getLogger();
+	org.apache.logging.log4j.Logger logger = LogManager.getLogger(VmsApplication.class);
 
 
 	public static void main(String[] args) {

@@ -2,6 +2,8 @@ package com.cg.vms.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,8 @@ public class AddressServiceTest {
 
 	@Autowired
 	IAddressService addrService;
+	
+	org.apache.logging.log4j.Logger logger = LogManager.getLogger(AddressServiceTest.class);
 
 	// add address
 	@Test
@@ -21,6 +25,7 @@ public class AddressServiceTest {
 	void testAddAddress() {
 		Address address = new Address(103, "kk road", "Tirunelveli");
 		Address persistedCust = addrService.save(address);
+		logger.info(persistedCust);
 		assertEquals("kk road", persistedCust.getStreetName());
 	}
 
@@ -29,6 +34,7 @@ public class AddressServiceTest {
 	@Disabled
 	void testDeleteAddressId() {
 		Address addr = addrService.deleteAddressById(103);
+		logger.info(addr);
 		assertEquals(103, addr.getAddressId());
 	}
 
@@ -37,6 +43,7 @@ public class AddressServiceTest {
 	@Disabled
 	void testFindAllAddress() {
 		List<Address> addr = addrService.findAllAddresses();
+		logger.info(addr);
 		assertEquals(5, addr.size());
 	}
 
@@ -45,7 +52,7 @@ public class AddressServiceTest {
 	@Disabled
 	void testViewAddressbyId() {
 		Address addr = addrService.findAddressById(101);
-		System.out.println(addr);
+		logger.info(addr);
 		assertEquals("rasi street", addr.getStreetName());
 	}
 
@@ -58,6 +65,7 @@ public class AddressServiceTest {
 		address.setStreetName("raja street");
 		address.setCity("Pondi");
 		Address addr = addrService.update(address);
+		logger.info(addr);
 		assertEquals("Pondi", addr.getCity());
 	}
 
