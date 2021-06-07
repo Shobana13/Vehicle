@@ -14,16 +14,24 @@ public class VehicleServiceImpl implements IVehicleService {
 	@Autowired
 	IVehicleRepository vehRep;
 
-	// Add Vehicle
+	/**
+	 * This function will Add the Vehicle details
+	 * 
+	 * @return
+	 */
 	@Override
 	public Vehicle addVehicle(Vehicle vehicle) {
 		return vehRep.save(vehicle);
 	}
 
-	// Update
+	/**
+	 * This function will Update the Vehicle details
+	 * 
+	 * @return
+	 */
 	@Override
-	public Vehicle update(Vehicle vehicle) {
-		Optional<Vehicle> veh = vehRep.findById(vehicle.getVehicleId());
+	public Vehicle update(int vehicleId, Vehicle vehicle) {
+		Optional<Vehicle> veh = vehRep.findById(vehicleId);
 		if (!veh.isPresent()) {
 			return null;
 		}
@@ -38,14 +46,22 @@ public class VehicleServiceImpl implements IVehicleService {
 		return vehRep.save(veh.get());
 	}
 
-	// Find AllVehicle
+	/**
+	 * This function will List the Vehicle details
+	 * 
+	 * @return
+	 */
 	@Override
 	public List<Vehicle> findAllVehicle() {
 		return vehRep.findAll();
 
 	}
 
-	// Delete Vehicle ById
+	/**
+	 * This function will delete VehicleById details
+	 * 
+	 * @return
+	 */
 	@Override
 	public Vehicle deleteVehicleById(int vehicleId) {
 		Optional<Vehicle> veh = vehRep.findById(vehicleId);
@@ -57,7 +73,11 @@ public class VehicleServiceImpl implements IVehicleService {
 
 	}
 
-	// Find VehicleById
+	/**
+	 * This function will find VehicleById details
+	 * 
+	 * @return
+	 */
 	@Override
 	public Vehicle findByVehId(int id) {
 		Optional<Vehicle> veh = vehRep.findById(id);
@@ -67,7 +87,11 @@ public class VehicleServiceImpl implements IVehicleService {
 		return veh.get();
 	}
 
-	// View Vehicle
+	/**
+	 * This function will View Vehicle ById
+	 * 
+	 * @return
+	 */
 	@Override
 	public Vehicle viewVehicle(int vehicleId) {
 		Optional<Vehicle> veh = vehRep.findById(vehicleId);
@@ -78,7 +102,11 @@ public class VehicleServiceImpl implements IVehicleService {
 
 	}
 
-	// Update VehicleNumber
+	/**
+	 * This function will update VehicleNumber ById
+	 * 
+	 * @return
+	 */
 	@Override
 	public Vehicle updateVehicleNumber(Vehicle vehicle) {
 		Optional<Vehicle> veh = vehRep.findById(vehicle.getVehicleId());

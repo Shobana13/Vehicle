@@ -12,19 +12,18 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
 import org.springframework.format.annotation.DateTimeFormat;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Entity
+@ToString
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
+
 public class Payment {
 	/**
 	 * Creating Instance variables for Payment class
@@ -49,7 +48,6 @@ public class Payment {
 
 	// constructors
 	public Payment(Booking booking) {
-
 		this.booking = booking;
 	}
 
@@ -59,5 +57,4 @@ public class Payment {
 		this.paymentDate = paymentDate;
 		this.paymentStatus = paymentStatus;
 	}
-
 }

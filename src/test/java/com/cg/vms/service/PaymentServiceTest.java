@@ -1,16 +1,12 @@
 package com.cg.vms.service;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.time.LocalDate;
 import java.util.List;
-
 import org.apache.logging.log4j.LogManager;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import com.cg.vms.entities.Booking;
 import com.cg.vms.entities.Payment;
 import com.cg.vms.entities.Vehicle;
@@ -94,6 +90,7 @@ public class PaymentServiceTest {
 	@Test
 	void testUpdatePaymentStatus() {
 		Payment payment = new Payment();
+
 		payment.setPaymentId(10004);
 		payment.setPaymentStatus("Success");
 		Payment persistedPa = PayService.updatePaymentStatus(10004, payment);
@@ -144,5 +141,4 @@ public class PaymentServiceTest {
 		logger.info(persistedPa);
 		assertEquals(910.0, persistedPa.getTotalCost());
 	}
-
 }
