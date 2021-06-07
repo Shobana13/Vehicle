@@ -78,9 +78,9 @@ class PaymentServiceTest {
 	@Disabled
 	void testUpdatePaymentStatus() {
 		Payment payment = new Payment();
-		payment.setPaymentId(10009);
+		payment.setPaymentId(10006);
 		payment.setPaymentStatus("Success");
-		Payment persistedPa = PayService.updatePaymentStatus(10009, payment);
+		Payment persistedPa = PayService.updatePaymentStatus(10006, payment);
 		System.out.println(persistedPa);
 		assertEquals("Success", persistedPa.getPaymentStatus());
 
@@ -116,7 +116,7 @@ class PaymentServiceTest {
 		Vehicle vehicle = new Vehicle();
 		vehicle.setFixedCharges(70.0);
 		vehicle.setChargesPerKM(50.0);
-		Booking persistedPa = PayService.calculateTotalBookingCost(10003, 7.0, vehicle);
+		Booking persistedPa = PayService.calculateTotalBookingCost(10006, 7.0, vehicle);
 		System.out.println(persistedPa);
 		assertEquals(420.0, persistedPa.getTotalCost());
 	}

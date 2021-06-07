@@ -1,7 +1,13 @@
 package com.cg.vms.controller;
+
 import java.util.List;
 import javax.validation.Valid;
+
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -10,82 +16,151 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.cg.vms.entities.Customer;
 import com.cg.vms.exceptions.CustomerNotFoundException;
 import com.cg.vms.service.ICustomerService;
 
+@CrossOrigin
 @RestController
 public class CustomerController {
-	
+
+	/**
+	 * We are autowiring the customer service layer to this controller layer of customer
+	 * 
+	 * @param customerServiceImpl
+	 */
 	@Autowired
 	ICustomerService custService;
-	
-	//addCustomer
+
+	/**
+	 * Logger
+	 */
+	org.apache.logging.log4j.Logger logger = LogManager.getLogger(CustomerController.class);
+
+	/**
+	 * This controller is used to create a new or add new customer and redirects it
+	 * to the service layer
+	 * 
+	 * @param
+	 * @return
+	 */
 	@PostMapping("/customer")
-	public Customer addCustomer(@Valid @RequestBody Customer customer) {
-		return custService.addCustomer(customer);
+	public ResponseEntity<Customer> addCustomer(@Valid @RequestBody Customer customer) {
+		logger.info("Adding Customer in database");
+		custService.addCustomer(customer);
+		return  new ResponseEntity<>(customer,HttpStatus.OK);
 	}
-	
-	//delete Customer by id
-	@DeleteMapping("/customer/id/{id}")
-	public Customer deleteCustomerbyId(@PathVariable("id") int customerId) {
-	if(custService.deleteCustomerbyId(customerId)==null) {
-			throw new CustomerNotFoundException("Customer not found with this id" +customerId);
+
+	/**
+	 * This controller function perform deletion of a specific given customer and
+	 * request the service to perform the action and returns the message as deleted
+	 * else throw exception
+	 * 
+	 * @param customerid
+	 * @return
+	 * @throws CustomerNotFoundException
+	 */
+	@DeleteMapping("/customer/{id}")
+	public ResponseEntity<Customer> deleteCustomerbyId(@PathVariable("id") int customerId) throws CustomerNotFoundException {
+		logger.info("Deleting Customer in database by id");
+		if (custService.deleteCustomerbyId(customerId) == null) {
+			throw new CustomerNotFoundException("Customer not found with this id" + customerId);
 		}
-		return custService.deleteCustomerbyId(customerId);
+		return ResponseEntity.ok().body(custService.deleteCustomerbyId(customerId));
 	}
-	
-	//View all customer
+
+	/**
+	 * This controller is used to return and list all the customer found in the
+	 * database and request to the service to perform the action
+	 * 
+	 * @return
+	 */
 	@GetMapping("/customer")
-	public List<Customer> findAllCustomer() {
-	return custService.findAllCustomer();
+	public ResponseEntity<List<Customer>> findAllCustomer() {
+		logger.info("Getting all customer details");
+		return ResponseEntity.ok(custService.findAllCustomer());
 	}
-	
-	//View customer by id
+
+	/**
+	 * This controller is used to get a specific customer on basis of ID
+	 * 
+	 * @param id
+	 * @return
+	 * @throws customerNotFoundException
+	 */
 	@GetMapping("/customer/{id}")
-	public Customer viewCustomerbyId(@PathVariable("id") int customerId){
-		if(custService.viewCustomerbyId(customerId)==null) {
-			throw new CustomerNotFoundException("Customer not found with this id" +customerId);
+	public ResponseEntity<Customer>viewCustomerbyId(@PathVariable("id") int customerId) throws CustomerNotFoundException {
+		logger.info("Getting customer details by id ");
+		if (custService.viewCustomerbyId(customerId) == null) {
+			throw new CustomerNotFoundException("Customer not found with this id" + customerId);
 		}
-		return custService.viewCustomerbyId(customerId);
-		
+		Customer customer = custService.viewCustomerbyId(customerId);
+		return ResponseEntity.ok().body(customer);
+
 	}
-	//view customer 
-	@GetMapping("/customer/id/{id}")
-	public Customer viewCustomer(@PathVariable("id") Customer customer) {
-		return custService.viewCustomer(customer);
-	}
-	
-	
-	//Update Customer 
-	@PutMapping("/customer") 
-	public Customer update( @RequestBody Customer customer) {
-		if(custService.update(customer)==null) {
-			throw new CustomerNotFoundException("Customer Not Found:" +customer.getCustomerId());
+
+	/**
+	 * This function is used to update a specific customer on basis of given
+	 * customer id and returns exception if given customer id is not found.
+	 * 
+	 * @param id
+	 * @param customer
+	 * @return
+	 * @throws CustomerNotFoundException
+	 */
+	@PutMapping("/customer/update/{id}")
+	public ResponseEntity<Customer> updateCustomer(@PathVariable("id") int customerId, @RequestBody Customer customer)
+			throws CustomerNotFoundException {
+		logger.info("Updating customer details");
+		if (custService.updateCustomer(customerId, customer) == null) {
+			throw new CustomerNotFoundException("Customer Not Found:" + customer.getCustomerId());
 		}
-		return custService.update(customer);
+		return ResponseEntity.ok().body(custService.updateCustomer(customerId, customer));
 	}
-	
-	//Update Customer firstName
+
+	/**
+	 * This function is used to update a specific customer firstName on basis of
+	 * given customer id and returns exception if given customer id is not found.
+	 * 
+	 * @param id
+	 * @param customer
+	 * @return
+	 * @throws CustomerNotFoundException
+	 */
 	@PatchMapping("/customer/{id}")
-	public Customer updateFirstName(@PathVariable("id") int customerId,@Valid @RequestBody Customer customer) {
-		if(custService.updateFirstName(customerId, customer)==null) {
+	public ResponseEntity<Customer> updateFirstName(@PathVariable("id") int customerId, @Valid @RequestBody Customer customer)
+			throws CustomerNotFoundException {
+		logger.info("Updating firstname of customer");
+		if (custService.updateFirstName(customerId, customer) == null) {
 			throw new CustomerNotFoundException("Customer not found with this id:" + customerId);
-		}	
-	return custService.updateFirstName(customerId,customer);
+		}
+		return ResponseEntity.ok().body(custService.updateFirstName(customerId, customer));
 	}
-	
+
+	/**
+	 * This controller is used to get all customer on basis of vehicle type
+	 * 
+	 * @param type of the vehicle
+	 * @return
+	 */
 	@GetMapping("/customer/type/{type}")
-	public List<Customer> findbyType(@PathVariable("type") String type){
-		return custService.findbyType(type);
-		
+	public ResponseEntity<List<Customer>>findbyType(@PathVariable("type") String type) {
+		logger.info("Getting customer  by vehicle type");
+		return ResponseEntity.ok().body(custService.findbyType(type));
+
 	}
-	
+
+	/**
+	 * This controller is used to get all customer on basis of vehicle location
+	 * 
+	 * @param location of vehicle
+	 * @return
+	 */
 	@GetMapping("/customer/location/{location}")
-	public List<Customer> findbyVehicleLocation(@PathVariable("location") String location){
-		return custService.findbyVehicleLocation(location);
-		
+	public ResponseEntity<List<Customer>> findbyVehicleLocation(@PathVariable("location") String location) {
+		logger.info("Getting customer  by vehicle location");
+		return  ResponseEntity.ok().body(custService.findbyVehicleLocation(location));
+
 	}
 
 }

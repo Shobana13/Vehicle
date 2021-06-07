@@ -2,7 +2,6 @@ package com.cg.vms.service;
 
 import java.time.LocalDate;
 import java.util.List;
-
 import com.cg.vms.entities.Booking;
 
 public interface IBookingService {

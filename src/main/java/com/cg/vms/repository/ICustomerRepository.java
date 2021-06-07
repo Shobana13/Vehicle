@@ -10,10 +10,16 @@ import com.cg.vms.entities.Customer;
 @Repository
 public interface ICustomerRepository extends JpaRepository<Customer,Integer>{
 	
-    @Query(value="select * from  customer inner join vehicle_dto on customer.vehicle_id=vehicle_dto.vehicle_id where vehicle_dto.type=:t",nativeQuery=true)
+	/**
+	 * Implementing the method getting the customer list based on vehicle type
+	 */
+	@Query(value="select * from  vehicle inner join customer on vehicle.customer_id=customer.customer_id where vehicle.type=:t",nativeQuery=true)
 	public List<Customer> findbyType(@Param("t") String type);
-
-	@Query(value="select * from  customer inner join vehicle_dto on customer.vehicle_id=vehicle_dto.vehicle_id where vehicle_dto.location=:l",nativeQuery=true)
-	public List<Customer> findbyVehicleLocation(@Param("l") String location);
 	
+	/**
+	 * Implementing the method getting the customer list based on vehicle location
+	 */
+	@Query(value="select * from  vehicle inner join customer on vehicle.customer_id=customer.customer_id where vehicle.location=:l",nativeQuery=true)
+	public List<Customer> findbyVehicleLocation(@Param("l") String location);
+
 }

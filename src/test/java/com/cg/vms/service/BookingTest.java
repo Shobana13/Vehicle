@@ -1,16 +1,14 @@
+
 package com.cg.vms.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.time.LocalDate;
 import java.util.List;
-
 import org.apache.logging.log4j.LogManager;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import com.cg.vms.controller.BookingController;
 import com.cg.vms.entities.Booking;
 import com.cg.vms.entities.Customer;
@@ -136,5 +134,5 @@ class BookingTest {
 		logger.info(b1);
 		assertEquals(2, b1.size());
 	}
-
 }
+

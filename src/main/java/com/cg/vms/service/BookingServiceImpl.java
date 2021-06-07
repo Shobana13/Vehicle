@@ -3,10 +3,8 @@ package com.cg.vms.service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.cg.vms.entities.Booking;
 import com.cg.vms.repository.IBookingRepository;
 
@@ -114,5 +112,4 @@ public class BookingServiceImpl implements IBookingService {
 		// TODO Auto-generated method stub
 		return bokRep.findAll();
 	}
-
 }

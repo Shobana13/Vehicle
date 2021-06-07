@@ -1,3 +1,4 @@
+
 package com.cg.vms.entities;
 
 import java.time.LocalDate;
@@ -17,10 +18,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 public class Booking {
@@ -166,7 +163,5 @@ public class Booking {
 				+ ", bookingDescription=" + bookingDescription + ", totalCost=" + totalCost + ", distance=" + distance
 				+ ", payment=" + payment + ", vehicle=" + vehicle + ", customer=" + customer + "]";
 	}
-	
-	
-
 }
+
