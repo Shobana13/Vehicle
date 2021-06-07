@@ -10,7 +10,7 @@ public interface IVehicleService {
 	Vehicle findByVehId(int id);
 	Vehicle viewVehicle(int vehicleId);
 	Vehicle deleteVehicleById(int vehicleId);
-	Vehicle update(Vehicle vehicle);
+	Vehicle update(int vehicleId,Vehicle vehicle);
 	Vehicle updateVehicleNumber(Vehicle vehicle);
 	
 	

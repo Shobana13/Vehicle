@@ -2,36 +2,65 @@ package com.cg.vms.entities;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-
+import org.hibernate.validator.constraints.Range;
+import javax.persistence.ManyToMany;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
+@Getter
+@Setter
+@ToString
 public class Driver {
+
+	// Fileds
+	//@GeneratedValue
 	@Id
 	private int driverId;
-	
-	@NotEmpty
-	@Size(min=2, message="first name should have atleast 2 char")
-	private String firstName;
-	
-	@NotEmpty
-	@Size(min=2, message="last name should have atleast 2 char")
-	private String lastName;
-	
-	private String contactNumber;
-	private String email;
-	private String address;
-	private double chargesPerDay;
-	private String licenseNo;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "vehicleid")
-	private Vehicle vehicle;
+	@NotEmpty
+	@Size(min = 2, message = "first name should have atleast 2 char")
+	private String firstName;
+
+	@NotEmpty
+	@Size(min = 2, message = "last name should have atleast 2 char")
+	private String lastName;
+
+	@Pattern(regexp="\\+?\\d[\\d -]{8,12}\\d")
+	private String contactNumber;
+
+	@NotEmpty
+	@Email
+	private String email;
+	
+	@NotEmpty
+	@Size(min = 3, message = "address should have atleast 3 char")
+	private String address;
+	
+	@Range(min = (long) 500.0, max = (long) 1000.0)
+	private double chargesPerDay;
+	
+	@Pattern(regexp="^[A-Z]{2}[0-9]{2}\s[0-9]{11}$")
+	private String licenseNo;
+	
+	//@JsonIgnore
+	@ManyToMany(mappedBy="driver",
+			cascade = CascadeType.ALL)
+	private List<Vehicle> vehicle;
 
 	// Constructors
 	public Driver() {
@@ -52,87 +81,11 @@ public class Driver {
 
 	// Getters Setters
 	@JsonBackReference
-	public Vehicle getVehicle() {
+	public List<Vehicle> getVehicle() {
 		return vehicle;
 	}
 
-	public void setVehicle(Vehicle vehicle) {
+	public void setVehicle(List<Vehicle> vehicle) {
 		this.vehicle = vehicle;
 	}
-
-	public int getDriverId() {
-		return driverId;
-	}
-
-	public void setDriverId(int driverId) {
-		this.driverId = driverId;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getContactNumber() {
-		return contactNumber;
-	}
-
-	public void setContactNumber(String contactNumber) {
-		this.contactNumber = contactNumber;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public double getChargesPerDay() {
-		return chargesPerDay;
-	}
-
-	public void setChargesPerDay(double chargesPerDay) {
-		this.chargesPerDay = chargesPerDay;
-	}
-
-	public String getLicenseNo() {
-		return licenseNo;
-	}
-
-	public void setLicenseNo(String licenseNo) {
-		this.licenseNo = licenseNo;
-	}
-
-	@Override
-	public String toString() {
-		return "Driver [driverId=" + driverId + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", contactNumber=" + contactNumber + ", email=" + email + ", address=" + address + ", chargesPerDay="
-				+ chargesPerDay + ", licenseNo=" + licenseNo + ", vehicle=" + vehicle + "]";
-	}
-
-	
-
-	
-
 }
