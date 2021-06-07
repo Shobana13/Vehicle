@@ -1,6 +1,7 @@
 package com.cg.vms.service;
+
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -12,18 +13,16 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import com.cg.vms.dto.VehicleDto;
 import com.cg.vms.entities.Customer;
+import com.cg.vms.entities.Vehicle;
 import com.cg.vms.repository.ICustomerRepository;
 
 @ExtendWith(SpringExtension.class)
 public class CustomerServiceMokitoTest {
-	
-	
-	
+
 	@InjectMocks
 	CustomerServiceImpl custService;
-	
+
 	@MockBean
 	ICustomerRepository custRep;
 
@@ -31,10 +30,12 @@ public class CustomerServiceMokitoTest {
 	void init() {
 		MockitoAnnotations.openMocks(this);
 	}
-	
-	//add Customer
+
+	/**
+	 * Mockito test case for the method adding the customer to the database
+	 */
 	@Test
-	//@Disabled
+	// @Disabled
 	void testCreateCustomer() {
 		Customer customer = new Customer(1, "tom", "son", "951771122", "tom@gmail.com");
 		Mockito.when(custRep.save(customer)).thenReturn(customer);
@@ -42,9 +43,11 @@ public class CustomerServiceMokitoTest {
 		assertEquals(1, persistedCust.getCustomerId());
 	}
 
-	//view all the customer
+	/**
+	 * Mockito test case for the method getting all the customers
+	 */
 	@Test
-	//@Disabled
+	// @Disabled
 	void testViewAllCustomer() {
 		Customer customer1 = new Customer(1, "tom", "son", "951771122", "tom@gmail.com");
 		Customer customer2 = new Customer(2, "jerry", "lee", "951998122", "jerry@gmail.com");
@@ -56,20 +59,24 @@ public class CustomerServiceMokitoTest {
 		assertEquals(2, customer.size());
 	}
 
-	//update customer
+	/**
+	 * Mockito test case for the method updating the customer details
+	 */
 	@Test
-	//@Disabled
+	// @Disabled
 	void testUpdateCustomer() {
 		Customer customer1 = new Customer(1, "tommy", "cruise", "951771122", "tom@gmail.com");
 		Mockito.when(custRep.findById(1)).thenReturn(Optional.of(customer1));
 		Mockito.when(custRep.save(customer1)).thenReturn(customer1);
-		Customer persistedCust = custService.updateCustomer(customer1);
+		Customer persistedCust = custService.updateCustomer(1, customer1);
 		assertEquals(1, persistedCust.getCustomerId());
 	}
 
-	//delete customer
+	/**
+	 * Mockito test case for the method deleting the customer by using customerId
+	 */
 	@Test
-	//@Disabled
+	// @Disabled
 	void testDeleteCustomer() {
 		Customer customer = new Customer(1, "tommy", "cruise", "951771122", "tom@gmail.com");
 		Mockito.when(custRep.findById(1)).thenReturn(Optional.of(customer));
@@ -80,9 +87,11 @@ public class CustomerServiceMokitoTest {
 
 	}
 
-	//update firstName
+	/**
+	 * Mockito test case for the method updating firstName of the customer
+	 */
 	@Test
-	//@Disabled
+	// @Disabled
 	void testUpdateCustomerbyFirstname() {
 		Customer customer = new Customer(1, "jen", "cru", "951771122", "tom@gmail.com");
 		Mockito.when(custRep.findById(1)).thenReturn(Optional.of(customer));
@@ -92,9 +101,11 @@ public class CustomerServiceMokitoTest {
 		assertEquals("jen", persistedCust.getFirstName());
 	}
 
-	//view customer by id
+	/**
+	 * Mockito test case for the method getting the customer by using customerId
+	 */
 	@Test
-	//@Disabled
+	// @Disabled
 	void testViewCustomerbyId() {
 		Customer customer = new Customer(1, "jen", "cru", "951771122", "tom@gmail.com");
 		Mockito.when(custRep.findById(1)).thenReturn(Optional.of(customer));
@@ -102,41 +113,47 @@ public class CustomerServiceMokitoTest {
 		assertEquals("jen", persistedCust.getFirstName());
 	}
 
-	//view customer by vehicle type
+	/**
+	 * Mockito test case for the method getting the customer list based on vehicle
+	 * type
+	 */
 	@Test
-	//@Disabled
+	// @Disabled
 	void testViewCustomerbyVehicleType() {
 		Customer customer1 = new Customer(1, "tommy", "cruise", "951771122", "tom@gmail.com");
-		VehicleDto vehicle1 = new VehicleDto(101, "TN02J0666", "car", "A/C", "prime", "goa", "13", 600.0, 8000.0);
-		Customer customer2 = new Customer(2, "jerry", "lee", "951998122", "jerry@gmail.com");
-		VehicleDto vehicle2 = new VehicleDto(102, "TN02J0666", "car", "A/C", "prime", "goa", "13", 600.0, 8000.0);
-		customer1.setVehicledto(vehicle1);
-		customer2.setVehicledto(vehicle2);
+		Vehicle vehicle1 = new Vehicle(101, "TN02J0666", "car", "A/C", "prime", "goa", "13", 600.0, 8000.0);
+		Vehicle vehicle2 = new Vehicle(102, "TN02J0666", "car", "A/C", "prime", "goa", "13", 600.0, 8000.0);
+		List<Vehicle> vehicleList =new ArrayList<>();
+		vehicleList.add(vehicle1);
+		vehicleList.add(vehicle2);
+		customer1.setVehicle(vehicleList);
 		List<Customer> customerList = new ArrayList<>();
 		customerList.add(customer1);
-		customerList.add(customer2);
 		Mockito.when(custRep.findbyType("car")).thenReturn(customerList);
 		List<Customer> cust3 = custService.findbyType("car");
-		assertEquals(2, cust3.size());
+		assertEquals(1, cust3.size());
 	}
 
-	//view customer by location
+	/**
+	 * Mockito test case for the method getting the customer list based on vehicle
+	 * location
+	 */
 	@Test
-	//@Disabled
+	// @Disabled
 	void testViewCustomerbyVehicleLocation() {
 
 		Customer customer1 = new Customer(1, "tommy", "cruise", "951771122", "tom@gmail.com");
-		VehicleDto vehicle1 = new VehicleDto(101, "TN02J0666", "bus", "A/C", "prime", "chennai", "13", 600.0, 8000.0);
-		Customer customer2 = new Customer(2, "jerry", "lee", "951998122", "jerry@gmail.com");
-		VehicleDto vehicle2 = new VehicleDto(102, "TN02J0776", "car", "nonA/C", "prime", "chennai", "13", 600.0, 8000.0);
-		customer1.setVehicledto(vehicle1);
-		customer2.setVehicledto(vehicle2);
+		Vehicle vehicle1 = new Vehicle(101, "TN02J0666", "bus", "A/C", "prime", "chennai", "13", 600.0, 8000.0);
+		Vehicle vehicle2 = new Vehicle(102, "TN02J0776", "car", "nonA/C", "prime", "chennai", "13", 600.0, 8000.0);
+		List<Vehicle> vehicleList =new ArrayList<>();
+		vehicleList.add(vehicle1);
+		vehicleList.add(vehicle2);
+		customer1.setVehicle(vehicleList);
 		List<Customer> customerList = new ArrayList<>();
 		customerList.add(customer1);
-		customerList.add(customer2);
 		Mockito.when(custRep.findbyVehicleLocation("chennai")).thenReturn(customerList);
 		List<Customer> cust3 = custService.findbyVehicleLocation("chennai");
-		assertEquals(2, cust3.size());
+		assertEquals(1, cust3.size());
 	}
 
 }

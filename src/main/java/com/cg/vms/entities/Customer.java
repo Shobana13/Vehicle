@@ -1,13 +1,16 @@
 package com.cg.vms.entities;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import com.cg.vms.dto.VehicleDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,8 +22,10 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 public class Customer {
-	
-	//fields
+
+	/**
+	 * Creating Instance variables for Customer class
+	 */
 	@Id
 	private int customerId;
 
@@ -32,22 +37,28 @@ public class Customer {
 	@Size(min = 2, message = "last name should have atleast 2 char")
 	private String lastName;
 
+	@NotEmpty
+	@Pattern(regexp="\\+?\\d[\\d -]{8,12}\\d")
 	private String mobileNumber;
+
+	@NotEmpty
+	@Email(message="enter a valid mailId")
 	private String emailId;
 
-	// mapping
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "vehicle_id")
-	private VehicleDto vehicledto;
+	/**
+	 * Mapping
+	 */
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "customer_id")
+	private List<Vehicle> vehicle;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "address_id")
-	private Address address;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "customer_id")
+	private List<Address> address;
 
-	
-	//Constructors
-	public Customer(int customerId) {}
-
+	/**
+	 * creating constructors
+	 */
 	public Customer(int customerId, String firstName, String lastName, String mobileNumber, String emailId) {
 		this.customerId = customerId;
 		this.firstName = firstName;
@@ -56,4 +67,5 @@ public class Customer {
 		this.emailId = emailId;
 
 	}
+
 }

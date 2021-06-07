@@ -19,17 +19,21 @@ public class AddressServiceTest {
 	
 	org.apache.logging.log4j.Logger logger = LogManager.getLogger(AddressServiceTest.class);
 
-	// add address
+	/**
+	 * Test case for the method adding the address to the database
+	 */
 	@Test
 	//@Disabled
 	void testAddAddress() {
-		Address address = new Address(103, "kk road", "Tirunelveli");
+		Address address = new Address(101,"LL street", "Trichy");
 		Address persistedCust = addrService.save(address);
 		logger.info(persistedCust);
-		assertEquals("kk road", persistedCust.getStreetName());
+		assertEquals("LL street", persistedCust.getStreetName());
 	}
 
-	// delete address
+	/**
+	 * Test case for the method deleting the address by using addressId.
+	 */
 	@Test
 	@Disabled
 	void testDeleteAddressId() {
@@ -38,33 +42,39 @@ public class AddressServiceTest {
 		assertEquals(103, addr.getAddressId());
 	}
 
-	// find all address
+	/**
+	 * Test case for the method getting all the address in the form of list
+	 */
 	@Test
-	@Disabled
+	//@Disabled
 	void testFindAllAddress() {
 		List<Address> addr = addrService.findAllAddresses();
 		logger.info(addr);
 		assertEquals(5, addr.size());
 	}
 
-	// view address by id
+	/**
+	 * Test case for the method getting the address by using addressId
+	 */
 	@Test
-	@Disabled
+	//@Disabled
 	void testViewAddressbyId() {
 		Address addr = addrService.findAddressById(101);
 		logger.info(addr);
-		assertEquals("rasi street", addr.getStreetName());
+		assertEquals("KK street", addr.getStreetName());
 	}
 
-	// update address
+	/**
+	 * Test case for the method updating the address details
+	 */
 	@Test
-	@Disabled
+	//@Disabled
 	void testUpdateAddress() {
 		Address address = new Address();
 		address.setAddressId(102);
-		address.setStreetName("raja street");
+		address.setStreetName("Nehru street");
 		address.setCity("Pondi");
-		Address addr = addrService.update(address);
+		Address addr = addrService.update(102,address);
 		logger.info(addr);
 		assertEquals("Pondi", addr.getCity());
 	}
