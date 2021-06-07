@@ -19,7 +19,7 @@ public class PaymentExceptionHandler {
 
 		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
 	}
-
+	
 	@ExceptionHandler
 	public ResponseEntity<PaymentErrorResponse> handleException(Exception exception) {
 		PaymentErrorResponse error = new PaymentErrorResponse();

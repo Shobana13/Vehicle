@@ -4,16 +4,42 @@ import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString
 public class Payment {
-	@Id
+	/**
+	 * Creating Instance variables for Payment class
+	 */
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Id	
 	private int paymentId;
+	@NotEmpty
+	@Size(min= 4, message = "payment options are either online payment, card payment or cash on delivery")
 	private String paymentMode;
+	@NotNull
+	@DateTimeFormat	
 	private LocalDate paymentDate;
+	@NotEmpty
+	@Size(min=7, message = "success or pending")
 	private String paymentStatus;
 
 	// mapping
@@ -22,9 +48,6 @@ public class Payment {
 	private Booking booking;
 
 	// constructors
-	public Payment() {
-	}
-
 	public Payment(Booking booking) {
 
 		this.booking = booking;
@@ -35,55 +58,6 @@ public class Payment {
 		this.paymentMode = paymentMode;
 		this.paymentDate = paymentDate;
 		this.paymentStatus = paymentStatus;
-	}
-
-	// getters and setters
-
-	public int getPaymentId() {
-		return paymentId;
-	}
-
-	public void setPaymentId(int paymentId) {
-		this.paymentId = paymentId;
-	}
-
-	public String getPaymentMode() {
-		return paymentMode;
-	}
-
-	public void setPaymentMode(String paymentMode) {
-		this.paymentMode = paymentMode;
-	}
-
-	public LocalDate getPaymentDate() {
-		return paymentDate;
-	}
-
-	public void setPaymentDate(LocalDate paymentDate) {
-		this.paymentDate = paymentDate;
-	}
-
-	public String getPaymentStatus() {
-		return paymentStatus;
-	}
-
-	public void setPaymentStatus(String paymentStatus) {
-		this.paymentStatus = paymentStatus;
-	}
-
-	public Booking getBooking() {
-		return booking;
-	}
-
-	public void setBooking(Booking booking) {
-		this.booking = booking;
-	}
-
-	// to string()
-	@Override
-	public String toString() {
-		return "Payment [paymentId=" + paymentId + ", paymentMode=" + paymentMode + ", paymentDate=" + paymentDate
-				+ ", paymentStatus=" + paymentStatus + ", booking=" + booking + "]";
 	}
 
 }
