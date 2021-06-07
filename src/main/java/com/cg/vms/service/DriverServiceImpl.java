@@ -15,15 +15,23 @@ public class DriverServiceImpl implements IDriverService {
 	@Autowired
 	IDriverRepository driRep;
 
-	// Add Driver
+	/**
+	 * This function will add Driver details
+	 * 
+	 * @return
+	 */
 	@Override
 	public Driver addDriver(Driver driver) {
 		return driRep.save(driver);
 	}
 
-	// Update
+	/**
+	 * This function will update Driver details
+	 * 
+	 * @return
+	 */
 	@Override
-	public Driver update(Driver driver) {
+	public Driver update(int driverId, Driver driver) {
 		Optional<Driver> dri = driRep.findById(driver.getDriverId());
 		if (!dri.isPresent()) {
 			return null;
@@ -38,14 +46,22 @@ public class DriverServiceImpl implements IDriverService {
 		return driRep.save(dri.get());
 	}
 
-	// Find All Driver
+	/**
+	 * This function will Find all Drivers
+	 * 
+	 * @return
+	 */
 	@Override
 	public List<Driver> findAllDriver() {
 		return driRep.findAll();
 
 	}
 
-	// Delete Driver ById
+	/**
+	 * This function will delete Driver ById
+	 * 
+	 * @return
+	 */
 	@Override
 	public Driver deleteDriverById(int driverId) {
 		Optional<Driver> dri = driRep.findById(driverId);
@@ -57,7 +73,11 @@ public class DriverServiceImpl implements IDriverService {
 
 	}
 
-	// find Driver ById
+	/**
+	 * This function will find Driver ById
+	 * 
+	 * @return
+	 */
 	@Override
 	public Driver findByDriId(int id) {
 		Optional<Driver> dri = driRep.findById(id);
@@ -68,7 +88,11 @@ public class DriverServiceImpl implements IDriverService {
 
 	}
 
-	// View Driver
+	/**
+	 * This function will view Driver ById
+	 * 
+	 * @return
+	 */
 	@Override
 	public Driver viewDriver(int driverId) {
 		Optional<Driver> dri = driRep.findById(driverId);
@@ -79,7 +103,11 @@ public class DriverServiceImpl implements IDriverService {
 
 	}
 
-	// Update FirstName
+	/**
+	 * This function will update FirstName ById
+	 * 
+	 * @return
+	 */
 	@Override
 	public Driver updateFirstName(Driver driver) {
 		Optional<Driver> dri = driRep.findById(driver.getDriverId());
