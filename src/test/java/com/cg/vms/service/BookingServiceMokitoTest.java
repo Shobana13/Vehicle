@@ -36,8 +36,11 @@ public class BookingServiceMokitoTest {
 		MockitoAnnotations.openMocks(this);
 	}
 
+	/**
+	 * Mokito test case for the method, adding new booking in database
+	 */
 	@Test
-	@Disabled
+//	@Disabled
 	void testCreateBooking() {
 		Booking booking = new Booking(101, LocalDate.of(2020, 10, 10), LocalDate.of(2020, 10, 11), "Good", 100.00,
 				1000.00);
@@ -46,8 +49,12 @@ public class BookingServiceMokitoTest {
 		assertEquals(101, persistedbok.getBookingId());
 	}
 
+	/**
+	 * Mokito test case for the method, retrieving the booking details through
+	 * booking Id
+	 */
 	@Test
-	@Disabled
+//	@Disabled
 	void testViewBooking() {
 		Booking booking1 = new Booking(101, LocalDate.of(2020, 10, 10), LocalDate.of(2020, 10, 11), "Good", 100.00,
 				1000.00);
@@ -58,8 +65,12 @@ public class BookingServiceMokitoTest {
 
 	}
 
+	/**
+	 * Mokito test case for the methods retrieving the booking details through
+	 * booking date
+	 */
 	@Test
-	@Disabled
+//	@Disabled
 	void testViewAllBookingByDate() {
 		Booking booking1 = new Booking(101, LocalDate.of(2020, 10, 10), LocalDate.of(2020, 10, 11), "Good", 100.00,
 				1000.00);
@@ -74,8 +85,12 @@ public class BookingServiceMokitoTest {
 
 	}
 
+	/**
+	 * Mokito test case for the method, updating the booking date in the database
+	 * through booking Id
+	 */
 	@Test
-	@Disabled
+//	@Disabled
 	void testUpdateBooking() {
 		Booking booking = new Booking(101, LocalDate.of(2020, 10, 12), LocalDate.of(2020, 10, 11), "Good", 100.00,
 				1000.00);
@@ -87,6 +102,10 @@ public class BookingServiceMokitoTest {
 
 	}
 
+	/**
+	 * Mokito test case for the method, deleting the booking entity in the database
+	 * through booking Id
+	 */
 	@Test
 	@Disabled
 	void testCancelBooking() {
@@ -95,13 +114,17 @@ public class BookingServiceMokitoTest {
 				1000.00);
 		Mockito.when(bokRep.findById(101)).thenReturn(Optional.of(booking));
 		bokRep.deleteById(101);
-		Booking persistedBok = bokService.cancelBooking(booking);
+		Booking persistedBok = bokService.cancelBooking(101);
 		assertEquals(LocalDate.of(2020, 10, 12), persistedBok.getBookingDate());
 
 	}
 
+	/**
+	 * Mokito test case for the method, getting the booking details by entering the
+	 * customerId
+	 */
 	@Test
-	@Disabled
+//	@Disabled
 	void testviewaAllBookingByCustomer() {
 		Booking booking1 = new Booking(102, LocalDate.of(2021, 11, 10), LocalDate.of(2020, 10, 12), "Good", 200.00,
 				2000.00);
@@ -120,8 +143,12 @@ public class BookingServiceMokitoTest {
 
 	}
 
+	/**
+	 * Mokito test case for the method, getting the booking details by entering the
+	 * Vehicle Id
+	 */
 	@Test
-	@Disabled
+//	@Disabled
 	void testviewAllBookingByVehicle() {
 		Booking booking1 = new Booking(103, LocalDate.of(2020, 11, 10), LocalDate.of(2020, 10, 12), "Good", 200.00,
 				2000.00);
@@ -139,6 +166,5 @@ public class BookingServiceMokitoTest {
 		assertEquals(2, bok3.size());
 
 	}
-
 
 }
