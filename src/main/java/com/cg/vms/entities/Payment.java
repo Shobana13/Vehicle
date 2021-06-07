@@ -4,9 +4,15 @@ import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import org.springframework.format.annotation.DateTimeFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,11 +23,22 @@ import lombok.ToString;
 @Getter
 @Setter
 @NoArgsConstructor
+
 public class Payment {
-	@Id
+	/**
+	 * Creating Instance variables for Payment class
+	 */
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Id	
 	private int paymentId;
+	@NotEmpty
+	@Size(min= 4, message = "payment options are either online payment, card payment or cash on delivery")
 	private String paymentMode;
+	@NotNull
+	@DateTimeFormat	
 	private LocalDate paymentDate;
+	@NotEmpty
+	@Size(min=7, message = "success or pending")
 	private String paymentStatus;
 
 	// mapping
