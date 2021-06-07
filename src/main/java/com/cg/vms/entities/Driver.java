@@ -16,8 +16,7 @@ import javax.persistence.ManyToMany;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import lombok.Getter;
+import lombok.Getter
 import lombok.Setter;
 import lombok.ToString;
 
@@ -26,9 +25,6 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Driver {
-
-	// Fileds
-	//@GeneratedValue
 	@Id
 	private int driverId;
 
@@ -39,6 +35,7 @@ public class Driver {
 	@NotEmpty
 	@Size(min = 2, message = "last name should have atleast 2 char")
 	private String lastName;
+
 
 	@Pattern(regexp="\\+?\\d[\\d -]{8,12}\\d")
 	private String contactNumber;
@@ -63,9 +60,6 @@ public class Driver {
 	private List<Vehicle> vehicle;
 
 	// Constructors
-	public Driver() {
-	}
-
 	public Driver(int driverId, String firstName, String lastName, String contactNumber, String email, String address,
 			double chargesPerDay, String licenseNo) {
 		super();
@@ -79,6 +73,7 @@ public class Driver {
 		this.licenseNo = licenseNo;
 	}
 
+
 	// Getters Setters
 	@JsonBackReference
 	public List<Vehicle> getVehicle() {
@@ -87,5 +82,6 @@ public class Driver {
 
 	public void setVehicle(List<Vehicle> vehicle) {
 		this.vehicle = vehicle;
-	}
+    }
+
 }

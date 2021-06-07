@@ -67,5 +67,4 @@ public class BookingServiceImpl implements IBookingService {
 	public List<Booking> viewAllBookingByVehicleId(int vehicleId) {
 		return bokRep.viewAllBookingByVehicle(vehicleId);
 	}
-
 }

@@ -12,26 +12,24 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.hibernate.validator.constraints.Range;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
 
 @Entity
 @Getter
 @Setter
 @ToString
 public class Vehicle {
-	
-   // @GeneratedValue
+
+	// fields
 	@Id
 	private int vehicleId;
 	@Pattern(regexp="^[A-Z]{2}\s[0-9]{2}\s[A-Z]{2}\s[0-9]{4}$")
@@ -67,21 +65,18 @@ public class Vehicle {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "bookingId")
 	private Booking booking;
-	
-	//@JsonIgnore
+
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(name = "vehicle_driver",joinColumns = {@JoinColumn(name="vehicleId")},
 	inverseJoinColumns= {@JoinColumn(name="driverId")})
 	private List<Driver> driver=new ArrayList<>();
 	
-	
-	
-
-	// Fileds
+	@JsonIgnore
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "driverid")
+	private Driver driver;
+  
 	// constructors
-	public Vehicle() {
-	}
-
 	public Vehicle(int vehicleId, String vehicleNumber, String type, String category, String description,
 			String location, String capacity, double chargesPerKM, double fixedCharges) {
 		super();
@@ -105,5 +100,4 @@ public class Vehicle {
 	public void setDriver(List<Driver> driver) {
 		this.driver = driver;
 	}
-
 }
