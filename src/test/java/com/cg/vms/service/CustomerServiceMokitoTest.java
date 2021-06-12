@@ -37,7 +37,7 @@ public class CustomerServiceMokitoTest {
 	@Test
 	// @Disabled
 	void testCreateCustomer() {
-		Customer customer = new Customer(1, "tom", "son", "951771122", "tom@gmail.com","sanam");
+		Customer customer = new Customer(1, "tom", "son", "951771122", "tom@gmail.com");
 		Mockito.when(custRep.save(customer)).thenReturn(customer);
 		Customer persistedCust = custService.addCustomer(customer);
 		assertEquals(1, persistedCust.getCustomerId());
@@ -49,8 +49,8 @@ public class CustomerServiceMokitoTest {
 	@Test
 	// @Disabled
 	void testViewAllCustomer() {
-		Customer customer1 = new Customer(1, "tom", "son", "951771122", "tom@gmail.com","sanam");
-		Customer customer2 = new Customer(2, "jerry", "lee", "951998122", "jerry@gmail.com","sanam");
+		Customer customer1 = new Customer(1, "tom", "son", "951771122", "tom@gmail.com");
+		Customer customer2 = new Customer(2, "jerry", "lee", "951998122", "jerry@gmail.com");
 		List<Customer> customerList = new ArrayList<>();
 		customerList.add(customer1);
 		customerList.add(customer2);
@@ -65,7 +65,7 @@ public class CustomerServiceMokitoTest {
 	@Test
 	// @Disabled
 	void testUpdateCustomer() {
-		Customer customer1 = new Customer(1, "tommy", "cruise", "951771122", "tom@gmail.com","sanam");
+		Customer customer1 = new Customer(1, "tommy", "cruise", "951771122", "tom@gmail.com");
 		Mockito.when(custRep.findById(1)).thenReturn(Optional.of(customer1));
 		Mockito.when(custRep.save(customer1)).thenReturn(customer1);
 		Customer persistedCust = custService.updateCustomer(1, customer1);
@@ -78,7 +78,7 @@ public class CustomerServiceMokitoTest {
 	@Test
 	// @Disabled
 	void testDeleteCustomer() {
-		Customer customer = new Customer(1, "tommy", "cruise", "951771122", "tom@gmail.com","sanam");
+		Customer customer = new Customer(1, "tommy", "cruise", "951771122", "tom@gmail.com");
 		Mockito.when(custRep.findById(1)).thenReturn(Optional.of(customer));
 		custRep.deleteById(1);
 		Customer persistedCust = custService.deleteCustomerbyId(1);
@@ -93,7 +93,7 @@ public class CustomerServiceMokitoTest {
 	@Test
 	// @Disabled
 	void testUpdateCustomerbyFirstname() {
-		Customer customer = new Customer(1, "jen", "cru", "951771122", "tom@gmail.com","sanam");
+		Customer customer = new Customer(1, "jen", "cru", "951771122", "tom@gmail.com");
 		Mockito.when(custRep.findById(1)).thenReturn(Optional.of(customer));
 		Mockito.when(custRep.save(customer)).thenReturn(customer);
 		Customer persistedCust = custService.updateFirstName(1, customer);
@@ -107,7 +107,7 @@ public class CustomerServiceMokitoTest {
 	@Test
 	// @Disabled
 	void testViewCustomerbyId() {
-		Customer customer = new Customer(1, "jen", "cru", "951771122", "tom@gmail.com","sanam");
+		Customer customer = new Customer(1, "jen", "cru", "951771122", "tom@gmail.com");
 		Mockito.when(custRep.findById(1)).thenReturn(Optional.of(customer));
 		Customer persistedCust = custService.viewCustomerbyId(1);
 		assertEquals("jen", persistedCust.getFirstName());
@@ -120,7 +120,7 @@ public class CustomerServiceMokitoTest {
 	@Test
 	// @Disabled
 	void testViewCustomerbyVehicleType() {
-		Customer customer1 = new Customer(1, "tommy", "cruise", "951771122", "tom@gmail.com","sanam");
+		Customer customer1 = new Customer(1, "tommy", "cruise", "951771122", "tom@gmail.com");
 		Vehicle vehicle1 = new Vehicle(101, "TN02J0666", "car", "A/C", "prime", "goa", "13", 600.0, 8000.0);
 		Vehicle vehicle2 = new Vehicle(102, "TN02J0666", "car", "A/C", "prime", "goa", "13", 600.0, 8000.0);
 		List<Vehicle> vehicleList =new ArrayList<>();
@@ -142,7 +142,7 @@ public class CustomerServiceMokitoTest {
 	// @Disabled
 	void testViewCustomerbyVehicleLocation() {
 
-		Customer customer1 = new Customer(1, "tommy", "cruise", "951771122", "tom@gmail.com","sanam");
+		Customer customer1 = new Customer(1, "tommy", "cruise", "951771122", "tom@gmail.com");
 		Vehicle vehicle1 = new Vehicle(101, "TN02J0666", "bus", "A/C", "prime", "chennai", "13", 600.0, 8000.0);
 		Vehicle vehicle2 = new Vehicle(102, "TN02J0776", "car", "nonA/C", "prime", "chennai", "13", 600.0, 8000.0);
 		List<Vehicle> vehicleList =new ArrayList<>();

@@ -84,7 +84,7 @@ public class CustomerServiceTest {
 	@Test
 	//@Disabled
 	void testAddCustomer() {
-		Customer customer = new Customer(3, "rosey", "kumar", "951688111", "ram@gmail.com","sanam");
+		Customer customer = new Customer(3, "rosey", "kumar", "951688111", "ram@gmail.com");
 		Vehicle vehicle = new Vehicle(207, "TN02J0666", "bus", "A/C", "prime", "goa", "4", 600.0, 8000.0);
 		List<Vehicle> vehicleList =new ArrayList<>();
 		vehicleList.add(vehicle);

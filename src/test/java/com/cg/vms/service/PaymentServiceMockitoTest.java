@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -35,8 +35,10 @@ class PaymentServiceMockitoTest {
 		MockitoAnnotations.openMocks(this);
 	}
 
+	/**
+	 * Mockito Test case for the method adding the payment to the database
+	 */
 	@Test
-	//@Disabled
 	void testAddPayment() {
 		Payment payment = new Payment(10007, "Online", LocalDate.of(2021, 05, 07), "Success");
 		Booking booking = new Booking(107, LocalDate.of(2021, 05, 07), LocalDate.of(2021, 05, 07), "Success", 800.0,
@@ -52,8 +54,10 @@ class PaymentServiceMockitoTest {
 		assertEquals("Success", persistedPay.getPaymentStatus());
 	}
 
+	/**
+	 * Mockito Test case for the method getting the payment by using paymentId
+	 */
 	@Test
-	//@Disabled
 	void testviewPayment() {
 		Payment payment = new Payment(10007, "Online", LocalDate.of(2021, 05, 07), "Success");
 		Mockito.when(payRepo.findById(10007)).thenReturn(Optional.of(payment));
@@ -64,8 +68,10 @@ class PaymentServiceMockitoTest {
 		assertEquals("Success", persistedPay.getPaymentStatus());
 	}
 
+	/**
+	 * Mockito Test case for the method canceling the payment by using paymentId
+	 */
 	@Test
-	//@Disabled
 	void testCancelPayment() {
 		Payment payment = new Payment(10007, "Online", LocalDate.of(2021, 05, 07), "Success");
 		Mockito.when(payRepo.findById(10007)).thenReturn(Optional.of(payment));
@@ -77,8 +83,10 @@ class PaymentServiceMockitoTest {
 		assertEquals("Success", persistedPay.getPaymentStatus());
 	}
 
+	/**
+	 * Mockito Test case for the method getting all the payments in form of list
+	 */
 	@Test
-	//@Disabled
 	void testFindAllPayment() {
 		Payment payment1 = new Payment(10007, "Online", LocalDate.of(2021, 05, 07), "Success");
 		Payment payment2 = new Payment(10008, "Online", LocalDate.of(2021, 05, 07), "Success");
@@ -90,8 +98,10 @@ class PaymentServiceMockitoTest {
 		assertEquals(2, payments.size());
 	}
 
+	/**
+	 * Mockito Test case for the method getting all the payments in form of list by vehicle
+	 */
 	@Test
-	//@Disabled
 	void testFindAllPaymentsByVehicle() {
 		Payment payment1 = new Payment(10007, "Online", LocalDate.of(2021, 05, 07), "Success");
 		Booking booking1 = new Booking(107, LocalDate.of(2021, 05, 07), LocalDate.of(2021, 05, 07), "Success", 800.0,
@@ -112,8 +122,10 @@ class PaymentServiceMockitoTest {
 		assertEquals(2, payments.size());
 	}
 
+	/**
+	 * Mockito Test case for the method updating the payment status of a payment
+	 */
 	@Test
-	//@Disabled
 	void testUpdatePaymentStatus() {
 		Payment payment = new Payment(10008, "Online", LocalDate.of(2021, 05, 07), "Pending");
 		Mockito.when(payRepo.findById(10008)).thenReturn(Optional.of(payment));
@@ -122,5 +134,5 @@ class PaymentServiceMockitoTest {
 		System.out.println(persistedPa);
 		assertEquals("Pending", persistedPa.getPaymentStatus());
 	}
-
+	
 }
