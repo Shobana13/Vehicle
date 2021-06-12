@@ -23,7 +23,7 @@ public class CustomerLoginServiceImplementation implements ICustomerLoginService
 	ICustomerRepository registerRepo;
 	
 	@Override
-	public Customer login(CustomerLogin user) {
+	public Customer login(CustomerLogin user) { 
 		logger.info("Customer login");
 		Optional<Customer> customer = Optional.ofNullable(registerRepo.findCustomerByEmailId(user.getEmailId()));
 		Customer cust = null;

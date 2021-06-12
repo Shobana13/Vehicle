@@ -86,7 +86,7 @@ public class Vehicle {
 		this.capacity = capacity;
 		this.chargesPerKM = chargesPerKM;
 		this.fixedCharges = fixedCharges;
-	}
+	} 
 
 	// Getters and Setters
 	// @JsonManagedReference

@@ -15,3 +15,4 @@ public interface ICustomerLoginService {
 	// Method to be override by the implementing class
 	public Customer getUser(String email);
 }
+ 

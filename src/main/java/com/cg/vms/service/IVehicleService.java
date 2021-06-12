@@ -24,7 +24,7 @@ public interface IVehicleService {
 	 * Method to be override by the implementing class
 	 */
 	Vehicle viewVehicle(int vehicleId);
-
+ 
 	/**
 	 * Method to be override by the implementing class
 	 */

@@ -45,7 +45,7 @@ public class CustomerController {
 	 * @param
 	 * @return
 	 */
-	@PostMapping("/customer")
+	@PostMapping("/customer") 
 	public ResponseEntity<Customer> addCustomer(@Valid @RequestBody Customer customer) {
 		logger.info("Adding customer in database");
 		Customer cust = custService.findCustomerByEmailId(customer.getEmailId());

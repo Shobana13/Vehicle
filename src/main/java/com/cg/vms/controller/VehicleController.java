@@ -138,7 +138,7 @@ public class VehicleController {
 		}
 		return ResponseEntity.ok().body(vehService.deleteVehicleById(vehicleId));
 	}
-
+ 
 	/**
 	 * this controller function perform finding of a specific given vehicle and
 	 * request the service to perform the action and returns the message

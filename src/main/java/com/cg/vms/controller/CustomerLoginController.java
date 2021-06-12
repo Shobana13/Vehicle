@@ -51,7 +51,7 @@ public class CustomerLoginController {
 		return new ResponseEntity<>(cust, HttpStatus.OK);
 	}
 
-	// logout service
+	// logout service 
 	@PostMapping("customer/logout/{emailId}")
 	public String Logout(@Email @PathVariable("emailId") String emailId) {
 		logger.info("Logout by the customer");
