@@ -1,4 +1,3 @@
-
 package com.cg.vms.entities;
 
 import java.time.LocalDate;
@@ -164,4 +163,3 @@ public class Booking {
 				+ ", payment=" + payment + ", vehicle=" + vehicle + ", customer=" + customer + "]";
 	}
 }
-

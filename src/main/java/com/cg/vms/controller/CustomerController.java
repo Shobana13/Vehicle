@@ -25,7 +25,8 @@ import com.cg.vms.service.ICustomerService;
 public class CustomerController {
 
 	/**
-	 * We are autowiring the customer service layer to this controller layer of customer
+	 * We are autowiring the customer service layer to this controller layer of
+	 * customer
 	 * 
 	 * @param customerServiceImpl
 	 */
@@ -44,11 +45,17 @@ public class CustomerController {
 	 * @param
 	 * @return
 	 */
-	@PostMapping("/customer")
+	@PostMapping("/customer")  
 	public ResponseEntity<Customer> addCustomer(@Valid @RequestBody Customer customer) {
-		logger.info("Adding Customer in database");
-		custService.addCustomer(customer);
-		return  new ResponseEntity<>(customer,HttpStatus.OK);
+		logger.info("Adding customer in database");
+		Customer cust = custService.findCustomerByEmailId(customer.getEmailId());
+		if (cust == null) {
+			custService.addCustomer(customer);
+			return new ResponseEntity<>(customer, HttpStatus.OK);
+		} else {
+			cust = null;
+		}
+		return new ResponseEntity<>(cust, HttpStatus.ALREADY_REPORTED);
 	}
 
 	/**
@@ -61,7 +68,8 @@ public class CustomerController {
 	 * @throws CustomerNotFoundException
 	 */
 	@DeleteMapping("/customer/{id}")
-	public ResponseEntity<Customer> deleteCustomerbyId(@PathVariable("id") int customerId) throws CustomerNotFoundException {
+	public ResponseEntity<Customer> deleteCustomerbyId(@PathVariable("id") int customerId)
+			throws CustomerNotFoundException {
 		logger.info("Deleting Customer in database by id");
 		if (custService.deleteCustomerbyId(customerId) == null) {
 			throw new CustomerNotFoundException("Customer not found with this id" + customerId);
@@ -89,7 +97,8 @@ public class CustomerController {
 	 * @throws customerNotFoundException
 	 */
 	@GetMapping("/customer/{id}")
-	public ResponseEntity<Customer>viewCustomerbyId(@PathVariable("id") int customerId) throws CustomerNotFoundException {
+	public ResponseEntity<Customer> viewCustomerbyId(@PathVariable("id") int customerId)
+			throws CustomerNotFoundException {
 		logger.info("Getting customer details by id ");
 		if (custService.viewCustomerbyId(customerId) == null) {
 			throw new CustomerNotFoundException("Customer not found with this id" + customerId);
@@ -109,7 +118,7 @@ public class CustomerController {
 	 * @throws CustomerNotFoundException
 	 */
 	@PutMapping("/customer/update/{id}")
-	public ResponseEntity<Customer> updateCustomer(@PathVariable("id") int customerId, @RequestBody Customer customer)
+	public ResponseEntity<Customer> update(@PathVariable("id") int customerId, @RequestBody Customer customer)
 			throws CustomerNotFoundException {
 		logger.info("Updating customer details");
 		if (custService.updateCustomer(customerId, customer) == null) {
@@ -128,8 +137,8 @@ public class CustomerController {
 	 * @throws CustomerNotFoundException
 	 */
 	@PatchMapping("/customer/{id}")
-	public ResponseEntity<Customer> updateFirstName(@PathVariable("id") int customerId, @Valid @RequestBody Customer customer)
-			throws CustomerNotFoundException {
+	public ResponseEntity<Customer> updateFirstName(@PathVariable("id") int customerId,
+			@Valid @RequestBody Customer customer) throws CustomerNotFoundException {
 		logger.info("Updating firstname of customer");
 		if (custService.updateFirstName(customerId, customer) == null) {
 			throw new CustomerNotFoundException("Customer not found with this id:" + customerId);
@@ -144,11 +153,11 @@ public class CustomerController {
 	 * @return
 	 */
 	@GetMapping("/customer/type/{type}")
-	public ResponseEntity<List<Customer>>findbyType(@PathVariable("type") String type) {
+	public ResponseEntity<List<Customer>> findbyType(@PathVariable("type") String type) {
 		logger.info("Getting customer  by vehicle type");
 		return ResponseEntity.ok().body(custService.findbyType(type));
 
-	}
+	}  
 
 	/**
 	 * This controller is used to get all customer on basis of vehicle location
@@ -159,7 +168,7 @@ public class CustomerController {
 	@GetMapping("/customer/location/{location}")
 	public ResponseEntity<List<Customer>> findbyVehicleLocation(@PathVariable("location") String location) {
 		logger.info("Getting customer  by vehicle location");
-		return  ResponseEntity.ok().body(custService.findbyVehicleLocation(location));
+		return ResponseEntity.ok().body(custService.findbyVehicleLocation(location));
 
 	}
 

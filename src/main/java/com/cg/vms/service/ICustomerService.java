@@ -5,7 +5,7 @@ import java.util.List;
 import com.cg.vms.entities.Customer;
 
 public interface ICustomerService {
-
+  
 	/**
 	 * Method to be override by the implementing class
 	 */
@@ -19,13 +19,13 @@ public interface ICustomerService {
 	/**
 	 * Method to be override by the implementing class
 	 */
-	Customer updateFirstName(int id,Customer customer);
+	Customer updateFirstName(int id, Customer customer);
 
 	/**
 	 * Method to be override by the implementing class
 	 */
-	Customer updateCustomer(int customerId,Customer customer);
-
+	Customer updateCustomer(int customerId, Customer customer);
+  
 	/**
 	 * Method to be override by the implementing class
 	 */
@@ -45,5 +45,9 @@ public interface ICustomerService {
 	 * Method to be override by the implementing class
 	 */
 	List<Customer> findbyVehicleLocation(String location);
-	
+
+	/**
+	 * Method to be override by the implementing class
+	 */
+	Customer findCustomerByEmailId(String emailId);
 }

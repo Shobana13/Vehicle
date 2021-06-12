@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.cg.vms.entities.Driver;
 import com.cg.vms.repository.IDriverRepository;
 
-@Service
+@Service  
 public class DriverServiceImpl implements IDriverService {
 
 	@Autowired
@@ -19,7 +19,7 @@ public class DriverServiceImpl implements IDriverService {
 	 * This function will add Driver details
 	 * 
 	 * @return
-	 */
+	 */  
 	@Override
 	public Driver addDriver(Driver driver) {
 		return driRep.save(driver);
@@ -116,6 +116,21 @@ public class DriverServiceImpl implements IDriverService {
 		}
 		dri.get().setFirstName(driver.getFirstName());
 		return driRep.save(dri.get());
+	}
+
+	/**
+	 * This function will update FirstName ById
+	 * 
+	 * @return
+	 */
+	@Override
+	public List<Driver> findAllByFirstName(String firstName) {
+		List<Driver> driverList = driRep.findAllByFirstName(firstName);
+		if (driverList.isEmpty()) {
+			return null;
+		}
+
+		return driverList;
 	}
 
 }

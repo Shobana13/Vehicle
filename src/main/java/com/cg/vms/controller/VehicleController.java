@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.vms.entities.Driver;
 import com.cg.vms.entities.Vehicle;
 import com.cg.vms.exceptions.VehicleNotFoundException;
 import com.cg.vms.service.IVehicleService;
@@ -26,7 +27,7 @@ import com.cg.vms.service.IVehicleService;
 @RestController
 @RequestMapping("/api")
 public class VehicleController {
-	/**
+	/**  
 	 * Logger
 	 */
 	org.apache.logging.log4j.Logger logger = LogManager.getLogger(VehicleController.class);
@@ -48,7 +49,7 @@ public class VehicleController {
 	 * @return
 	 */
 	@PostMapping("/vehicle")
-	public ResponseEntity<Vehicle> addVehicle(@Valid @RequestBody Vehicle vehicle) {
+	public ResponseEntity<Vehicle> addVehicle(@RequestBody Vehicle vehicle) {
 		logger.info("Adding Vehicle in database");
 		vehService.addVehicle(vehicle);
 		return ResponseEntity.ok(vehicle);
@@ -109,7 +110,7 @@ public class VehicleController {
 	 */
 
 	@PutMapping("/vehicle/update/{id}")
-	public ResponseEntity<Vehicle> update(@PathVariable("id") int vehicleId, @Valid @RequestBody Vehicle vehicle)
+	public ResponseEntity<Vehicle> update(@PathVariable("id") int vehicleId, @RequestBody Vehicle vehicle)
 			throws VehicleNotFoundException {
 		logger.info("Update Vehicle by id");
 		if (vehService.update(vehicleId, vehicle) == null) {
@@ -136,6 +137,20 @@ public class VehicleController {
 			throw new VehicleNotFoundException("Vehicle not found with this id:" + vehicleId);
 		}
 		return ResponseEntity.ok().body(vehService.deleteVehicleById(vehicleId));
+	}
+  
+	/**
+	 * this controller function perform finding of a specific given vehicle and
+	 * request the service to perform the action and returns the message
+	 * 
+	 * @param location
+	 * @return
+	 */
+
+	@GetMapping("/vehicle/location/{location}")
+	public ResponseEntity<List<Vehicle>> findAllByLocation(@PathVariable("location") String location) {
+		List<Vehicle> vehicle = vehService.findAllByLocation(location);
+		return ResponseEntity.ok(vehicle);
 	}
 
 }

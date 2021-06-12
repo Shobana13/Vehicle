@@ -14,7 +14,7 @@ public class CustomerServiceImpl implements ICustomerService {
 
 	@Autowired
 	ICustomerRepository custRep;
-	
+
 	/**
 	 * Logger
 	 */
@@ -32,7 +32,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	}
 
 	/**
-	 * This function will update the  FirstName  of customer
+	 * This function will update the FirstName of customer
 	 * 
 	 * @return
 	 */
@@ -50,10 +50,10 @@ public class CustomerServiceImpl implements ICustomerService {
 	/**
 	 * This function will update the customer details
 	 * 
-	 * @return
+  	 * @return  
 	 */
 	@Override
-	public Customer updateCustomer(int customerId,Customer customer) {
+	public Customer updateCustomer(int customerId, Customer customer) {
 		logger.info("Updating the customer details");
 		Optional<Customer> cust = custRep.findById(customerId);
 		if (!cust.isPresent()) {
@@ -80,7 +80,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	}
 
 	/**
-	 * This function will retrieve the customer on basis of given Id 
+	 * This function will retrieve the customer on basis of given Id
 	 * 
 	 * @return
 	 */
@@ -95,7 +95,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	}
 
 	/**
-	 * This function will delete the customer on basis of given Id 
+	 * This function will delete the customer on basis of given Id
 	 * 
 	 * @return
 	 */
@@ -121,7 +121,7 @@ public class CustomerServiceImpl implements ICustomerService {
 		return custRep.findbyVehicleLocation(location);
 
 	}
-	
+
 	/**
 	 * Get all the customer by using vehicle type
 	 * 
@@ -132,6 +132,16 @@ public class CustomerServiceImpl implements ICustomerService {
 		logger.info("Getting the list of customer by using vehicle type");
 		return custRep.findbyType(type);
 
+	}
+
+	/**
+	 * Get the customer by using EmailId
+	 * 
+	 * @return
+	 */
+	@Override
+	public Customer findCustomerByEmailId(String emailId) {
+		return custRep.findCustomerByEmailId(emailId);
 	}
 
 }

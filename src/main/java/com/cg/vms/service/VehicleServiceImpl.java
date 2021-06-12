@@ -5,11 +5,12 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.cg.vms.entities.Vehicle;
 import com.cg.vms.repository.IVehicleRepository;
 
 @Service
-public class VehicleServiceImpl implements IVehicleService {
+public class VehicleServiceImpl implements IVehicleService { 
 
 	@Autowired
 	IVehicleRepository vehRep;
@@ -71,7 +72,7 @@ public class VehicleServiceImpl implements IVehicleService {
 		vehRep.deleteById(vehicleId);
 		return veh.get();
 
-	}
+	} 
 
 	/**
 	 * This function will find VehicleById details
@@ -107,7 +108,7 @@ public class VehicleServiceImpl implements IVehicleService {
 	 * 
 	 * @return
 	 */
-	@Override
+	@Override 
 	public Vehicle updateVehicleNumber(Vehicle vehicle) {
 		Optional<Vehicle> veh = vehRep.findById(vehicle.getVehicleId());
 		if (!veh.isPresent()) {
@@ -115,5 +116,20 @@ public class VehicleServiceImpl implements IVehicleService {
 		}
 		veh.get().setVehicleNumber(vehicle.getVehicleNumber());
 		return vehRep.save(veh.get());
+	}
+
+	/**
+	 * This function will update FirstName ById
+	 * 
+	 * @return
+	 */ 
+	@Override
+	public List<Vehicle> findAllByLocation(String location) {
+		List<Vehicle> vehicleList = vehRep.findAllByLocation(location);
+		if (vehicleList.isEmpty()) {
+			return null;
+		}
+
+		return vehicleList;
 	}
 }

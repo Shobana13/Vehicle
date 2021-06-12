@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -19,14 +20,15 @@ import lombok.ToString;
 @Entity
 @ToString
 @Getter
-@Setter
+@Setter  
 @NoArgsConstructor
 public class Customer {
-
+  
 	/**
 	 * Creating Instance variables for Customer class
 	 */
 	@Id
+	@GeneratedValue
 	private int customerId;
 
 	@NotEmpty
@@ -38,12 +40,16 @@ public class Customer {
 	private String lastName;
 
 	@NotEmpty
-	@Pattern(regexp="\\+?\\d[\\d -]{8,12}\\d")
+	@Pattern(regexp = "\\+?\\d[\\d -]{8,12}\\d")
 	private String mobileNumber;
 
 	@NotEmpty
-	@Email(message="enter a valid mailId")
+	@Email(message = "enter a valid mailId")
 	private String emailId;
+
+	@NotEmpty
+	@Size(min = 5, max = 15, message = "Minimum characters in password")
+	private String customerPassword;
 
 	/**
 	 * Mapping
@@ -59,12 +65,16 @@ public class Customer {
 	/**
 	 * creating constructors
 	 */
-	public Customer(int customerId, String firstName, String lastName, String mobileNumber, String emailId) {
+
+	public Customer(int customerId, String firstName, String lastName, String mobileNumber, String emailId,
+			String customerPassword) {
+		super();
 		this.customerId = customerId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.mobileNumber = mobileNumber;
 		this.emailId = emailId;
+		this.customerPassword = customerPassword;
 
 	}
 

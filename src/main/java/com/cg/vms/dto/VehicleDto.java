@@ -25,8 +25,12 @@ public class VehicleDto {
 	private String capacity;
 	private double chargesPerKM;
 	private double fixedCharges;
+	
+	
+	public VehicleDto() 
 
 	// constructors
+
 	public VehicleDto(int vehicleId, String vehicleNumber, String type, String category, String description,
 			String location, String capacity, double chargesPerKM, double fixedCharges) {
 		super();

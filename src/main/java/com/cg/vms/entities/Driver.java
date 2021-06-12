@@ -4,9 +4,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
@@ -14,18 +11,23 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Range;
 import javax.persistence.ManyToMany;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter
+
+import lombok.Getter;  
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @ToString
 public class Driver {
+
+	// Fileds
 	@Id
+	@GeneratedValue
 	private int driverId;
 
 	@NotEmpty
@@ -35,7 +37,6 @@ public class Driver {
 	@NotEmpty
 	@Size(min = 2, message = "last name should have atleast 2 char")
 	private String lastName;
-
 
 	@Pattern(regexp="\\+?\\d[\\d -]{8,12}\\d")
 	private String contactNumber;
@@ -54,12 +55,15 @@ public class Driver {
 	@Pattern(regexp="^[A-Z]{2}[0-9]{2}\s[0-9]{11}$")
 	private String licenseNo;
 	
-	//@JsonIgnore
+	@JsonIgnore
 	@ManyToMany(mappedBy="driver",
 			cascade = CascadeType.ALL)
 	private List<Vehicle> vehicle;
 
 	// Constructors
+	public Driver() {
+	}
+
 	public Driver(int driverId, String firstName, String lastName, String contactNumber, String email, String address,
 			double chargesPerDay, String licenseNo) {
 		super();
@@ -72,16 +76,14 @@ public class Driver {
 		this.chargesPerDay = chargesPerDay;
 		this.licenseNo = licenseNo;
 	}
-
-
+  
 	// Getters Setters
-	@JsonBackReference
+	//@JsonBackReference
 	public List<Vehicle> getVehicle() {
 		return vehicle;
 	}
 
 	public void setVehicle(List<Vehicle> vehicle) {
 		this.vehicle = vehicle;
-    }
-
+	}
 }

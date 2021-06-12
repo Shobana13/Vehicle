@@ -1,4 +1,3 @@
-
 package com.cg.vms.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -135,4 +134,3 @@ class BookingTest {
 		assertEquals(2, b1.size());
 	}
 }
-
