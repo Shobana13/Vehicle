@@ -157,7 +157,7 @@ public class CustomerController {
 		logger.info("Getting customer  by vehicle type");
 		return ResponseEntity.ok().body(custService.findbyType(type));
 
-	} 
+	}  
 
 	/**
 	 * This controller is used to get all customer on basis of vehicle location

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.cg.vms.entities.Driver;
 import com.cg.vms.repository.IDriverRepository;
 
-@Service 
+@Service  
 public class DriverServiceImpl implements IDriverService {
 
 	@Autowired

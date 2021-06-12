@@ -22,7 +22,7 @@ public class CustomerLogin {
 	
 	@GeneratedValue
 	private int id;
-	@Id 
+	@Id  
 	@NotEmpty(message="Please enter your userid")
 	@Email
 	private String emailId;

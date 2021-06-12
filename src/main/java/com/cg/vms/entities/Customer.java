@@ -23,7 +23,7 @@ import lombok.ToString;
 @Setter  
 @NoArgsConstructor
 public class Customer {
- 
+  
 	/**
 	 * Creating Instance variables for Customer class
 	 */

@@ -72,7 +72,7 @@ public class VehicleServiceImpl implements IVehicleService {
 		vehRep.deleteById(vehicleId);
 		return veh.get();
 
-	}
+	} 
 
 	/**
 	 * This function will find VehicleById details

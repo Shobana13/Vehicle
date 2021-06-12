@@ -27,7 +27,7 @@ import com.cg.vms.service.IVehicleService;
 @RestController
 @RequestMapping("/api")
 public class VehicleController {
-	/** 
+	/**  
 	 * Logger
 	 */
 	org.apache.logging.log4j.Logger logger = LogManager.getLogger(VehicleController.class);

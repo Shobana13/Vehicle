@@ -18,7 +18,7 @@ public interface IVehicleService {
 	/**
 	 * Method to be override by the implementing class
 	 */
-	Vehicle findByVehId(int id); 
+	Vehicle findByVehId(int id);  
 
 	/**
 	 * Method to be override by the implementing class

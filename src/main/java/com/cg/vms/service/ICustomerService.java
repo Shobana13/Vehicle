@@ -5,7 +5,7 @@ import java.util.List;
 import com.cg.vms.entities.Customer;
 
 public interface ICustomerService {
- 
+  
 	/**
 	 * Method to be override by the implementing class
 	 */
