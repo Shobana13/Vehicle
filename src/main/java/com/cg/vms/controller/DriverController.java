@@ -134,4 +134,16 @@ public class DriverController {
 		return ResponseEntity.ok().body(driService.update(driverId, driver));
 	}
 
+	/**
+	 * This function is used to update a specific driver on basis of given customer
+	 * 
+	 * @param firstName
+	 * @return
+	 */
+	@GetMapping("/driver/firstname/{firstname}")
+	public ResponseEntity<List<Driver>> findAllByFirstName(@PathVariable("firstname") String firstName) {
+		List<Driver> driver = driService.findAllByFirstName(firstName);
+		return ResponseEntity.ok(driver);
+	}
+
 }

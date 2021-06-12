@@ -118,4 +118,19 @@ public class DriverServiceImpl implements IDriverService {
 		return driRep.save(dri.get());
 	}
 
+	/**
+	 * This function will update FirstName ById
+	 * 
+	 * @return
+	 */
+	@Override
+	public List<Driver> findAllByFirstName(String firstName) {
+		List<Driver> driverList = driRep.findAllByFirstName(firstName);
+		if (driverList.isEmpty()) {
+			return null;
+		}
+
+		return driverList;
+	}
+
 }

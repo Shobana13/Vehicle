@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.cg.vms.entities.Driver;
 import com.cg.vms.entities.Vehicle;
 import com.cg.vms.repository.IVehicleRepository;
 
@@ -115,5 +117,20 @@ public class VehicleServiceImpl implements IVehicleService {
 		}
 		veh.get().setVehicleNumber(vehicle.getVehicleNumber());
 		return vehRep.save(veh.get());
+	}
+
+	/**
+	 * This function will update FirstName ById
+	 * 
+	 * @return
+	 */
+	@Override
+	public List<Vehicle> findAllByLocation(String location) {
+		List<Vehicle> vehicleList = vehRep.findAllByLocation(location);
+		if (vehicleList.isEmpty()) {
+			return null;
+		}
+
+		return vehicleList;
 	}
 }
