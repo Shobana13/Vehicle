@@ -20,7 +20,7 @@ import lombok.ToString;
 @Entity
 @ToString
 @Getter
-@Setter 
+@Setter  
 @NoArgsConstructor
 public class Customer {
 

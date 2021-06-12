@@ -12,7 +12,7 @@ import com.cg.vms.entities.Vehicle;
 public interface IVehicleRepository extends JpaRepository<Vehicle, Integer> {
 	
 	/**
-	 * Implementing the method getting the Vehicle list based on vehicle location
+	 * Implementing the method getting the Vehicle  list based on vehicle location
 	 */
 	
 	List<Vehicle> findAllByLocation(String location);
