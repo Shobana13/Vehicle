@@ -10,7 +10,7 @@ import com.cg.vms.entities.Customer;
 @Repository
 public interface ICustomerRepository extends JpaRepository<Customer,Integer>{
 
-	/**
+	 /**
 	 * Implementing the method getting the customer list based on vehicle type
 	 */
     @Query(value="select * from  customer inner join vehicle_dto on customer.vehicle_id=vehicle_dto.vehicle_id where vehicle_dto.type=:t",nativeQuery=true)

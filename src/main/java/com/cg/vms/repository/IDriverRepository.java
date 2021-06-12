@@ -14,4 +14,4 @@ public interface IDriverRepository extends JpaRepository<Driver, Integer> {
 	 */
 	
 	List<Driver> findAllByFirstName(String firstName);
-}
+} 

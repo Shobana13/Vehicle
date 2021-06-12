@@ -28,7 +28,7 @@ import com.cg.vms.service.IDriverService;
 @RequestMapping("/api")
 public class DriverController {
 
-	/**
+	/** 
 	 * Logger
 	 */
 	org.apache.logging.log4j.Logger logger = LogManager.getLogger(DriverController.class);

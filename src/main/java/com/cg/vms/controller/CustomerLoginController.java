@@ -26,7 +26,7 @@ public class CustomerLoginController {
 
 	org.apache.logging.log4j.Logger logger = LogManager.getLogger(CustomerLoginController.class);
 
-	@Autowired
+	@Autowired 
 	ICustomerService custService;
 	@Autowired
 	ICustomerLoginService loginService;

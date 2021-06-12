@@ -17,4 +17,4 @@ public interface IVehicleRepository extends JpaRepository<Vehicle, Integer> {
 	
 	List<Vehicle> findAllByLocation(String location);
 
-}
+} 

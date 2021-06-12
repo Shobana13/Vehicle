@@ -9,4 +9,4 @@ import com.cg.vms.entities.CustomerLogin;
 public interface ICustomerLoginRepository extends JpaRepository<CustomerLogin, String> {
 	
 
-}
+} 

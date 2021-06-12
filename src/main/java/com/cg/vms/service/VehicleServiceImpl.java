@@ -6,12 +6,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cg.vms.entities.Driver;
 import com.cg.vms.entities.Vehicle;
 import com.cg.vms.repository.IVehicleRepository;
 
 @Service
-public class VehicleServiceImpl implements IVehicleService {
+public class VehicleServiceImpl implements IVehicleService { 
 
 	@Autowired
 	IVehicleRepository vehRep;

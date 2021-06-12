@@ -2,7 +2,7 @@ package com.cg.vms.service;
 
 
 
-import com.cg.vms.entities.Customer;
+import com.cg.vms.entities.Customer; 
 import com.cg.vms.entities.CustomerLogin;
 
 public interface ICustomerLoginService {
