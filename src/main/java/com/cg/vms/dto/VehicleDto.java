@@ -15,8 +15,6 @@ public class VehicleDto {
 	private double fixedCharges;
 	
 	
-	
-	
 	public VehicleDto() {}
 	public VehicleDto(int vehicleId, String vehicleNumber, String type, String category, String description,
 			String location, String capacity, double chargesPerKM, double fixedCharges) {

@@ -36,7 +36,7 @@ class PaymentServiceMockitoTest {
 	}
 
 	@Test
-	@Disabled
+	//@Disabled
 	void testAddPayment() {
 		Payment payment = new Payment(10007, "Online", LocalDate.of(2021, 05, 07), "Success");
 		Booking booking = new Booking(107, LocalDate.of(2021, 05, 07), LocalDate.of(2021, 05, 07), "Success", 800.0,
@@ -53,7 +53,7 @@ class PaymentServiceMockitoTest {
 	}
 
 	@Test
-	@Disabled
+	//@Disabled
 	void testviewPayment() {
 		Payment payment = new Payment(10007, "Online", LocalDate.of(2021, 05, 07), "Success");
 		Mockito.when(payRepo.findById(10007)).thenReturn(Optional.of(payment));
@@ -65,7 +65,7 @@ class PaymentServiceMockitoTest {
 	}
 
 	@Test
-	@Disabled
+	//@Disabled
 	void testCancelPayment() {
 		Payment payment = new Payment(10007, "Online", LocalDate.of(2021, 05, 07), "Success");
 		Mockito.when(payRepo.findById(10007)).thenReturn(Optional.of(payment));
@@ -78,7 +78,7 @@ class PaymentServiceMockitoTest {
 	}
 
 	@Test
-	@Disabled
+	//@Disabled
 	void testFindAllPayment() {
 		Payment payment1 = new Payment(10007, "Online", LocalDate.of(2021, 05, 07), "Success");
 		Payment payment2 = new Payment(10008, "Online", LocalDate.of(2021, 05, 07), "Success");
@@ -91,7 +91,7 @@ class PaymentServiceMockitoTest {
 	}
 
 	@Test
-	@Disabled
+	//@Disabled
 	void testFindAllPaymentsByVehicle() {
 		Payment payment1 = new Payment(10007, "Online", LocalDate.of(2021, 05, 07), "Success");
 		Booking booking1 = new Booking(107, LocalDate.of(2021, 05, 07), LocalDate.of(2021, 05, 07), "Success", 800.0,
@@ -113,7 +113,7 @@ class PaymentServiceMockitoTest {
 	}
 
 	@Test
-	@Disabled
+	//@Disabled
 	void testUpdatePaymentStatus() {
 		Payment payment = new Payment(10008, "Online", LocalDate.of(2021, 05, 07), "Pending");
 		Mockito.when(payRepo.findById(10008)).thenReturn(Optional.of(payment));

@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -25,6 +26,7 @@ public class Booking {
 	@JoinColumn(name = "paymentId")
 	private Payment payment;
 
+	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "vehicleId")
 	private Vehicle vehicle;
@@ -57,7 +59,6 @@ public class Booking {
 	}
 
 	// Getters and Setters
-	@JsonManagedReference
 	public Vehicle getVehicle() {
 		return vehicle;
 	}

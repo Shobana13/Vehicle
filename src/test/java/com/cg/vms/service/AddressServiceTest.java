@@ -16,9 +16,9 @@ public class AddressServiceTest {
 	IAddressService addrService;
 
 	@Test
-	@Disabled
-	void testAddCustomer() {
-		Address address = new Address(4, "kk road", "Tirunelveli");
+	//@Disabled
+	void testAddAddress() {
+		Address address = new Address(1, "kk road", "Tirunelveli");
 		Address persistedCust = addrService.save(address);
 		assertEquals("kk road",persistedCust.getStreetName());
 	}
@@ -31,29 +31,29 @@ public class AddressServiceTest {
 	}
 	
 	@Test
-	@Disabled
+	//@Disabled
 	void testFindAllAddress() {
 		List<Address> addr=addrService.findAllAddresses();
-		assertEquals(4, addr.size());
+		assertEquals(1, addr.size());
 	}
 	
 	@Test
-	@Disabled
+	//@Disabled
 	void testViewAddressbyId() {
 		Address addr=addrService.findAddressById(1);
 		System.out.println(addr);
-		assertEquals("M.M road", addr.getStreetName());
+		assertEquals("kk road", addr.getStreetName());
 	}
 	
 	@Test
-	@Disabled
+	//@Disabled
 	void testUpdateAddress() {
 		Address address=new Address();
 		address.setAddressId(1);
-		address.setStreetName("rasi street");
-		address.setCity("karur");
+		address.setStreetName("kk road");
+		address.setCity("Tirunelveli");
 		Address addr=addrService.update(address);
-		assertEquals("karur",addr.getCity());
+		assertEquals("Tirunelveli",addr.getCity());
 	}	
 	
 }

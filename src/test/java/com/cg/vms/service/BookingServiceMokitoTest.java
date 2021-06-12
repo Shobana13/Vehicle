@@ -37,7 +37,7 @@ public class BookingServiceMokitoTest {
 	}
 
 	@Test
-	@Disabled
+	//@Disabled
 	void testCreateBooking() {
 		Booking booking = new Booking(101, LocalDate.of(2020, 10, 10), LocalDate.of(2020, 10, 11), "Good", 100.00,
 				1000.00);
@@ -47,7 +47,7 @@ public class BookingServiceMokitoTest {
 	}
 
 	@Test
-	@Disabled
+	//@Disabled
 	void testViewBooking() {
 		Booking booking1 = new Booking(101, LocalDate.of(2020, 10, 10), LocalDate.of(2020, 10, 11), "Good", 100.00,
 				1000.00);
@@ -59,7 +59,7 @@ public class BookingServiceMokitoTest {
 	}
 
 	@Test
-	@Disabled
+	//@Disabled
 	void testViewAllBookingByDate() {
 		Booking booking1 = new Booking(101, LocalDate.of(2020, 10, 10), LocalDate.of(2020, 10, 11), "Good", 100.00,
 				1000.00);
@@ -75,7 +75,7 @@ public class BookingServiceMokitoTest {
 	}
 
 	@Test
-	@Disabled
+	//@Disabled
 	void testUpdateBooking() {
 		Booking booking = new Booking(101, LocalDate.of(2020, 10, 12), LocalDate.of(2020, 10, 11), "Good", 100.00,
 				1000.00);
@@ -88,7 +88,7 @@ public class BookingServiceMokitoTest {
 	}
 
 	@Test
-	@Disabled
+	//@Disabled
 	void testCancelBooking() {
 
 		Booking booking = new Booking(101, LocalDate.of(2020, 10, 12), LocalDate.of(2020, 10, 11), "Good", 100.00,
@@ -101,14 +101,14 @@ public class BookingServiceMokitoTest {
 	}
 
 	@Test
-	@Disabled
+	//@Disabled
 	void testviewaAllBookingByCustomer() {
 		Booking booking1 = new Booking(102, LocalDate.of(2021, 11, 10), LocalDate.of(2020, 10, 12), "Good", 200.00,
 				2000.00);
-		Customer customer1 = new Customer(1, "tom", "son", "951771122", "tom@gmail.com");
+		Customer customer1 = new Customer(1, "tom", "son", "951771122", "tom@gmail.com","Sanam");
 		Booking booking2 = new Booking(103, LocalDate.of(2021, 10, 10), LocalDate.of(2020, 10, 11), "Nice", 300.00,
 				3000.00);
-		Customer customer2 = new Customer(2, "jerry", "lee", "951998122", "jerry@gmail.com");
+		Customer customer2 = new Customer(2, "jerry", "lee", "951998122", "jerry@gmail.com","Sanam");
 		booking1.setCustomer(customer1);
 		booking2.setCustomer(customer2);
 		List<Booking> bookingList = new ArrayList<>();
@@ -121,7 +121,7 @@ public class BookingServiceMokitoTest {
 	}
 
 	@Test
-	@Disabled
+	//@Disabled
 	void testviewAllBookingByVehicle() {
 		Booking booking1 = new Booking(103, LocalDate.of(2020, 11, 10), LocalDate.of(2020, 10, 12), "Good", 200.00,
 				2000.00);

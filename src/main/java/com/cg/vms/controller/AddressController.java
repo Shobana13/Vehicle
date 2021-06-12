@@ -1,6 +1,7 @@
 package com.cg.vms.controller;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,9 +22,11 @@ public class AddressController {
 
 	@Autowired
 	IAddressService addrService;
+	org.apache.logging.log4j.Logger logger = LogManager.getLogger(AddressController.class);
 	
 	@GetMapping("/address/{id}")
 	public Address findAddressById(@PathVariable("id") int id) {
+		logger.info("Finding Customer in database");
 		if(addrService.findAddressById(id)==null) {
 			throw new AddressNotFoundException("Address not found with this id" + id);
 		}
